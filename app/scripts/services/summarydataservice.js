@@ -15,6 +15,7 @@
         .service('summaryDataService', function ($http, $q, $log) {
 
             // Store retrieved JSON in this service.
+            this.booksData = null;
             this.summaryData = null;
 
             /**
@@ -23,11 +24,14 @@
              * any existing data.
              */
             this.getRemoteData = function () {
-                if (!this.summaryData) {
+                if (!this.booksData && !this.summaryData) {
                     var self = this;
                     return this.doGetHttpData(self);
                 } else {
-                    return $q.resolve(true);
+                    return $q.resolve({
+                        'books': this.booksData,
+                        'booksbyauthor': this.summaryData
+                    });
                 }
             };
 
@@ -50,7 +54,8 @@
                 $q.all(urlCalls)
                     .then(
                         function (results) {
-                            self.summaryData = results[0].data;
+                            self.booksData = results[0].data;
+                            self.summaryData = results[1].data;
 
                             deferred.resolve({
                                 'books': results[0].data,

@@ -30,9 +30,14 @@
             };
 
             $scope.getSummaryData();
-        
-            $scope.capitalizeFilter = function (input) {
-                return (input) ? input.charAt(0).toUpperCase() + input.substr(1).toLowerCase() : '';
+
+            $scope.toggleSelected = function (book) {
+                $scope.data.books.forEach(function (val) {
+                    if (val !== book) {
+                        val.expanded = false;
+                    }
+                })
+                book.expanded = !book.expanded;
             };
 
         });

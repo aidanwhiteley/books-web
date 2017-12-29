@@ -109,19 +109,28 @@
                                                 <th>Rating</th>
                                                 <th>Date</th>
                                                 <th>Genre</th>
-                                                <th>Summary</th>
-                                                <th>Similar to</th>
+                                                <th>See more...</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr ng-repeat="book in data.books">
+                                            <tr ng-repeat-start="book in data.books">
                                                 <td>{{book.title}}</td>
                                                 <td>{{book.author}}</td>
                                                 <td>{{book.rating | capitalize}}</td>
                                                 <td>{{book.lastRead[2] + '-' + book.lastRead[1]  + '-' + book.lastRead[0]}}</td>
                                                 <td>{{book.genre}}</td>
-                                                <td>{{book.summary}}</td>
-                                                <td>{{book.similarTo}}</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-primary" ng-click="toggleSelected(book)"><i ng-class="book.expanded ? 'ti-angle-up' : 'ti-angle-down'"></i></button>
+                                                </td>
+                                            </tr>
+                                            <tr class="bookSummary" ng-if="book.expanded">
+                                                <td class="bookSummary" colspan="6"><b>Summary: </b>{{book.summary}}</td>
+                                            </tr>
+                                            <tr class="bookSummary" ng-if="book.expanded">
+                                                <td class="bookSummary" colspan="6"><b>Similar to: </b>{{book.similarTo}}</td>
+                                            </tr>
+                                            <tr class="bookSummary" ng-if="book.expanded" ng-repeat-end="">
+                                                <td class="bookSummary" colspan="6"><b>Comments: </b></td>
                                             </tr>
                                         </tbody>
                                     </table>
