@@ -13,6 +13,8 @@
         .controller('SummaryCtrl', function ($scope, $log, $location, summaryDataService, bookDataService) {
         
             $scope.dataRetrievalError = false;
+            $scope.bookDeletedOk = false;
+            $scope.deletedBook = '';
 
             /**
              * Get data for summary screen
@@ -40,6 +42,9 @@
                     }
                 });
                 book.expanded = !book.expanded;
+                
+                $scope.bookDeletedOk = false;
+                $scope.deletedBook = '';
             };
         
             $scope.deleteSelected = function (book) {
@@ -47,11 +52,15 @@
                     .then(
                         function () {
                             $log.info('Deleted book ok');
-                            $location.path('#/summary');
+                            $scope.getSummaryData();
+                            $scope.bookDeletedOk = true;
+                            $scope.deletedBook = book.title;
                             
                         },
                         function () {
                             $log.error('Failed to delete book with id: ' + book.id);
+                            $scope.bookDeletedOk = false;
+                            $scope.deletedBook = '';
                         }
                     );
             };
