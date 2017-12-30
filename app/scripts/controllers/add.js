@@ -10,25 +10,49 @@
      * Controller of the booksWebApp
      */
     angular.module('booksWebApp')
-        .controller('AddCtrl', function ($scope, $log) {
-        
-            var master;
-        
+        .controller('AddCtrl', function ($scope, $log, bookDataService) {
+
+            $scope.bookCreateOk = false;
+            $scope.bookCreateError = false;
+
             $scope.options = [
-                {name: 'Great', value: 5},
-                {name: 'Good', value: 4},
-                {name: 'Ok', value: 3},
-                {name: 'Poor', value: 2},
-                {name: 'Terrible', value: 1}
+                {
+                    name: 'Great',
+                    value: 5
+                },
+                {
+                    name: 'Good',
+                    value: 4
+                },
+                {
+                    name: 'Ok',
+                    value: 3
+                },
+                {
+                    name: 'Poor',
+                    value: 2
+                },
+                {
+                    name: 'Terrible',
+                    value: 1
+                }
             ];
 
             $scope.save = function (book, bookForm) {
-                master = angular.copy(book);
-                
-                $log.info('Form data was: ' + bookForm.$valid);
-                $log.info('Saved data: ' + JSON.stringify(master));
+
+                if (bookForm.$valid) {
+                    bookDataService.createBook(book)
+                        .then(
+                            function () {
+                                $scope.bookCreateOk = true;
+                            },
+                            function () {
+                                $scope.bookCreateError = true;
+                            }
+                        );
+                }
             };
-        
+
             //$scope.book = book;
 
         });

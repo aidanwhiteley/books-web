@@ -34,6 +34,11 @@
                     });
                 }
             };
+        
+            this.clearCache = function () {
+                this.booksData = null;
+                this.summaryData = null;
+            };
 
             this.doGetHttpData = function (self) {
                 var urls, deferred, urlCalls;
