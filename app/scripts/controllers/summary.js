@@ -11,6 +11,8 @@
      */
     angular.module('booksWebApp')
         .controller('SummaryCtrl', function ($scope, $log, $location, summaryDataService) {
+        
+            $scope.dataRetrievalError = false;
 
             /**
              * Get data for summary screen

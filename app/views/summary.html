@@ -1,151 +1,160 @@
-                <div class="container-fluid">
+<div class="container-fluid">
+
+    <div ng-if="dataRetrievalError" class="row">
+        <div class="col-lg-6 col-sm-12">
+            <div class="alert alert-danger">
+                <p>Sorry - there was a problem getting book data. Please try again later.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-3 col-sm-6">
+            <div class="card">
+                <div class="content">
                     <div class="row">
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="card">
-                                <div class="content">
-                                    <div class="row">
-                                        <div class="col-xs-5">
-                                            <div class="icon-big icon-warning text-center">
-                                                <i class="ti-book"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-7">
-                                            <div class="numbers">
-                                                <p>Books listed</p>
-                                                27
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- div class="footer">
+                        <div class="col-xs-5">
+                            <div class="icon-big icon-warning text-center">
+                                <i class="ti-book"></i>
+                            </div>
+                        </div>
+                        <div class="col-xs-7">
+                            <div class="numbers">
+                                <p>Books listed</p>
+                                27
+                            </div>
+                        </div>
+                    </div>
+                    <!-- div class="footer">
                                         <hr />
                                         <div class="stats">
                                             <i class="ti-reload"></i> Updated now
                                         </div>
                                     </div -->
-                                </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+            <div class="card">
+                <div class="content">
+                    <div class="row">
+                        <div class="col-xs-5">
+                            <div class="icon-big icon-success text-center">
+                                <i class="ti-thumb-up"></i>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="card">
-                                <div class="content">
-                                    <div class="row">
-                                        <div class="col-xs-5">
-                                            <div class="icon-big icon-success text-center">
-                                                <i class="ti-thumb-up"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-7">
-                                            <div class="numbers">
-                                                <p>Top rated books</p>
-                                                11
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- div class="footer">
+                        <div class="col-xs-7">
+                            <div class="numbers">
+                                <p>Top rated books</p>
+                                11
+                            </div>
+                        </div>
+                    </div>
+                    <!-- div class="footer">
                                         <hr />
                                         <div class="stats">
                                             <i class="ti-calendar"></i> Last day
                                         </div>
                                     </div -->
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="card">
-                                <div class="content">
-                                    <div class="row">
-                                        <div class="col-xs-5">
-                                            <div class="icon-big icon-info text-center">
-                                                <i class="ti-thumb-down"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-7">
-                                            <div class="numbers">
-                                                <p>Worst rated books</p>
-                                                9
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-sm-6">
-                            <div class="card">
-                                <div class="content">
-                                    <div class="row">
-                                        <div class="col-xs-5">
-                                            <div class="icon-big icon-danger text-center">
-                                                <i class="ti-cup"></i>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-7">
-                                            <div class="numbers">
-                                                <p>Most popular genre</p>
-                                                Spy novels
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-
-                        <div class="col-md-12">
-                            <div class="card">
-                                <div class="header">
-                                    <h4 class="title">Recently added books</h4>
-                                    <p class="category">Most recently read / added</p>
-                                </div>
-                                <div class="content">
-                                    
-                                    
-                                    <table class="table table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>Title</th>
-                                                <th>Author</th>
-                                                <th>Rating</th>
-                                                <th>Date</th>
-                                                <th>Genre</th>
-                                                <th>See more...</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr ng-repeat-start="book in data.books">
-                                                <td>{{book.title}}</td>
-                                                <td>{{book.author}}</td>
-                                                <td>{{book.rating | capitalize}}</td>
-                                                <td>{{book.lastRead[2] + '-' + book.lastRead[1]  + '-' + book.lastRead[0]}}</td>
-                                                <td>{{book.genre}}</td>
-                                                <td>
-                                                    <button type="button" class="btn btn-primary" ng-click="toggleSelected(book)"><i ng-class="book.expanded ? 'ti-angle-up' : 'ti-angle-down'"></i></button>
-                                                </td>
-                                            </tr>
-                                            <tr class="bookSummary" ng-if="book.expanded">
-                                                <td class="bookSummary" colspan="6"><b>Summary: </b>{{book.summary}}</td>
-                                            </tr>
-                                            <tr class="bookSummary" ng-if="book.expanded">
-                                                <td class="bookSummary" colspan="6"><b>Similar to: </b>{{book.similarTo}}</td>
-                                            </tr>
-                                            <tr class="bookSummary" ng-if="book.expanded" ng-repeat-end="">
-                                                <td class="bookSummary" colspan="6"><b>Comments: </b></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    
-                                    
-                                    <div class="footer">
-                                        <hr>
-                                        <div class="stats">
-                                            <i class="ti-reload"></i> Updated 3 minutes ago
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-
                 </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-sm-6">
+            <div class="card">
+                <div class="content">
+                    <div class="row">
+                        <div class="col-xs-5">
+                            <div class="icon-big icon-info text-center">
+                                <i class="ti-thumb-down"></i>
+                            </div>
+                        </div>
+                        <div class="col-xs-7">
+                            <div class="numbers">
+                                <p>Worst rated books</p>
+                                9
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+            <div class="card">
+                <div class="content">
+                    <div class="row">
+                        <div class="col-xs-5">
+                            <div class="icon-big icon-danger text-center">
+                                <i class="ti-cup"></i>
+                            </div>
+                        </div>
+                        <div class="col-xs-7">
+                            <div class="numbers">
+                                <p>Most popular genre</p>
+                                Spy novels
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="card">
+                <div class="header">
+                    <h4 class="title">Recently added books</h4>
+                    <p class="category">Most recently read / added</p>
+                </div>
+                <div class="content">
+
+
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Author</th>
+                                <th>Rating</th>
+                                <th>Date</th>
+                                <th>Genre</th>
+                                <th>See more...</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat-start="book in data.books">
+                                <td>{{book.title}}</td>
+                                <td>{{book.author}}</td>
+                                <td>{{book.rating | capitalize}}</td>
+                                <td>{{book.lastRead[2] + '-' + book.lastRead[1] + '-' + book.lastRead[0]}}</td>
+                                <td>{{book.genre}}</td>
+                                <td>
+                                    <button type="button" class="btn btn-primary" ng-click="toggleSelected(book)"><i ng-class="book.expanded ? 'ti-angle-up' : 'ti-angle-down'"></i></button>
+                                </td>
+                            </tr>
+                            <tr class="bookSummary" ng-if="book.expanded">
+                                <td class="bookSummary" colspan="6"><b>Summary: </b>{{book.summary}}</td>
+                            </tr>
+                            <tr class="bookSummary" ng-if="book.expanded">
+                                <td class="bookSummary" colspan="6"><b>Similar to: </b>{{book.similarTo}}</td>
+                            </tr>
+                            <tr class="bookSummary" ng-if="book.expanded" ng-repeat-end="">
+                                <td class="bookSummary" colspan="6"><b>Comments: </b></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+                    <div class="footer">
+                        <hr>
+                        <div class="stats">
+                            <i class="ti-reload"></i> Updated 3 minutes ago
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

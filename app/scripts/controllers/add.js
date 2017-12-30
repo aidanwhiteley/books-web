@@ -18,23 +18,23 @@
             $scope.options = [
                 {
                     name: 'Great',
-                    value: 5
-                },
-                {
-                    name: 'Good',
                     value: 4
                 },
                 {
-                    name: 'Ok',
+                    name: 'Good',
                     value: 3
                 },
                 {
-                    name: 'Poor',
+                    name: 'Ok',
                     value: 2
                 },
                 {
-                    name: 'Terrible',
+                    name: 'Poor',
                     value: 1
+                },
+                {
+                    name: 'Terrible',
+                    value: 0
                 }
             ];
 
@@ -45,15 +45,18 @@
                         .then(
                             function () {
                                 $scope.bookCreateOk = true;
+                                $scope.bookCreateError = false;
+                                $scope.book = {};
+                                $scope.bookForm.$setPristine();
+                                $scope.bookForm.$setUntouched();
                             },
                             function () {
                                 $scope.bookCreateError = true;
+                                $scope.bookCreateOk = false;
                             }
                         );
                 }
             };
-
-            //$scope.book = book;
 
         });
 }());
