@@ -110,7 +110,7 @@
                 <div class="content">
 
 
-                    <table class="table table-striped">
+                    <table class="table">
                         <thead>
                             <tr>
                                 <th>Title</th>
@@ -133,13 +133,16 @@
                                 </td>
                             </tr>
                             <tr class="bookSummary" ng-if="book.expanded">
-                                <td class="bookSummary" colspan="6"><b>Summary: </b>{{book.summary}}</td>
+                                <td class="bookSummary" colspan="5"><b>Summary: </b>{{book.summary}}</td>
+                                <td class="bookSummary"><button type="button" class="btn btn-danger" ng-click="deleteSelected(book)"><i class="ti-close"> Delete</i></button></td>
                             </tr>
                             <tr class="bookSummary" ng-if="book.expanded">
-                                <td class="bookSummary" colspan="6"><b>Similar to: </b>{{book.similarTo}}</td>
+                                <td class="bookSummary" colspan="5"><b>Similar to: </b>{{book.similarTo}}</td>
+                                <td class="bookSummary"><button type="button" class="btn btn-info" ng-click="editSelected(book)"><i class="ti-pencil-alt"> Edit</i></button></td>
                             </tr>
                             <tr class="bookSummary" ng-if="book.expanded" ng-repeat-end="">
-                                <td class="bookSummary" colspan="6"><b>Comments: </b></td>
+                                <td class="bookSummary" colspan="5"><b>Comments: </b></td>
+                                <td class="bookSummary"><button type="button" class="btn btn-info" ng-click="commentSelected(book)"><i class="ti-comment-alt"> Comment</i></button></td>
                             </tr>
                         </tbody>
                     </table>

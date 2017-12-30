@@ -10,7 +10,7 @@
      * Controller of the booksWebApp
      */
     angular.module('booksWebApp')
-        .controller('SummaryCtrl', function ($scope, $log, $location, summaryDataService) {
+        .controller('SummaryCtrl', function ($scope, $log, $location, summaryDataService, bookDataService) {
         
             $scope.dataRetrievalError = false;
 
@@ -40,6 +40,20 @@
                     }
                 });
                 book.expanded = !book.expanded;
+            };
+        
+            $scope.deleteSelected = function (book) {
+                bookDataService.deleteBook(book)
+                    .then(
+                        function () {
+                            $log.info('Deleted book ok');
+                            $location.path('#/summary');
+                            
+                        },
+                        function () {
+                            $log.error('Failed to delete book with id: ' + book.id);
+                        }
+                    );
             };
 
         });
