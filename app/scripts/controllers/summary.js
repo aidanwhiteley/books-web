@@ -36,7 +36,7 @@
                     if (val !== book) {
                         val.expanded = false;
                     }
-                })
+                });
                 book.expanded = !book.expanded;
             };
 

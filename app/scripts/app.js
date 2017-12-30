@@ -40,10 +40,10 @@
                     controller: 'SummaryCtrl',
                     controllerAs: 'summary'
                 })
-                .when('/recentlyread', {
-                    templateUrl: 'views/recentlyread.html',
-                    controller: 'RecentlyReadCtrl',
-                    controllerAs: 'recentlyread'
+                .when('/add', {
+                    templateUrl: 'views/add.html',
+                    controller: 'AddCtrl',
+                    controllerAs: 'add'
                 })
                 .otherwise({
                     redirectTo: '/'

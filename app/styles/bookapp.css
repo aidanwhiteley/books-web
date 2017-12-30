@@ -3,3 +3,26 @@
     border-top-color: #FFFFFF !important;
 }
 
+.book-form input.ng-invalid.ng-touched {
+    background-color: #F8E7E7;
+}
+
+.book-form input.ng-valid.ng-touched {
+    background-color: #EEF8E7;
+}
+
+.book-form textarea.ng-invalid.ng-touched {
+    background-color: #F8E7E7;
+}
+
+.book-form textarea.ng-valid.ng-touched {
+    background-color: #EEF8E7;
+}
+
+.book-form select.ng-invalid.ng-touched {
+    background-color: #F8E7E7;
+}
+
+.book-form select.ng-valid.ng-touched {
+    background-color: #EEF8E7;
+}

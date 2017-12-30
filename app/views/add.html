@@ -1,0 +1,75 @@
+<div class="container-fluid">
+    <div class="row">
+
+
+        <div class="col-md-12">
+            <div class="card">
+                <div class="header">
+                    <h4 class="title">Enter details about a book you have read</h4>
+                </div>
+                <div class="content">
+                    <form name="bookForm" novalidate class="book-form">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="form-group">
+                                    <label for="title">Book Title</label>
+                                    <input type="text" id="title" ng-model="book.title" class="form-control border-input" placeholder="Enter the book title" value="" required="" min="1" max="100">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="author">Author</label>
+                                    <input type="text" id="author" ng-model="book.author" class="form-control border-input" placeholder="Enter the authors name" value="" required="" min="1" max="2">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="genre">Genre</label>
+                                    <input type="text" id="genre" ng-model="book.genre" class="form-control border-input" placeholder="Enter the books main genre" required="" min="1" max="75">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="rating">Your Rating Of The Book</label>
+                                    <select id="rating" ng-model="book.rating" class="form-control border-input" ng-init="book.rating = options[2].value"
+                                        ng-options="option.value as option.name for option in options">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="form-group">
+                                    <label for="similar">Similar to what other books?</label>
+                                    <input id="similar" type="text" ng-model="book.similar" class="form-control border-input" placeholder="Optionally list any books this reminds you off (comma separate more than one book)" value="" max="200">
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="summary">Your review / summary</label>
+                                    <textarea id="summaryArea" rows="8" name="summary" ng-model="book.summary" class="form-control border-input" placeholder="What did you think of the book?" value="" aria-describedby="summaryHelpBlock" required min="1" max="5000" ></textarea>
+                                    <small id="summaryHelpBlock" class="form-text">
+                                      Enter anything you like that may help someone else to decide whether the book is worth reading or not. Probably best not to say what the ending is!<br>
+                                      Remember: all comments are publicly visible.
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" ng-click="save(book, bookForm)" ng-disabled="bookForm.$invalid" class="btn btn-info btn-fill btn-wd">Save Book Details</button>
+                        </div>
+                        <div class="clearfix"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
