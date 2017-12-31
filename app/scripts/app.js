@@ -41,9 +41,14 @@
                     controllerAs: 'summary'
                 })
                 .when('/add', {
-                    templateUrl: 'views/add.html',
-                    controller: 'AddCtrl',
-                    controllerAs: 'add'
+                    templateUrl: 'views/createedit.html',
+                    controller: 'CreateEditCtrl',
+                    controllerAs: 'create'
+                })
+                .when('/edit', {
+                    templateUrl: 'views/createedit.html',
+                    controller: 'CreateEditCtrl',
+                    controllerAs: 'edit'
                 })
                 .otherwise({
                     redirectTo: '/'

@@ -53,6 +53,43 @@
 
                 return deferred.promise;
             };
+        
+            this.updateBook = function (book) {
+                var urls, deferred, urlCalls = [],
+                    config = {
+                        headers: {
+                            'Content-Type': 'application/json;charset=utf-8;'
+                        }
+                    };
+
+                urls = [{
+                    'url': 'http://localhost:8080/api/books'
+                }];
+
+                deferred = $q.defer();
+                angular.forEach(urls, function (url) {
+                    urlCalls.push($http.put(url.url, book, config));
+                });
+
+
+                // Still using 'all' even though only one Ajax call currently being made here.
+                $q.all(urlCalls)
+                    .then(
+                        function () {
+                            summaryDataService.clearCache();
+                            deferred.resolve(true);
+                        },
+                        function (errors) {
+                            $log.error('Failed to update an existing new book: ' + JSON.stringify(errors));
+                            deferred.reject(errors);
+                        },
+                        function (updates) {
+                            deferred.update(updates);
+                        }
+                    );
+
+                return deferred.promise;
+            };
 
 
             this.deleteBook = function (book) {
@@ -77,6 +114,26 @@
                         },
                         function (updates) {
                             deferred.update(updates);
+                        }
+                    );
+
+                return deferred.promise;
+            };
+        
+            this.getBook = function (id) {
+                var url, deferred;
+
+                url = 'http://localhost:8080/api/books/' + id;
+                deferred = $q.defer();
+
+                $http.get(url)
+                    .then(
+                        function (data) {
+                            deferred.resolve(data);
+                        },
+                        function (errors) {
+                            $log.error('Failed to get the specified book: ' + JSON.stringify(errors));
+                            deferred.reject(errors);
                         }
                     );
 

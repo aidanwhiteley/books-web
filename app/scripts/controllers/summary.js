@@ -64,6 +64,11 @@
                         }
                     );
             };
+        
+            $scope.editSelected = function (book) {
+                console.log('Edit selected');
+                $location.path('/edit/').search({id: book.id});
+            };
 
         });
 }());

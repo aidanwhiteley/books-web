@@ -13,6 +13,27 @@
             </div>
         </div>
     </div>
+    <div ng-if="bookRetrievalError" class="row">
+        <div class="col-lg-6 col-sm-12">
+            <div class="alert alert-success">
+                <p>Unable to get the details for the request book. Please try later.</p>
+            </div>
+        </div>
+    </div>
+    <div ng-if="bookUpdateOK" class="row">
+        <div class="col-lg-6 col-sm-12">
+            <div class="alert alert-success">
+                <p>Book details updated as requested.</p>
+            </div>
+        </div>
+    </div>
+    <div ng-if="bookUpdateError" class="row">
+        <div class="col-lg-6 col-sm-12">
+            <div class="alert alert-success">
+                <p>Unable to get the details of the selected book. Please try later.</p>
+            </div>
+        </div>
+    </div>
     
     <div class="row">
         <div class="col-md-12">
@@ -55,7 +76,7 @@
                             <div class="col-md-9">
                                 <div class="form-group">
                                     <label for="similar">Similar to what other books?</label>
-                                    <input id="similar" type="text" ng-model="book.similar" class="form-control border-input" placeholder="Optionally list any books this reminds you off (comma separate more than one book)" value="" max="200">
+                                    <input id="similar" type="text" ng-model="book.similarTo" class="form-control border-input" placeholder="Optionally list any books this reminds you off (comma separate more than one book)" value="" max="200">
                                 </div>
                             </div>
                         </div>
