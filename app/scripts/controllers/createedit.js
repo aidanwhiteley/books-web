@@ -88,24 +88,20 @@
             };
 
             $scope.checkIfExistingBook = function () {
-                
+
                 var idParam = $location.search().id;
-                
-                console.log('check found: ' + JSON.stringify(idParam));
 
                 if (idParam && idParam !== '') {
-                    console.log('Got a match');
                     bookDataService.getBook(idParam)
                         .then(
                             function (data) {
                                 $scope.book = data.data;
                                 $scope.bookForm.$setPristine();
                                 $scope.bookForm.$setUntouched();
-                                console.log('Should have set book in scope for: ' + JSON.stringify(data));
                             },
                             function () {
                                 $scope.bookRetrievalError = true;
-                                $error.log('Error retrieving book based on parameter ' + idParam);
+                                $log.error('Error retrieving book based on parameter ' + idParam);
                             }
                         );
                 }
