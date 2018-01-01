@@ -19,13 +19,13 @@
             'ngSanitize',
             'ngTouch'
         ])
-        .constant('booksWebAppConstants', {
+        .constant('booksConstants', {
             // ************************************
             // Constants that control app behaviour.
             // ************************************
 
-            // Placeholder
-            doStuff: false
+            apiEndPoint: 'http://localhost:8080/api',
+            secureApiEndPoint: 'http://localhost:8080/secure/api'
         })
         .config(function ($locationProvider, $routeProvider, $logProvider) {
 

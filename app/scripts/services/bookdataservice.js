@@ -12,7 +12,7 @@
      * AngularJS will instantiate a singleton by calling "new" on this function.
      */
     angular.module('booksWebApp')
-        .service('bookDataService', function ($http, $q, $log, summaryDataService) {
+        .service('bookDataService', function ($http, $q, $log, summaryDataService, booksConstants) {
 
             this.createBook = function (book) {
                 var urls, deferred, urlCalls = [],
@@ -23,7 +23,7 @@
                     };
 
                 urls = [{
-                    'url': 'http://localhost:8080/secure/api/books'
+                    'url': booksConstants.secureApiEndPoint + '/books'
                 }];
 
                 deferred = $q.defer();
@@ -63,7 +63,7 @@
                     };
 
                 urls = [{
-                    'url': 'http://localhost:8080/secure/api/books'
+                    'url': booksConstants.secureApiEndPoint + '/books'
                 }];
 
                 deferred = $q.defer();
@@ -99,7 +99,7 @@
                     }
                 };
 
-                url = 'http://localhost:8080/secure/api/books/' + book.id;
+                url = booksConstants.secureApiEndPoint + '/books/' + book.id;
                 deferred = $q.defer();
 
                 $http.delete(url, config)
@@ -123,7 +123,7 @@
             this.getBook = function (id) {
                 var url, deferred;
 
-                url = 'http://localhost:8080/api/books/' + id;
+                url = booksConstants.apiEndPoint + '/books/' + id;
                 deferred = $q.defer();
 
                 $http.get(url)
