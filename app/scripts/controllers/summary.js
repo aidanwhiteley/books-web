@@ -51,7 +51,6 @@
                 bookDataService.deleteBook(book)
                     .then(
                         function () {
-                            $log.info('Deleted book ok');
                             $scope.getSummaryData();
                             $scope.bookDeletedOk = true;
                             $scope.deletedBook = book.title;

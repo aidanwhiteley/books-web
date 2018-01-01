@@ -23,7 +23,7 @@
                     };
 
                 urls = [{
-                    'url': 'http://localhost:8080/api/books'
+                    'url': 'http://localhost:8080/secure/api/books'
                 }];
 
                 deferred = $q.defer();
@@ -63,7 +63,7 @@
                     };
 
                 urls = [{
-                    'url': 'http://localhost:8080/api/books'
+                    'url': 'http://localhost:8080/secure/api/books'
                 }];
 
                 deferred = $q.defer();
@@ -99,7 +99,7 @@
                     }
                 };
 
-                url = 'http://localhost:8080/api/books/' + book.id;
+                url = 'http://localhost:8080/secure/api/books/' + book.id;
                 deferred = $q.defer();
 
                 $http.delete(url, config)
