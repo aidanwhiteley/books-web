@@ -27,7 +27,10 @@
             apiEndPoint: 'http://localhost:8080/api',
             secureApiEndPoint: 'http://localhost:8080/secure/api'
         })
-        .config(function ($locationProvider, $routeProvider, $logProvider) {
+        .config(function ($locationProvider, $routeProvider, $logProvider, $httpProvider) {
+        
+            // Needed for CORS in development (at least)
+            $httpProvider.defaults.withCredentials = true;
 
             // TODO - this is not working - therefore log statements coded to info level!
             $logProvider.debugEnabled(true);

@@ -58,7 +58,7 @@
                                     $scope.bookForm.$setUntouched();
                                 },
                                 function () {
-                                    $scope.bookCreateOk = true;
+                                    $scope.bookCreateOk = false;
                                     $scope.bookCreateError = true;
                                     $scope.bookUpdateError = false;
                                     $scope.bookUpdateOK = false;

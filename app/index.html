@@ -38,7 +38,7 @@
             Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
         -->
 
-            <div class="sidebar-wrapper">
+            <div class="sidebar-wrapper" ng-controller="LogonCtrl">
                 <div class="logo">
                     <a href="#" class="simple-text">
                         Cloudy Book Club
@@ -82,15 +82,19 @@
                             <p>Add a book</p>
                         </a>
                     </li>
-                    <li>
+                    <li ng-if="!loggedOn" class="notLoggedOn">
                         <br><br>
-                        <a href="http://localhost:8080/logonToBooks">
+                        <a href="http://localhost:8080/logonWithGoogle">
                             <i class="ti-google"></i>
                             <p>Login with Google</p>
                         </a>
                     </li>
-
                 </ul>
+                <div ng-if="loggedOn" class="loggedOn">
+                    <p class="welcomeText" ng-if="user.firstVisit">Hi {{user.firstName}}. Welcome to The Cloudy Book Club!</p>
+                    <p class="welcomeText" ng-if="!user.firstVisit">Hi {{user.firstName}}. Welcome back. Your last logon was on {{user.lastLogon[2]}}/{{user.lastLogon[1]}}/{{user.lastLogon[0]}}</p>
+                </div>
+
             </div>
         </div>
 
@@ -198,8 +202,10 @@
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/summary.js"></script>
         <script src="scripts/controllers/createedit.js"></script>
+        <script src="scripts/controllers/logon.js"></script>
         <script src="scripts/services/summarydataservice.js"></script>
         <script src="scripts/services/bookdataservice.js"></script>
+        <script src="scripts/services/userdataservice.js"></script>
         <script src="scripts/utils/bootstrap-checkbox-radio.js"></script>
         <script src="scripts/utils/bootstrap-notify.js"></script>
         <script src="scripts/utils/paper-dashboard.js"></script>

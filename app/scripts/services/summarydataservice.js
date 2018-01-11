@@ -16,7 +16,6 @@
 
             // Store retrieved JSON in this service.
             this.booksData = null;
-            this.summaryData = null;
 
             /**
              * Get the remote JSON files - but only if they haven't already been
@@ -45,22 +44,18 @@
 
                 urls = [{
                     'url': booksConstants.apiEndPoint + '/books'
-                }, {
-                    'url': booksConstants.apiEndPoint + '/books?author=Dr%20Zuess'
                 }];
 
                 deferred = $q.defer();
                 urlCalls = [];
-                // The 'cb' parameter stands for "cache buster"
                 angular.forEach(urls, function (url) {
-                    urlCalls.push($http.get(url.url + '?cb=' + Math.random()));
+                    urlCalls.push($http.get(url.url));
                 });
 
                 $q.all(urlCalls)
                     .then(
                         function (results) {
                             self.booksData = results[0].data;
-                            self.summaryData = results[1].data;
 
                             deferred.resolve({
                                 'books': results[0].data,

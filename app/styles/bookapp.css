@@ -26,3 +26,15 @@
 .book-form select.ng-valid.ng-touched {
     background-color: #EEF8E7;
 }
+
+.loggedOn {
+    margin: 10px 0px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.welcomeText {
+    text-transform: none;
+    font-size: 14px; 
+    color: white;
+}
