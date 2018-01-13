@@ -15,6 +15,7 @@
         .service('bookDataService', function ($http, $q, $log, summaryDataService, booksConstants) {
 
             this.createBook = function (book) {
+
                 var urls, deferred, urlCalls = [],
                     config = {
                         headers: {
@@ -53,7 +54,7 @@
 
                 return deferred.promise;
             };
-        
+
             this.updateBook = function (book) {
                 var urls, deferred, urlCalls = [],
                     config = {
@@ -119,7 +120,7 @@
 
                 return deferred.promise;
             };
-        
+
             this.getBook = function (id) {
                 var url, deferred;
 
@@ -133,6 +134,26 @@
                         },
                         function (errors) {
                             $log.error('Failed to get the specified book: ' + JSON.stringify(errors));
+                            deferred.reject(errors);
+                        }
+                    );
+
+                return deferred.promise;
+            };
+
+            this.getGoogleBooks = function (title) {
+                var url, deferred;
+
+                url = booksConstants.apiEndPoint + '/googlebooks/?title=' + title;
+                deferred = $q.defer();
+
+                $http.get(url)
+                    .then(
+                        function (data) {
+                            deferred.resolve(data);
+                        },
+                        function (errors) {
+                            $log.error('Failed to get google books: ' + JSON.stringify(errors));
                             deferred.reject(errors);
                         }
                     );

@@ -38,3 +38,12 @@
     font-size: 14px; 
     color: white;
 }
+
+.googleBookImageImport {
+    padding-right: 15px;
+    padding-bottom: 15px;
+}
+
+.googleBookConfirm {
+    margin-top: 0px;
+}

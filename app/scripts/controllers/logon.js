@@ -18,7 +18,7 @@
              * Get user data
              */
             $scope.getUserData = function () {
-
+                
                 userDataService.getUser()
                     .then(
                         function (data) {

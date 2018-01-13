@@ -34,7 +34,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -47,7 +47,7 @@
                             <div class="col-md-5">
                                 <div class="form-group">
                                     <label for="title">Book Title</label>
-                                    <input type="text" id="title" ng-model="book.title" class="form-control border-input" placeholder="Enter the book title" value="" required="" min="1" max="100">
+                                    <input type="text" id="title" ng-model="book.title" class="form-control border-input" placeholder="Enter the book title" value="" required="" min="2" max="100" ng-blur="searchGoogle(book)">
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -68,8 +68,7 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="rating">Your Rating Of The Book</label>
-                                    <select id="rating" ng-model="book.rating" class="form-control border-input" ng-init="book.rating = options[2].value"
-                                        ng-options="option.value as option.name for option in options">
+                                    <select id="rating" ng-model="book.rating" class="form-control border-input" ng-init="book.rating = options[2].value" ng-options="option.value as option.name for option in options">
                                     </select>
                                 </div>
                             </div>
@@ -81,16 +80,41 @@
                             </div>
                         </div>
 
-
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="summary">Your review / summary</label>
-                                    <textarea id="summaryArea" rows="8" name="summary" ng-model="book.summary" class="form-control border-input" placeholder="What did you think of the book?" value="" aria-describedby="summaryHelpBlock" required min="1" max="5000" ></textarea>
+                                    <textarea id="summaryArea" rows="8" name="summary" ng-model="book.summary" class="form-control border-input" placeholder="What did you think of the book?" value="" aria-describedby="summaryHelpBlock" required min="1" max="5000"></textarea>
                                     <small id="summaryHelpBlock" class="form-text">
                                       Enter anything you like that may help someone else to decide whether the book is worth reading or not. Probably best not to say what the ending is!<br>
                                       Remember: all entries are publicly visible.
                                     </small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div ng-if="book.google" class="row">
+                            <div class="col-md-8">
+                                <p>
+                                    <img class="rounded pull-left googleBookImageImport" ng-src="{{book.google[googleMatchesIndex].volumeInfo.imageLinks.thumbnail}}"> {{book.google[googleMatchesIndex].volumeInfo.description ? book.google[googleMatchesIndex].volumeInfo.description : 'No description available'}}
+                                </p>
+                                <p>
+                                    {{book.google[googleMatchesIndex].volumeInfo.authors ? 'By: ' + book.google[googleMatchesIndex].volumeInfo.authors.join() : ''}}
+                                </p>
+                            </div>
+                            <div class="col-md-4">
+                                <h5 class="googleBookConfirm">Have we found the book on Google?</h5>
+                                <p>Does this look like the book you've read? If so, please click the checkbox. If not, please try the scroll buttons to see alternatives and then click the check box if you find a good match.</p>
+                                <p>If none of the options look like a good match, please leave the check box unticked.</p>
+                                <nav aria-label="...">
+                                    <ul class="pager">
+                                        <li ng-class="{'disabled' : googleMatchesIndex === 0}"><a ng-click="googleMatchesMinus()" href="">&laquo; Previous</a></li>
+                                        <li ng-class="{'disabled' : googleMatchesIndex === (book.google.length  - 1)}"><a ng-click="googleMatchesPlus()" href="">Next &raquo;</a></li>
+                                    </ul>
+                                </nav>
+
+                                <div class="form-group">
+                                    <input id="google" type="checkbox" ng-model="book.foundOnGoogle" class="form-control border-input">
                                 </div>
                             </div>
                         </div>

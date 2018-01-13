@@ -17,6 +17,7 @@
             $scope.bookRetrievalError = false;
             $scope.bookUpdateError = false;
             $scope.bookUpdateOK = false;
+            $scope.googleMatchesIndex = 0;
 
             $scope.options = [
                 {
@@ -106,6 +107,42 @@
                         );
                 }
             };
+
+            $scope.searchGoogle = function (book) {
+
+                var trimmedTitle, minumumValidInput = 2;
+
+                // We are only supporting recent browsers
+                trimmedTitle = book.title.trim();
+
+                if (trimmedTitle.length > minumumValidInput) {
+
+                    $scope.googleMatchesIndex = 0
+
+                    bookDataService.getGoogleBooks(book.title)
+                        .then(
+                            function (data) {
+                                $scope.book.google = data.data.items;
+                            },
+                            function (errors) {
+                                $log.error('Failed to retrieve Google book data: ' + JSON.stringify(errors));
+                            }
+                        );
+                }
+            };
+
+            $scope.googleMatchesPlus = function () {
+                if ($scope.googleMatchesIndex < ($scope.book.google.length - 1)) {
+                    $scope.googleMatchesIndex = $scope.googleMatchesIndex + 1;
+                }
+            };
+
+            $scope.googleMatchesMinus = function () {
+                if ($scope.googleMatchesIndex > 0) {
+                    $scope.googleMatchesIndex = $scope.googleMatchesIndex - 1;
+                }
+            };
+
 
             $scope.checkIfExistingBook();
 
