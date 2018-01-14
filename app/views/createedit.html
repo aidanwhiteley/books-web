@@ -93,13 +93,13 @@
                             </div>
                         </div>
 
-                        <div ng-if="book.google" class="row">
+                        <div ng-if="google.books" class="row">
                             <div class="col-md-8">
                                 <p>
-                                    <img class="rounded pull-left googleBookImageImport" ng-src="{{book.google[googleMatchesIndex].volumeInfo.imageLinks.thumbnail}}"> {{book.google[googleMatchesIndex].volumeInfo.description ? book.google[googleMatchesIndex].volumeInfo.description : 'No description available'}}
+                                    <img class="rounded pull-left googleBookImageImport" ng-src="{{google.books[googleMatchesIndex].volumeInfo.imageLinks.thumbnail}}"> {{google.books[googleMatchesIndex].volumeInfo.description ? google.books[googleMatchesIndex].volumeInfo.description : 'No description available'}}
                                 </p>
                                 <p>
-                                    {{book.google[googleMatchesIndex].volumeInfo.authors ? 'By: ' + book.google[googleMatchesIndex].volumeInfo.authors.join() : ''}}
+                                    {{google.books[googleMatchesIndex].volumeInfo.authors ? 'By: ' + google.books[googleMatchesIndex].volumeInfo.authors.join() : ''}}
                                 </p>
                             </div>
                             <div class="col-md-4">
@@ -109,13 +109,15 @@
                                 <nav aria-label="...">
                                     <ul class="pager">
                                         <li ng-class="{'disabled' : googleMatchesIndex === 0}"><a ng-click="googleMatchesMinus()" href="">&laquo; Previous</a></li>
-                                        <li ng-class="{'disabled' : googleMatchesIndex === (book.google.length  - 1)}"><a ng-click="googleMatchesPlus()" href="">Next &raquo;</a></li>
+                                        <li ng-class="{'disabled' : googleMatchesIndex === (google.books.length  - 1)}"><a ng-click="googleMatchesPlus()" href="">Next &raquo;</a></li>
                                     </ul>
                                 </nav>
 
                                 <div class="form-group">
                                     <input id="google" type="checkbox" ng-model="book.foundOnGoogle" class="form-control border-input">
                                 </div>
+                                
+                                <input id="googleBookId" ng-model="book.googleBookId" name="googleBookId" type="hidden" ng-model="book.googleBookId">
                             </div>
                         </div>
                         <div class="text-center">
