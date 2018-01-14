@@ -93,17 +93,18 @@
                             </div>
                         </div>
 
-                        <div ng-if="book.google" class="row">
+                        <div ng-if="googleBookData.length > 0" class="row">
                             <div class="col-md-8">
+                                <h5>{{googleBookData[googleMatchesIndex].volumeInfo.title}}</h5>
                                 <p>
-                                    <img class="rounded pull-left googleBookImageImport" ng-src="{{book.google[googleMatchesIndex].volumeInfo.imageLinks.thumbnail}}"> {{book.google[googleMatchesIndex].volumeInfo.description ? book.google[googleMatchesIndex].volumeInfo.description : 'No description available'}}
+                                    <img class="rounded pull-left googleBookImageImport" ng-src="{{googleBookData[googleMatchesIndex].volumeInfo.imageLinks.thumbnail}}"> {{googleBookData[googleMatchesIndex].volumeInfo.description ? googleBookData[googleMatchesIndex].volumeInfo.description : 'No description available'}}
                                 </p>
                                 <p>
-                                    {{book.google[googleMatchesIndex].volumeInfo.authors ? 'By: ' + book.google[googleMatchesIndex].volumeInfo.authors.join() : ''}}
+                                    {{googleBookData[googleMatchesIndex].volumeInfo.authors ? 'By: ' + googleBookData[googleMatchesIndex].volumeInfo.authors.join() : ''}}
                                 </p>
                             </div>
-                            <div class="col-md-4">
-                                <h5 class="googleBookConfirm">Have we found the book on Google?</h5>
+                            <div class="panel googleBookText col-md-4">
+                                <h5 class="googleBookConfirm">Have we found the right book?</h5>
                                 <p>Does this look like the book you've read? If so, please click the checkbox. If not, please try the scroll buttons to see alternatives and then click the check box if you find a good match.</p>
                                 <p>If none of the options look like a good match, please leave the check box unticked.</p>
                                 <nav aria-label="...">
@@ -114,7 +115,7 @@
                                 </nav>
 
                                 <div class="form-group">
-                                    <input id="google" type="checkbox" ng-model="book.foundOnGoogle" class="form-control border-input">
+                                    <input id="google" ng-click="googleCheckBoxTicked()" type="checkbox" ng-model="book.foundOnGoogle" class="form-control border-input">
                                 </div>
                             </div>
                         </div>

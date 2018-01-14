@@ -18,6 +18,7 @@
             $scope.bookUpdateError = false;
             $scope.bookUpdateOK = false;
             $scope.googleMatchesIndex = 0;
+            $scope.googleBookData = [];
 
             $scope.options = [
                 {
@@ -122,7 +123,7 @@
                     bookDataService.getGoogleBooks(book.title)
                         .then(
                             function (data) {
-                                $scope.book.google = data.data.items;
+                                $scope.googleBookData = data.data.items;
                             },
                             function (errors) {
                                 $log.error('Failed to retrieve Google book data: ' + JSON.stringify(errors));
@@ -132,15 +133,23 @@
             };
 
             $scope.googleMatchesPlus = function () {
-                if ($scope.googleMatchesIndex < ($scope.book.google.length - 1)) {
+                if ($scope.googleMatchesIndex < ($scope.googleBookData.length - 1)) {
                     $scope.googleMatchesIndex = $scope.googleMatchesIndex + 1;
+                    delete $scope.book.googleBookId;
+                    $scope.book.foundOnGoogle = false;
                 }
             };
 
             $scope.googleMatchesMinus = function () {
                 if ($scope.googleMatchesIndex > 0) {
                     $scope.googleMatchesIndex = $scope.googleMatchesIndex - 1;
+                    delete $scope.book.googleBookId;
+                    $scope.book.foundOnGoogle = false;
                 }
+            };
+        
+            $scope.googleCheckBoxTicked = function () {
+                $scope.book.googleBookId = $scope.googleBookData[$scope.googleMatchesIndex].id;
             };
 
 

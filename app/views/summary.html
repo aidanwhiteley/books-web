@@ -122,7 +122,7 @@
                                 <td>{{book.title}}</td>
                                 <td>{{book.author}}</td>
                                 <td>{{book.rating | capitalize}}</td>
-                                <td>{{book.lastRead[2] + '-' + book.lastRead[1] + '-' + book.lastRead[0]}}</td>
+                                <td>{{book.entered[2] + '-' + book.entered[1] + '-' + book.entered[0]}}</td>
                                 <td>{{book.genre}}</td>
                                 <td>
                                     <button type="button" class="btn btn-primary" ng-click="toggleSelected(book)"><i ng-class="book.expanded ? 'ti-angle-up' : 'ti-angle-down'"></i></button>

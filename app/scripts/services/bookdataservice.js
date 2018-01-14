@@ -32,8 +32,8 @@
                     urlCalls.push($http.post(url.url, book, config));
                 });
 
-                if (!book.lastRead) {
-                    book.lastRead = new Date();
+                if (!book.entered) {
+                    book.entered = new Date();
                 }
 
                 // Still using 'all' even though only one Ajax call currently being made here.
