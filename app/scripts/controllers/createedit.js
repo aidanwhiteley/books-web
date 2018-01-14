@@ -18,7 +18,11 @@
             $scope.bookUpdateError = false;
             $scope.bookUpdateOK = false;
             $scope.googleMatchesIndex = 0;
+<<<<<<< HEAD
             $scope.googleBookData = [];
+=======
+            $scope.google = {};
+>>>>>>> 5fd2c75a1fc0781b3df39f098c35928da46f4cde
 
             $scope.options = [
                 {
@@ -123,7 +127,12 @@
                     bookDataService.getGoogleBooks(book.title)
                         .then(
                             function (data) {
+<<<<<<< HEAD
                                 $scope.googleBookData = data.data.items;
+=======
+                                $scope.google.books = data.data.items;
+                                $scope.book.googleBookId = data.data.items[$scope.googleMatchesIndex].id;
+>>>>>>> 5fd2c75a1fc0781b3df39f098c35928da46f4cde
                             },
                             function (errors) {
                                 $log.error('Failed to retrieve Google book data: ' + JSON.stringify(errors));
@@ -133,18 +142,28 @@
             };
 
             $scope.googleMatchesPlus = function () {
+<<<<<<< HEAD
                 if ($scope.googleMatchesIndex < ($scope.googleBookData.length - 1)) {
                     $scope.googleMatchesIndex = $scope.googleMatchesIndex + 1;
                     delete $scope.book.googleBookId;
                     $scope.book.foundOnGoogle = false;
+=======
+                if ($scope.googleMatchesIndex < ($scope.google.books.length - 1)) {
+                    $scope.googleMatchesIndex = $scope.googleMatchesIndex + 1;
+                    $scope.book.googleBookId = data.data.items[$scope.googleMatchesIndex].id;
+>>>>>>> 5fd2c75a1fc0781b3df39f098c35928da46f4cde
                 }
             };
 
             $scope.googleMatchesMinus = function () {
                 if ($scope.googleMatchesIndex > 0) {
                     $scope.googleMatchesIndex = $scope.googleMatchesIndex - 1;
+<<<<<<< HEAD
                     delete $scope.book.googleBookId;
                     $scope.book.foundOnGoogle = false;
+=======
+                    $scope.book.googleBookId = data.data.items[$scope.googleMatchesIndex].id;
+>>>>>>> 5fd2c75a1fc0781b3df39f098c35928da46f4cde
                 }
             };
         

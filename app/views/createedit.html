@@ -93,14 +93,25 @@
                             </div>
                         </div>
 
+<<<<<<< HEAD
                         <div ng-if="googleBookData.length > 0" class="row">
+=======
+                        <div ng-if="google.books" class="row">
+>>>>>>> 5fd2c75a1fc0781b3df39f098c35928da46f4cde
                             <div class="col-md-8">
                                 <h5>{{googleBookData[googleMatchesIndex].volumeInfo.title}}</h5>
                                 <p>
+<<<<<<< HEAD
                                     <img class="rounded pull-left googleBookImageImport" ng-src="{{googleBookData[googleMatchesIndex].volumeInfo.imageLinks.thumbnail}}"> {{googleBookData[googleMatchesIndex].volumeInfo.description ? googleBookData[googleMatchesIndex].volumeInfo.description : 'No description available'}}
                                 </p>
                                 <p>
                                     {{googleBookData[googleMatchesIndex].volumeInfo.authors ? 'By: ' + googleBookData[googleMatchesIndex].volumeInfo.authors.join() : ''}}
+=======
+                                    <img class="rounded pull-left googleBookImageImport" ng-src="{{google.books[googleMatchesIndex].volumeInfo.imageLinks.thumbnail}}"> {{google.books[googleMatchesIndex].volumeInfo.description ? google.books[googleMatchesIndex].volumeInfo.description : 'No description available'}}
+                                </p>
+                                <p>
+                                    {{google.books[googleMatchesIndex].volumeInfo.authors ? 'By: ' + google.books[googleMatchesIndex].volumeInfo.authors.join() : ''}}
+>>>>>>> 5fd2c75a1fc0781b3df39f098c35928da46f4cde
                                 </p>
                             </div>
                             <div class="panel googleBookText col-md-4">
@@ -110,13 +121,15 @@
                                 <nav aria-label="...">
                                     <ul class="pager">
                                         <li ng-class="{'disabled' : googleMatchesIndex === 0}"><a ng-click="googleMatchesMinus()" href="">&laquo; Previous</a></li>
-                                        <li ng-class="{'disabled' : googleMatchesIndex === (book.google.length  - 1)}"><a ng-click="googleMatchesPlus()" href="">Next &raquo;</a></li>
+                                        <li ng-class="{'disabled' : googleMatchesIndex === (google.books.length  - 1)}"><a ng-click="googleMatchesPlus()" href="">Next &raquo;</a></li>
                                     </ul>
                                 </nav>
 
                                 <div class="form-group">
                                     <input id="google" ng-click="googleCheckBoxTicked()" type="checkbox" ng-model="book.foundOnGoogle" class="form-control border-input">
                                 </div>
+                                
+                                <input id="googleBookId" ng-model="book.googleBookId" name="googleBookId" type="hidden" ng-model="book.googleBookId">
                             </div>
                         </div>
                         <div class="text-center">
