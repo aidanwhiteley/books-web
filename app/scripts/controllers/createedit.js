@@ -10,7 +10,7 @@
      * Controller of the booksWebApp
      */
     angular.module('booksWebApp')
-        .controller('CreateEditCtrl', function ($scope, $log, $location, bookDataService) {
+        .controller('CreateEditCtrl', function ($scope, $log, $location, $anchorScroll, bookDataService) {
 
             $scope.bookCreateOk = false;
             $scope.bookCreateError = false;
@@ -58,6 +58,9 @@
                                     $scope.book = {};
                                     $scope.bookForm.$setPristine();
                                     $scope.bookForm.$setUntouched();
+                                    
+                                    //$location.hash('navbar');
+                                    //$anchorScroll();
                                 },
                                 function () {
                                     $scope.bookCreateOk = false;
@@ -65,6 +68,9 @@
                                     $scope.bookUpdateError = false;
                                     $scope.bookUpdateOK = false;
                                     $scope.bookRetrievalError = false;
+                                    
+                                    //$location.hash('navbar');
+                                    //$anchorScroll();
                                 }
                             );
                     } else {
@@ -76,6 +82,9 @@
                                     $scope.bookUpdateError = false;
                                     $scope.bookUpdateOK = true;
                                     $scope.bookRetrievalError = false;
+                                    
+                                    //$location.hash('navbar');
+                                    //$anchorScroll();
                                 },
                                 function () {
                                     $scope.bookCreateOk = false;
@@ -83,6 +92,9 @@
                                     $scope.bookUpdateError = true;
                                     $scope.bookUpdateOk = false;
                                     $scope.bookRetrievalError = false;
+                                    
+                                    //$location.hash('navbar');
+                                    //$anchorScroll();
                                 }
                             );
                     }
@@ -100,6 +112,8 @@
                                 $scope.book = data.data;
                                 $scope.bookForm.$setPristine();
                                 $scope.bookForm.$setUntouched();
+
+                                $scope.searchGoogle(data.data);
                             },
                             function () {
                                 $scope.bookRetrievalError = true;
@@ -111,19 +125,32 @@
 
             $scope.searchGoogle = function (book) {
 
-                var trimmedTitle, minumumValidInput = 2;
+                var trimmedTitle, minumumValidInput = 2, i;
 
                 // We are only supporting recent browsers
                 trimmedTitle = book.title.trim();
 
                 if (trimmedTitle.length > minumumValidInput) {
 
-                    $scope.googleMatchesIndex = 0
+                    $scope.googleMatchesIndex = 0;
 
                     bookDataService.getGoogleBooks(book.title)
                         .then(
                             function (data) {
                                 $scope.googleBookData = data.data.items;
+
+                                // If the passed in "book" has a googleBookId set against it, we now
+                                // iterate through the matches to see if we can find it again.
+                                // There is a risk that this new Googlr Book serach won't return the
+                                // book the user previoulsy selected!
+                                if (book.googleBookId && book.googleBookId !== '') {
+                                    for (i = 0; i < data.data.items.length; i = i + 1) {
+                                        if (data.data.items[i].id === book.googleBookId) {
+                                            $scope.googleMatchesIndex = i;
+                                            $scope.book.foundOnGoogle = true;
+                                        }
+                                    }
+                                }
                             },
                             function (errors) {
                                 $log.error('Failed to retrieve Google book data: ' + JSON.stringify(errors));
@@ -147,7 +174,7 @@
                     $scope.book.foundOnGoogle = false;
                 }
             };
-        
+
             $scope.googleCheckBoxTicked = function () {
                 $scope.book.googleBookId = $scope.googleBookData[$scope.googleMatchesIndex].id;
             };

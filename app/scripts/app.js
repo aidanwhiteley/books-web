@@ -28,7 +28,7 @@
             secureApiEndPoint: 'http://localhost:8080/secure/api'
         })
         .config(function ($locationProvider, $routeProvider, $logProvider, $httpProvider) {
-        
+
             // Needed for CORS in development (at least)
             $httpProvider.defaults.withCredentials = true;
 
@@ -36,6 +36,11 @@
             $logProvider.debugEnabled(true);
 
             $locationProvider.hashPrefix('');
+            //$locationProvider.html5Mode({
+            //    enabled: true,
+            //    requireBase: false,
+            //    rewriteLinks: false
+            //});
 
             $routeProvider
                 .when('/', {
