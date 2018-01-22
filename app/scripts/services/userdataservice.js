@@ -73,6 +73,30 @@
 
                 return deferred.promise;
             };
+        
+            this.alterUserPermissions = function (user) {
+                var url, deferred, clientRoles = {};
+
+                url = booksConstants.secureApiEndPoint + '/users/' + user.id;
+                deferred = $q.defer();
+                
+                clientRoles.id = user.id;
+                clientRoles.admin = user.admin;
+                clientRoles.editor = user.editor;
+
+                $http.patch(url, clientRoles)
+                    .then(
+                        function (data) {
+                            deferred.resolve(data);
+                        },
+                        function (errors) {
+                            $log.error('Failed to update permissions for user: ' + user.id + ' ' + user.fullName + ' ' + JSON.stringify(errors));
+                            deferred.reject(errors);
+                        }
+                    );
+
+                return deferred.promise;
+            };
 
         });
 }());

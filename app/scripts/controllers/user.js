@@ -12,8 +12,6 @@
     angular.module('booksWebApp')
         .controller('UserCtrl', function ($scope, $log, $location, userDataService) {
 
-            $scope.loggedOn = false;
-
             /**
              * Get user data
              */
@@ -22,15 +20,13 @@
                 userDataService.getUser()
                     .then(
                         function (data) {
-                            $scope.loggedOn = true;
                             data.data.admin = $scope.isAdmin(data.data);
                             data.data.editor = $scope.isEditor(data.data);
-                            $scope.user = data.data;                        
+                            $scope.user = data.data;
                         },
                         function () {
                             $log.error('Failed to get user data');
-                            $scope.loggedOn = false;
-                            $scope.user = {};
+                            $scope.user = null;
                         }
                     );
             };
@@ -87,17 +83,38 @@
                             $scope.msgUserDeleteNotOK = true;
                         }
                     );
-
             };
 
             $scope.toggleEditor = function (user) {
                 user.editor = !user.editor;
-                console.log("About to change editor status for " + user.id + " and set to " + user.editor);
+                
+                userDataService.alterUserPermissions(user)
+                    .then(
+                        function () {
+                            $scope.msgUserUpdatedOK = true;
+                            $scope.msgUserUpdatedNotOK = false;
+                        },
+                        function () {
+                            $scope.msgUserUpdatedOK = false;
+                            $scope.msgUserUpdatedNotOK = true;
+                        }
+                    );
             };
 
             $scope.toggleAdmin = function (user) {
                 user.admin = !user.admin;
-                console.log("About to change admin status for " + user.id + " and set to " + user.admin);
+                
+                userDataService.alterUserPermissions(user)
+                    .then(
+                        function () {
+                            $scope.msgUserUpdatedOK = true;
+                            $scope.msgUserUpdatedNotOK = false;
+                        },
+                        function () {
+                            $scope.msgUserUpdatedOK = false;
+                            $scope.msgUserUpdatedNotOK = true;
+                        }
+                    );
             };
 
             $scope.pad = function (str, max) {
