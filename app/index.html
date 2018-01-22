@@ -70,39 +70,39 @@
                             <p>By Author</p>
                         </a>
                     </li>
-                    <li>
+                    <li ng-if="user.editor || user.admin">
                         <a href="#/summary">
                             <i class="ti-user"></i>
                             <p>By Reader</p>
                         </a>
                     </li>
-                    <li>
+                    <li ng-if="user.editor || user.admin" >
                         <a href="#/add">
                             <i class="ti-pencil-alt"></i>
                             <p>Add a book</p>
                         </a>
                     </li>
-                    <li ng-if="!loggedOn" class="notLoggedOn">
+                    <li ng-if="!user" class="notLoggedOn">
                         <br><br>
                         <a href="http://localhost:8080/login/facebook">
                             <i class="ti-facebook"></i>
                             <p>Login with Facebook</p>
                         </a>
                     </li>
-                    <li ng-if="!loggedOn" class="notLoggedOn">
+                    <li ng-if="!user" class="notLoggedOn">
                         <a href="http://localhost:8080/login/google">
                             <i class="ti-google"></i>
                             <p>Login with Google</p>
                         </a>
                     </li>
-                    <li ng-if="loggedOn">
+                    <li ng-if="user.admin">
                         <a href="#/users">
                             <i class="ti-view-list"></i>
                             <p>Admin users</p>
                         </a>
                     </li>
                 </ul>
-                <div ng-if="loggedOn" class="loggedOn">
+                <div ng-if="user" class="loggedOn">
                     <p class="welcomeText" ng-if="user.firstVisit">Hi {{user.firstName}}. Welcome to The Cloudy Book Club!</p>
                     <p class="welcomeText" ng-if="!user.firstVisit">Hi {{user.firstName}}. Welcome back. Your last logon was on {{user.lastLogon[2]}}/{{user.lastLogon[1]}}/{{user.lastLogon[0]}}</p>
                 </div>

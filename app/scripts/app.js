@@ -59,7 +59,7 @@
                     controllerAs: 'edit'
                 })
                 .when('/users', {
-                    templateUrl: 'views/createedit.html',
+                    templateUrl: 'views/adminusers.html',
                     controller: 'UserCtrl',
                     controllerAs: 'users'
                 })

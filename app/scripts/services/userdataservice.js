@@ -53,6 +53,26 @@
 
                 return deferred.promise;
             };
+        
+            this.deleteUser = function (user) {
+                var url, deferred;
+
+                url = booksConstants.secureApiEndPoint + '/users/' + user.id;
+                deferred = $q.defer();
+
+                $http.delete(url)
+                    .then(
+                        function (data) {
+                            deferred.resolve(data);
+                        },
+                        function (errors) {
+                            $log.error('Failed to delete user: ' + user.id + ' ' + user.fullName + ' ' + JSON.stringify(errors));
+                            deferred.reject(errors);
+                        }
+                    );
+
+                return deferred.promise;
+            };
 
         });
 }());

@@ -1,0 +1,62 @@
+<div class="container-fluid">
+    <div ng-if="msgUserDeleteOK" class="row">
+        <div class="col-lg-6 col-sm-12">
+            <div class="alert alert-success">
+                <p>User deleted as requested.</p>
+            </div>
+        </div>
+    </div>
+    <div ng-if="msgUserDeleteNotOK" class="row">
+        <div class="col-lg-6 col-sm-12">
+            <div class="alert alert-danger">
+                <p>Sorry - there was a problem deleting the requested user. Please try again later.</p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="header">
+                    <h4 class="title">View and change user permissions</h4>
+                </div>
+                <div class="content">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Full Name</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>User Link</th>
+                                <th>Picture</th>
+                                <th>Last Logon</th>
+                                <th>First Logon</th>
+                                <th>Is Editor</th>
+                                <th>Is Admin</th>
+                                <th>Delete?</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="user in users">
+                                <td>{{user.fullName}}</td>
+                                <td>{{user.firstName}}</td>
+                                <td>{{user.lastName}}</td>
+                                <td><a href="{{user.link}}" target="_blank">User on {{user.authProvider | capitalize}}</a></td>
+                                <td><img width="50" height="50" ng-show="user.picture" ng-src="{{user.picture}}" onError="angular.element(this).scope().user.picture = false"/></td>
+                                <td>{{user.lastLogon[2]}}/{{user.lastLogon[1]}}/{{user.lastLogon[0]}} <br>{{user.lastLogon[3]}}:{{pad(user.lastLogon[4], 2)}}</td>
+                                <td>{{user.firstLogon[2]}}/{{user.firstLogon[1]}}/{{user.firstLogon[0]}} <br>{{user.firstLogon[3]}}:{{pad(user.firstLogon[4], 2)}}</td>
+                                <td><input type="checkbox" ng-click="toggleEditor(user)" ng-checked="user.editor"></td>
+                                <td><input type="checkbox" ng-click="toggleAdmin(user)" ng-checked="user.admin"></td>
+                                <td>
+                                    <button type="button" class="btn btn-xs btn-danger" ng-click="deleteUser(user)"><i ng-class="ti-close">Delete User</i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>  
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
