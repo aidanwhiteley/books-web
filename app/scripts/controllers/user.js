@@ -4,13 +4,13 @@
 
     /**
      * @ngdoc function
-     * @name booksWebApp.controller:LogonCtrl
+     * @name booksWebApp.controller:UserCtrl
      * @description
-     * # LogonCtrl
+     * # UserCtrl
      * Controller of the booksWebApp
      */
     angular.module('booksWebApp')
-        .controller('LogonCtrl', function ($scope, $log, $location, userDataService) {
+        .controller('UserCtrl', function ($scope, $log, $location, userDataService) {
 
             $scope.loggedOn = false;
 
@@ -32,11 +32,29 @@
                         }
                     );
             };
+        
+            $scope.getUsers = function () {
+
+                userDataService.getUsers()
+                    .then(
+                        function (data) {
+                            $scope.users = data.data;
+                        },
+                        function () {
+                            $log.error('Failed to get users data');
+                            $scope.users = {};
+                        }
+                    );
+            };
 
             // oauth logon services asked to redirect back with l=1 parameter (i.e. logged on of true).
             // This is to prevent unnecessary Ajax call when we know user is not logged on.
             if ($location.search().l === '1') {
                 $scope.getUserData();
+            }
+        
+            if ($location.path() === '/users') {
+                $scope.getUsers();
             }
 
         });

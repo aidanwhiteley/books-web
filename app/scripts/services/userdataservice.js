@@ -33,6 +33,26 @@
 
                 return deferred.promise;
             };
+        
+            this.getUsers = function () {
+                var url, deferred;
+
+                url = booksConstants.secureApiEndPoint + '/users';
+                deferred = $q.defer();
+
+                $http.get(url)
+                    .then(
+                        function (data) {
+                            deferred.resolve(data);
+                        },
+                        function (errors) {
+                            $log.error('Failed to list of users');
+                            deferred.reject(errors);
+                        }
+                    );
+
+                return deferred.promise;
+            };
 
         });
 }());

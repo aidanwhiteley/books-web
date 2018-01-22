@@ -58,6 +58,11 @@
                     controller: 'CreateEditCtrl',
                     controllerAs: 'edit'
                 })
+                .when('/users', {
+                    templateUrl: 'views/createedit.html',
+                    controller: 'UserCtrl',
+                    controllerAs: 'users'
+                })
                 .otherwise({
                     redirectTo: '/'
                 });

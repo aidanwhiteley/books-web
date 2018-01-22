@@ -38,7 +38,7 @@
             Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
         -->
 
-            <div class="sidebar-wrapper" ng-controller="LogonCtrl">
+            <div class="sidebar-wrapper" ng-controller="UserCtrl">
                 <div class="logo">
                     <a href="#" class="simple-text">
                         Cloudy Book Club
@@ -93,6 +93,12 @@
                         <a href="http://localhost:8080/login/google">
                             <i class="ti-google"></i>
                             <p>Login with Google</p>
+                        </a>
+                    </li>
+                    <li ng-if="loggedOn">
+                        <a href="#/users">
+                            <i class="ti-view-list"></i>
+                            <p>Admin users</p>
                         </a>
                     </li>
                 </ul>
@@ -208,7 +214,7 @@
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/summary.js"></script>
         <script src="scripts/controllers/createedit.js"></script>
-        <script src="scripts/controllers/logon.js"></script>
+        <script src="scripts/controllers/user.js"></script>
         <script src="scripts/services/summarydataservice.js"></script>
         <script src="scripts/services/bookdataservice.js"></script>
         <script src="scripts/services/userdataservice.js"></script>
