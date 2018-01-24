@@ -27,6 +27,20 @@
             </div>
         </div>
     </div>
+    <div ng-if="msgUserUpdatedSelfNotAllowed" class="row">
+        <div class="col-lg-12 col-sm-12">
+            <div class="alert alert-danger">
+                <p>Sorry - you cant change permissions for the user you are logged on with.</p>
+            </div>
+        </div>
+    </div>
+    <div ng-if="msgUserDeletedSelfNotAllowed" class="row">
+        <div class="col-lg-12 col-sm-12">
+            <div class="alert alert-danger">
+                <p>Sorry - you cant delete the user you are logged on with.</p>
+            </div>
+        </div>
+    </div>
 
 
     <div class="row">

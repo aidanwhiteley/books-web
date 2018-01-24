@@ -13,7 +13,7 @@
      */
     angular.module('booksWebApp')
         .service('userDataService', function ($http, $q, $log, booksConstants) {
-        
+
             this.getUser = function () {
                 var url, deferred;
 
@@ -33,7 +33,7 @@
 
                 return deferred.promise;
             };
-        
+
             this.getUsers = function () {
                 var url, deferred;
 
@@ -53,49 +53,39 @@
 
                 return deferred.promise;
             };
-        
+
             this.deleteUser = function (user) {
-                var url, deferred;
+                var url;
 
                 url = booksConstants.secureApiEndPoint + '/users/' + user.id;
-                deferred = $q.defer();
 
-                $http.delete(url)
-                    .then(
-                        function (data) {
-                            deferred.resolve(data);
-                        },
-                        function (errors) {
-                            $log.error('Failed to delete user: ' + user.id + ' ' + user.fullName + ' ' + JSON.stringify(errors));
-                            deferred.reject(errors);
-                        }
-                    );
-
-                return deferred.promise;
+                return $http.delete(url)
+                    .then(function onSuccess(response) {
+                        return response.data;
+                    }).catch(function onError(error) {
+                        $log.error('Failed to delete user: ' + user.id + ' ' + user.fullName + ' ' +
+                                  'Message: ' + error.data.msg + ' Status: ' + error.status);
+                        throw error;
+                    });
             };
-        
+
             this.alterUserPermissions = function (user) {
-                var url, deferred, clientRoles = {};
+                var url, clientRoles = {};
 
                 url = booksConstants.secureApiEndPoint + '/users/' + user.id;
-                deferred = $q.defer();
-                
+
                 clientRoles.id = user.id;
                 clientRoles.admin = user.admin;
                 clientRoles.editor = user.editor;
 
-                $http.patch(url, clientRoles)
-                    .then(
-                        function (data) {
-                            deferred.resolve(data);
-                        },
-                        function (errors) {
-                            $log.error('Failed to update permissions for user: ' + user.id + ' ' + user.fullName + ' ' + JSON.stringify(errors));
-                            deferred.reject(errors);
-                        }
-                    );
-
-                return deferred.promise;
+                return $http.patch(url, clientRoles)
+                    .then(function onSuccess(response) {
+                        return response.data;
+                    }).catch(function onError(error) {
+                        $log.error('Failed to update permissions for user: ' + user.id + ' ' + user.fullName + ' ' +
+                                  'Message: ' + error.data.msg + ' Status: ' + error.status);
+                        throw error;
+                    });
             };
 
         });

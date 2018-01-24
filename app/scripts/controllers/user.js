@@ -74,45 +74,47 @@
                 userDataService.deleteUser(user)
                     .then(
                         function () {
+                            $scope.revertMessaging();
                             $scope.msgUserDeleteOK = true;
-                            $scope.msgUserDeleteNotOK = false;
                             $scope.getUsers();
                         },
-                        function () {
-                            $scope.msgUserDeleteOK = false;
-                            $scope.msgUserDeleteNotOK = true;
+                        function (data) {
+                            if (data.status === 409) {
+                                $scope.revertMessaging();
+                                $scope.msgUserDeletedSelfNotAllowed = true;
+                            } else {
+                                $scope.revertMessaging();
+                                $scope.msgUserDeleteNotOK = true;
+                            }
                         }
                     );
             };
 
             $scope.toggleEditor = function (user) {
                 user.editor = !user.editor;
-                
-                userDataService.alterUserPermissions(user)
-                    .then(
-                        function () {
-                            $scope.msgUserUpdatedOK = true;
-                            $scope.msgUserUpdatedNotOK = false;
-                        },
-                        function () {
-                            $scope.msgUserUpdatedOK = false;
-                            $scope.msgUserUpdatedNotOK = true;
-                        }
-                    );
+                $scope.updatePermissions(user);
             };
 
             $scope.toggleAdmin = function (user) {
                 user.admin = !user.admin;
-                
+                $scope.updatePermissions(user);
+            };
+
+            $scope.updatePermissions = function (user) {
                 userDataService.alterUserPermissions(user)
                     .then(
                         function () {
+                            $scope.revertMessaging();
                             $scope.msgUserUpdatedOK = true;
-                            $scope.msgUserUpdatedNotOK = false;
                         },
-                        function () {
-                            $scope.msgUserUpdatedOK = false;
-                            $scope.msgUserUpdatedNotOK = true;
+                        function (data) {
+                            if (data.status === 409) {
+                                $scope.revertMessaging();
+                                $scope.msgUserUpdatedSelfNotAllowed = true;
+                            } else {
+                                $scope.revertMessaging();
+                                $scope.msgUserUpdatedNotOK = true;
+                            }
                         }
                     );
             };
@@ -120,6 +122,15 @@
             $scope.pad = function (str, max) {
                 str = str.toString();
                 return str.length < max ? $scope.pad("0" + str, max) : str;
+            };
+
+            $scope.revertMessaging = function () {
+                $scope.msgUserDeleteOK = false;
+                $scope.msgUserDeleteNotOK = false;
+                $scope.msgUserUpdatedSelfNotAllowed = false;
+                $scope.msgUserDeletedSelfNotAllowed = false;
+                $scope.msgUserUpdatedOK = false;
+                $scope.msgUserUpdatedNotOK = false;
             };
 
         });
