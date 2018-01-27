@@ -55,10 +55,10 @@
                 $q.all(urlCalls)
                     .then(
                         function (results) {
-                            self.booksData = results[0].data;
+                            self.booksData = results[0].data.content;
 
                             deferred.resolve({
-                                'books': results[0].data,
+                                'books': results[0].data.content,
                                 'booksbyauthor': results[1]
                             });
                         },
