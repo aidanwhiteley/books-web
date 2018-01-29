@@ -29,8 +29,16 @@
             } else {
                 $log.error('Book controller called without a valid id');
             }
+        
+            $scope.bookDetails = function () {
+                $('#mytabs a:first').tab('show') // Select first tab
+                console.log("Book details clicked");
+            };
+        
+            $scope.bookPreview = function () {
+                $('#mytabs a:last').tab('show') // Select last tab
+                console.log("Book preview clicked");
+            };
 
         });
-
-
 }());

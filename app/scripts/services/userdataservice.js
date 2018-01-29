@@ -20,7 +20,9 @@
                     .then(function onSuccess(response) {
                         return response.data;
                     }).catch(function onError(error) {
-                        $log.error('Failed to get data for user. Error data: ' + JSON.stringify(error));
+                        if (error.status !== 403) {
+                            $log.error('Failed to get data for user. Error data: ' + JSON.stringify(error));
+                        }
                         throw error;
                     });
             };

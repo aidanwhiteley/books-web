@@ -11,20 +11,61 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="header">
-                    <h4 class="title">Book Details</h4>
+                    <h4 class="title">{{book.title}}</h4>
                 </div>
-                <div class="content">
-                    <img ng-if="book.googleBookDetails.volumeInfo.imageLinks.small" class="rounded pull-left listThumbnail" ng-src="{{book.googleBookDetails.volumeInfo.imageLinks.small}}">
-                    <img ng-if="!book.googleBookDetails.volumeInfo.imageLinks.small && book.googleBookDetails.volumeInfo.imageLinks.smallThumbnail" class="rounded pull-left listThumbnail" ng-src="{{book.googleBookDetails.volumeInfo.imageLinks.smallThumbnail}}">
-                    <p><b>Title: </b>{{book.title}}</p>
-                    <p><b>Author: </b>{{book.author}}</p>
-                    <p><b>Rating: </b>{{book.rating | capitalize}}</p>
-                    <p><b>Review Date: </b>{{book.entered[2] + '-' + book.entered[1] + '-' + book.entered[0]}}</p>
-                    <p><b>Genre: </b>{{book.genre}}</p>
-                    <p class="reviewDetail"><b>Reviewer's Summary:</b> {{book.summary}}</p>
-                    <p ng-if="book.createdBy.fullName"><b>Reviewer: {{book.createdBy.fullName}}</b>
-                    <p class="googleSummary"><b>Google Summary:</b> <div id="googleSummaryDetail" ng-bind-html="book.googleBookDetails.volumeInfo.description"></div>
+
+                <div class="bookContent">
+
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a data-target="#bookDetails" aria-controls="bookDetails" role="tab" data-toggle="tab">Book details</a></li>
+                        <li role="presentation"><a data-target="#bookPreview" aria-controls="bookPreview" role="tab" data-toggle="tab">Preview</a></li>
+                    </ul>
+
+
+                    <!-- Tab panes -->
+                    <div class="tab-content" id="mytabs">
+                        <div role="tabpanel" class="tab-pane active" id="bookDetails">
+                            <div class="content">
+                                <img ng-if="book.googleBookDetails.volumeInfo.imageLinks.small" class="rounded pull-left listThumbnail" ng-src="{{book.googleBookDetails.volumeInfo.imageLinks.small}}">
+                                <img ng-if="!book.googleBookDetails.volumeInfo.imageLinks.small && book.googleBookDetails.volumeInfo.imageLinks.smallThumbnail" class="rounded pull-left listThumbnail" ng-src="{{book.googleBookDetails.volumeInfo.imageLinks.smallThumbnail}}">
+                                <p><b>Title: </b>{{book.title}}</p>
+                                <p><b>Author: </b>{{book.author}}</p>
+                                <p><b>Rating: </b>{{book.rating | capitalize}}</p>
+                                <p><b>Review Date: </b>{{book.entered[2] + '-' + book.entered[1] + '-' + book.entered[0]}}</p>
+                                <p><b>Genre: </b>{{book.genre}}</p>
+                                <p class="reviewDetail"><b>Reviewer's Summary:</b> {{book.summary}}</p>
+                                <p ng-if="book.createdBy.fullName"><b>Reviewer: {{book.createdBy.fullName}}</b></p>
+                                <p class="googleSummary"><b>Google Summary:</b></p>
+                                <div id="googleSummaryDetail" ng-bind-html="book.googleBookDetails.volumeInfo.description"></div>
+                            </div>
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane" id="bookPreview">
+
+
+                            <script type="text/javascript">
+                                google.books.load();
+
+                                function initialize() {
+                                    console.log("Calling init");
+                                    var viewer = new google.books.DefaultViewer(document.getElementById('viewerCanvas'));
+                                    viewer.load('ISBN:0738531367');
+                                }
+
+                                google.books.setOnLoadCallback(initialize);
+
+                            </script>
+                            <div id="viewerCanvas" style="width: 600px; height: 500px"></div>
+
+                            Stuff
+                            
+                        </div>
+                    </div>
+
                 </div>
+
+
             </div>
         </div>
 
