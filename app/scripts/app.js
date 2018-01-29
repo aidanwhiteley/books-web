@@ -25,7 +25,8 @@
             // ************************************
 
             apiEndPoint: 'http://localhost:8080/api',
-            secureApiEndPoint: 'http://localhost:8080/secure/api'
+            secureApiEndPoint: 'http://localhost:8080/secure/api',
+            defaultPageSize: 5
         })
         .config(function ($locationProvider, $routeProvider, $logProvider, $httpProvider) {
 

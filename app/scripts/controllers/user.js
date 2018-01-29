@@ -20,12 +20,14 @@
                 userDataService.getUser()
                     .then(
                         function (data) {
-                            data.data.admin = $scope.isAdmin(data.data);
-                            data.data.editor = $scope.isEditor(data.data);
-                            $scope.user = data.data;
+                            data.admin = $scope.isAdmin(data);
+                            data.editor = $scope.isEditor(data);
+                            $scope.user = data;
                         },
-                        function () {
-                            $log.error('Failed to get user data');
+                        function (errors) {
+                            if (errors.status !== 403) {
+                                $log.error('Failed to get user data: ' + JSON.stringify(errors));
+                            }
                             $scope.user = null;
                         }
                     );
@@ -38,24 +40,20 @@
                 userDataService.getUsers()
                     .then(
                         function (data) {
-                            for (i = 0; i < data.data.length; i = i + 1) {
-                                data.data[i].admin = $scope.isAdmin(data.data[i]);
-                                data.data[i].editor = $scope.isEditor(data.data[i]);
+                            for (i = 0; i < data.length; i = i + 1) {
+                                data[i].admin = $scope.isAdmin(data[i]);
+                                data[i].editor = $scope.isEditor(data[i]);
                             }
-                            $scope.users = data.data;
+                            $scope.users = data;
                         },
-                        function () {
-                            $log.error('Failed to get users data');
+                        function (errors) {
+                            $log.error('Failed to get users data: ' + JSON.stringify(errors));
                             $scope.users = {};
                         }
                     );
             };
 
-            // oauth logon services asked to redirect back with l=1 parameter (i.e. logged on of true).
-            // This is to prevent unnecessary Ajax call when we know user is not logged on.
-            if ($location.search().l === '1') {
-                $scope.getUserData();
-            }
+            $scope.getUserData();
 
             if ($location.path() === '/users') {
                 $scope.getUsers();

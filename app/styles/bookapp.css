@@ -86,4 +86,17 @@
 
 .googleSummary {
     margin-top: 50px;
+    font-size: 14px;
+}
+
+#googleSummaryDetail {
+    font-size: 12px;
+}
+#googleSummaryDetail p {
+    font-size: 12px;
+}
+
+.bookspager {
+    padding-left: 20px;
+    padding-right: 20px;
 }

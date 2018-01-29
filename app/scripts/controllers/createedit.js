@@ -50,51 +50,27 @@
                         bookDataService.createBook(book)
                             .then(
                                 function () {
+                                    $scope.resetMessaging();
                                     $scope.bookCreateOk = true;
-                                    $scope.bookCreateError = false;
-                                    $scope.bookUpdateError = false;
-                                    $scope.bookUpdateOK = false;
-                                    $scope.bookRetrievalError = false;
                                     $scope.book = {};
                                     $scope.bookForm.$setPristine();
                                     $scope.bookForm.$setUntouched();
-                                    
-                                    //$location.hash('navbar');
-                                    //$anchorScroll();
                                 },
                                 function () {
-                                    $scope.bookCreateOk = false;
+                                    $scope.resetMessaging();
                                     $scope.bookCreateError = true;
-                                    $scope.bookUpdateError = false;
-                                    $scope.bookUpdateOK = false;
-                                    $scope.bookRetrievalError = false;
-                                    
-                                    //$location.hash('navbar');
-                                    //$anchorScroll();
                                 }
                             );
                     } else {
                         bookDataService.updateBook(book)
                             .then(
                                 function () {
-                                    $scope.bookCreateOk = false;
-                                    $scope.bookCreateError = false;
-                                    $scope.bookUpdateError = false;
+                                    $scope.resetMessaging();
                                     $scope.bookUpdateOK = true;
-                                    $scope.bookRetrievalError = false;
-                                    
-                                    //$location.hash('navbar');
-                                    //$anchorScroll();
                                 },
                                 function () {
-                                    $scope.bookCreateOk = false;
-                                    $scope.bookCreateError = false;
+                                    $scope.resetMessaging();
                                     $scope.bookUpdateError = true;
-                                    $scope.bookUpdateOk = false;
-                                    $scope.bookRetrievalError = false;
-                                    
-                                    //$location.hash('navbar');
-                                    //$anchorScroll();
                                 }
                             );
                     }
@@ -109,11 +85,11 @@
                     bookDataService.getBook(idParam)
                         .then(
                             function (data) {
-                                $scope.book = data.data;
+                                $scope.book = data;
                                 $scope.bookForm.$setPristine();
                                 $scope.bookForm.$setUntouched();
 
-                                $scope.searchGoogle(data.data);
+                                $scope.searchGoogle(data);
                             },
                             function () {
                                 $scope.bookRetrievalError = true;
@@ -125,7 +101,7 @@
 
             $scope.searchGoogle = function (book) {
 
-                var trimmedTitle, minumumValidInput = 2, i;
+                var trimmedTitle, minumumValidInput = 2,  i;
 
                 // We are only supporting recent browsers
                 trimmedTitle = book.title.trim();
@@ -137,12 +113,12 @@
                     bookDataService.getGoogleBooks(book.title)
                         .then(
                             function (data) {
-                                $scope.googleBookData = data.data.items;
+                                $scope.googleBookData = data.items;
 
                                 // If the passed in "book" has a googleBookId set against it, we now
                                 // iterate through the matches to see if we can find it again.
-                                // There is a risk that this new Googlr Book serach won't return the
-                                // book the user previoulsy selected!
+                                // There is a risk that this new Google Book search won't return the
+                                // book the user previously selected!
                                 if (book.googleBookId && book.googleBookId !== '') {
                                     for (i = 0; i < data.data.items.length; i = i + 1) {
                                         if (data.data.items[i].id === book.googleBookId) {
@@ -157,6 +133,14 @@
                             }
                         );
                 }
+            };
+
+            $scope.resetMessaging = function () {
+                $scope.bookCreateOk = false;
+                $scope.bookCreateError = false;
+                $scope.bookUpdateError = false;
+                $scope.bookUpdateOK = false;
+                $scope.bookRetrievalError = false;
             };
 
             $scope.googleMatchesPlus = function () {

@@ -23,7 +23,7 @@
                     <p><b>Genre: </b>{{book.genre}}</p>
                     <p class="reviewDetail"><b>Reviewer's Summary:</b> {{book.summary}}</p>
                     <p ng-if="book.createdBy.fullName"><b>Reviewer: {{book.createdBy.fullName}}</b>
-                    <p class="googleSummary"><b>Google Summary:</b> <p ng-bind-html="book.googleBookDetails.volumeInfo.description"></p></p>
+                    <p class="googleSummary"><b>Google Summary:</b> <div id="googleSummaryDetail" ng-bind-html="book.googleBookDetails.volumeInfo.description"></div>
                 </div>
             </div>
         </div>

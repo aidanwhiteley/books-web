@@ -19,7 +19,7 @@
                 bookDataService.getBook($routeParams.id)
                     .then(
                         function (data) {
-                            $scope.book = data.data;
+                            $scope.book = data;
                         },
                         function () {
                             $scope.bookRetrievalError = true;

@@ -16,149 +16,82 @@
 
             this.createBook = function (book) {
 
-                var urls, deferred, urlCalls = [],
-                    config = {
-                        headers: {
-                            'Content-Type': 'application/json;charset=utf-8;'
-                        }
-                    };
+                var url = booksConstants.secureApiEndPoint + '/books';
+                
+                book.entered = new Date();
 
-                urls = [{
-                    'url': booksConstants.secureApiEndPoint + '/books'
-                }];
-
-                deferred = $q.defer();
-                angular.forEach(urls, function (url) {
-                    urlCalls.push($http.post(url.url, book, config));
-                });
-
-                if (!book.entered) {
-                    book.entered = new Date();
-                }
-
-                // Still using 'all' even though only one Ajax call currently being made here.
-                $q.all(urlCalls)
-                    .then(
-                        function () {
-                            summaryDataService.clearCache();
-                            deferred.resolve(true);
-                        },
-                        function (errors) {
-                            $log.error('Failed to create a new book: ' + JSON.stringify(errors));
-                            deferred.reject(errors);
-                        },
-                        function (updates) {
-                            deferred.update(updates);
-                        }
-                    );
-
-                return deferred.promise;
+                return $http.post(url, book)
+                    .then(function onSuccess(response) {
+                        return response.data;
+                    }).catch(function onError(error) {
+                    
+                        $log.error('Failed to create a new book. Error data: ' + JSON.stringify(error));
+                        throw error;
+                    });
+                
             };
 
             this.updateBook = function (book) {
-                var urls, deferred, urlCalls = [],
-                    config = {
-                        headers: {
-                            'Content-Type': 'application/json;charset=utf-8;'
-                        }
-                    };
-
-                urls = [{
-                    'url': booksConstants.secureApiEndPoint + '/books'
-                }];
-
-                deferred = $q.defer();
-                angular.forEach(urls, function (url) {
-                    urlCalls.push($http.put(url.url, book, config));
-                });
-
-
-                // Still using 'all' even though only one Ajax call currently being made here.
-                $q.all(urlCalls)
-                    .then(
-                        function () {
-                            summaryDataService.clearCache();
-                            deferred.resolve(true);
-                        },
-                        function (errors) {
-                            $log.error('Failed to update an existing new book: ' + JSON.stringify(errors));
-                            deferred.reject(errors);
-                        },
-                        function (updates) {
-                            deferred.update(updates);
-                        }
-                    );
-
-                return deferred.promise;
+                var url = booksConstants.secureApiEndPoint + '/books';
+ 
+                return $http.put(url, book)
+                    .then(function onSuccess(response) {
+                        return response.data;
+                    }).catch(function onError(error) {
+                        $log.error('Failed to update an existing new book. Error data: ' + JSON.stringify(error));
+                        throw error;
+                    });
             };
 
 
             this.deleteBook = function (book) {
-                var url, deferred, config = {
-                    headers: {
-                        'Content-Type': 'application/json;charset=utf-8;'
-                    }
-                };
+                var url = booksConstants.secureApiEndPoint + '/books/' + book.id;
 
-                url = booksConstants.secureApiEndPoint + '/books/' + book.id;
-                deferred = $q.defer();
+                return $http.delete(url)
+                    .then(function onSuccess(response) {
+                        return response.data;
+                    }).catch(function onError(error) {
+                        $log.error('Failed to delete the specified book. Error data: ' + JSON.stringify(error));
+                        throw error;
+                    });
 
-                $http.delete(url, config)
-                    .then(
-                        function () {
-                            summaryDataService.clearCache();
-                            deferred.resolve(true);
-                        },
-                        function (errors) {
-                            $log.error('Failed to delete the specified book: ' + JSON.stringify(errors));
-                            deferred.reject(errors);
-                        },
-                        function (updates) {
-                            deferred.update(updates);
-                        }
-                    );
-
-                return deferred.promise;
             };
 
             this.getBook = function (id) {
-                var url, deferred;
+                var url = booksConstants.apiEndPoint + '/books/' + id;
 
-                url = booksConstants.apiEndPoint + '/books/' + id;
-                deferred = $q.defer();
+                return $http.get(url)
+                    .then(function onSuccess(response) {
+                        return response.data;
+                    }).catch(function onError(error) {
+                        $log.error('Failed to get the specified book. Error data: ' + JSON.stringify(error));
+                        throw error;
+                    });
+            };
 
-                $http.get(url)
-                    .then(
-                        function (data) {
-                            deferred.resolve(data);
-                        },
-                        function (errors) {
-                            $log.error('Failed to get the specified book: ' + JSON.stringify(errors));
-                            deferred.reject(errors);
-                        }
-                    );
 
-                return deferred.promise;
+            this.getBooks = function (page, size) {
+                var url = booksConstants.apiEndPoint + '/books/?page=' + page + '&size=' + size;
+
+                return $http.get(url)
+                    .then(function onSuccess(response) {
+                        return response.data;
+                    }).catch(function onError(error) {
+                        $log.error('Failed to get books. Error data: ' + JSON.stringify(error));
+                        throw error;
+                    });
             };
 
             this.getGoogleBooks = function (title) {
-                var url, deferred;
+                var url = booksConstants.apiEndPoint + '/googlebooks/?title=' + title;
 
-                url = booksConstants.apiEndPoint + '/googlebooks/?title=' + title;
-                deferred = $q.defer();
-
-                $http.get(url)
-                    .then(
-                        function (data) {
-                            deferred.resolve(data);
-                        },
-                        function (errors) {
-                            $log.error('Failed to get google books: ' + JSON.stringify(errors));
-                            deferred.reject(errors);
-                        }
-                    );
-
-                return deferred.promise;
+                return $http.get(url)
+                    .then(function onSuccess(response) {
+                        return response.data;
+                    }).catch(function onError(error) {
+                        $log.error('Failed to get google books. Error data: ' + JSON.stringify(error));
+                        throw error;
+                    });
             };
 
         });
