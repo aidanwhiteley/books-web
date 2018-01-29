@@ -79,3 +79,11 @@
     padding-bottom: 0px !important;
     margin-bottom: 0px !important;
 }
+
+.reviewDetail {
+    white-space: pre-wrap;
+}
+
+.googleSummary {
+    margin-top: 50px;
+}

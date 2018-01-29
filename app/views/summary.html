@@ -119,7 +119,7 @@
                         </thead>
                         <tbody>
                             <tr ng-repeat-start="book in data.books">
-                                <td>{{book.title}}</td>
+                                <td><a ng-href="#/book/{{book.id}}">{{book.title}}</a></td>
                                 <td>{{book.author}}</td>
                                 <td>{{book.rating | capitalize}}</td>
                                 <td>{{book.entered[2] + '-' + book.entered[1] + '-' + book.entered[0]}}</td>
@@ -135,6 +135,7 @@
                                     <p ng-if="book.createdBy.fullName" class="reviewSummaryAuthor"><b>Reviewer: </b> {{book.createdBy.fullName}}</p>
                                 </td>
                                 <td class="bookSummary bookSummaryButtons">
+                                    <button type="button" class="btn btn-xs btn-info btnList" ng-click="bookDetails(book)"><i class="ti-new-window"> Full Details</i></button><br>
                                     <button type="button" class="btn btn-xs btn-info btnList" ng-click="editSelected(book)"><i class="ti-pencil-alt"> Edit</i></button><br>
                                     <button type="button" class="btn btn-xs btn-danger btnList" ng-click="deleteSelected(book)"><i class="ti-close"> Delete</i></button>
                                 </td>

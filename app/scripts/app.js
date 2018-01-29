@@ -63,6 +63,11 @@
                     controller: 'UserCtrl',
                     controllerAs: 'users'
                 })
+                .when('/book/:id', {
+                    templateUrl: 'views/bookdetails.html',
+                    controller: 'BookCtrl',
+                    controllerAs: 'book'
+                })
                 .otherwise({
                     redirectTo: '/'
                 });

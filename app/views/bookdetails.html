@@ -1,0 +1,32 @@
+<div class="container-fluid">
+    <div ng-if="bookRetrievalError" class="row">
+        <div class="col-lg-12 col-sm-12">
+            <div class="alert alert-success">
+                <p>Sorry - we've been unable to retrieve details of the requested book - please try later.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="header">
+                    <h4 class="title">Book Details</h4>
+                </div>
+                <div class="content">
+                    <img ng-if="book.googleBookDetails.volumeInfo.imageLinks.small" class="rounded pull-left listThumbnail" ng-src="{{book.googleBookDetails.volumeInfo.imageLinks.small}}">
+                    <img ng-if="!book.googleBookDetails.volumeInfo.imageLinks.small && book.googleBookDetails.volumeInfo.imageLinks.smallThumbnail" class="rounded pull-left listThumbnail" ng-src="{{book.googleBookDetails.volumeInfo.imageLinks.smallThumbnail}}">
+                    <p><b>Title: </b>{{book.title}}</p>
+                    <p><b>Author: </b>{{book.author}}</p>
+                    <p><b>Rating: </b>{{book.rating | capitalize}}</p>
+                    <p><b>Review Date: </b>{{book.entered[2] + '-' + book.entered[1] + '-' + book.entered[0]}}</p>
+                    <p><b>Genre: </b>{{book.genre}}</p>
+                    <p class="reviewDetail"><b>Reviewer's Summary:</b> {{book.summary}}</p>
+                    <p ng-if="book.createdBy.fullName"><b>Reviewer: {{book.createdBy.fullName}}</b>
+                    <p class="googleSummary"><b>Google Summary:</b> <p ng-bind-html="book.googleBookDetails.volumeInfo.description"></p></p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -67,6 +67,10 @@
             $scope.editSelected = function (book) {
                 $location.path('/edit/').search({id: book.id});
             };
+        
+            $scope.bookDetails = function (book) {
+                $location.path('/book/' + book.id);
+            };
 
         });
 }());
