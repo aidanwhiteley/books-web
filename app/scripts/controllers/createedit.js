@@ -120,8 +120,8 @@
                                 // There is a risk that this new Google Book search won't return the
                                 // book the user previously selected!
                                 if (book.googleBookId && book.googleBookId !== '') {
-                                    for (i = 0; i < data.data.items.length; i = i + 1) {
-                                        if (data.data.items[i].id === book.googleBookId) {
+                                    for (i = 0; i < data.items.length; i = i + 1) {
+                                        if (data.items[i].id === book.googleBookId) {
                                             $scope.googleMatchesIndex = i;
                                             $scope.book.foundOnGoogle = true;
                                         }

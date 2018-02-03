@@ -56,12 +56,13 @@
                                 <th>Full Name</th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
-                                <th>User Link</th>
+                                <th>Social Network</th>
                                 <th>Picture</th>
+                                <th>Email</th>
                                 <th>Last Logon</th>
                                 <th>First Logon</th>
-                                <th>Is Editor</th>
-                                <th>Is Admin</th>
+                                <th>Editor</th>
+                                <th>Admin</th>
                                 <th>Delete?</th>
                             </tr>
                         </thead>
@@ -70,8 +71,12 @@
                                 <td>{{user.fullName}}</td>
                                 <td>{{user.firstName}}</td>
                                 <td>{{user.lastName}}</td>
-                                <td><a href="{{user.link}}" target="_blank">User on {{user.authProvider | capitalize}}</a></td>
+                                <td>
+                                    <a ng-if="user.link" href="{{user.link}}" target="_blank">User on {{user.authProvider | capitalize}}</a>
+                                    <span ng-if="!user.link" href="{{user.link}}">User on {{user.authProvider | capitalize}}</span>
+                                </td>
                                 <td><img width="50" height="50" ng-show="user.picture" ng-src="{{user.picture}}" onError="angular.element(this).scope().user.picture = false"/></td>
+                                <td>{{user.email}}</td>
                                 <td>{{user.lastLogon[2]}}/{{user.lastLogon[1]}}/{{user.lastLogon[0]}} <br>{{user.lastLogon[3]}}:{{pad(user.lastLogon[4], 2)}}</td>
                                 <td>{{user.firstLogon[2]}}/{{user.firstLogon[1]}}/{{user.firstLogon[0]}} <br>{{user.firstLogon[3]}}:{{pad(user.firstLogon[4], 2)}}</td>
                                 <td><input type="checkbox" ng-click="toggleEditor(user)" ng-checked="user.editor"></td>

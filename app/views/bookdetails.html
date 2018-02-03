@@ -19,7 +19,7 @@
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
                         <li role="presentation" class="active"><a data-target="#bookDetails" aria-controls="bookDetails" role="tab" data-toggle="tab">Book details</a></li>
-                        <li role="presentation"><a data-target="#bookPreview" aria-controls="bookPreview" role="tab" data-toggle="tab">Preview</a></li>
+                        <li role="presentation"><a data-target="#bookComments" aria-controls="bookComments" role="tab" data-toggle="tab">Other readers comments</a></li>
                     </ul>
 
 
@@ -36,30 +36,22 @@
                                 <p><b>Genre: </b>{{book.genre}}</p>
                                 <p class="reviewDetail"><b>Reviewer's Summary:</b> {{book.summary}}</p>
                                 <p ng-if="book.createdBy.fullName"><b>Reviewer: {{book.createdBy.fullName}}</b></p>
+                                <p ng-if="book.displayGooglePreview">
+                                    <a href="https://books.google.co.uk/books?id={{book.googleBookId}}&printsec=frontcover#v=onepage&q&f=true" target="_blank">
+                                        <img class="" ng-src="./images/gbs_preview_button1.gif">
+                                    </a>
+                                </p>
+                                
+                                <hr>
                                 <p class="googleSummary"><b>Google Summary:</b></p>
                                 <div id="googleSummaryDetail" ng-bind-html="book.googleBookDetails.volumeInfo.description"></div>
                             </div>
                         </div>
 
-                        <div role="tabpanel" class="tab-pane" id="bookPreview">
-
-
-                            <script type="text/javascript">
-                                google.books.load();
-
-                                function initialize() {
-                                    console.log("Calling init");
-                                    var viewer = new google.books.DefaultViewer(document.getElementById('viewerCanvas'));
-                                    viewer.load('ISBN:0738531367');
-                                }
-
-                                google.books.setOnLoadCallback(initialize);
-
-                            </script>
-                            <div id="viewerCanvas" style="width: 600px; height: 500px"></div>
-
-                            Stuff
-                            
+                        <div role="tabpanel" class="tab-pane" id="bookComments">
+                            <div class="comments">
+                                Here will be some comments
+                            </div>
                         </div>
                     </div>
 

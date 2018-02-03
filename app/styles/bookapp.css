@@ -81,12 +81,13 @@
 }
 
 .reviewDetail {
+    font-size: 14px;
     white-space: pre-wrap;
 }
 
 .googleSummary {
     margin-top: 50px;
-    font-size: 14px;
+    font-size: 12px;
 }
 
 #googleSummaryDetail {
