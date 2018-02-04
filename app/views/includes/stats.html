@@ -1,0 +1,90 @@
+<div class="row">
+    <div class="col-lg-3 col-sm-6">
+        <div class="card">
+            <div class="content">
+                <div class="row">
+                    <div class="col-xs-5">
+                        <div class="icon-big icon-warning text-center">
+                            <i class="ti-book"></i>
+                        </div>
+                    </div>
+                    <div class="col-xs-7">
+                        <div class="numbers">
+                            <p>Books reviewed</p><span class="summaryStatsDetails">{{countBooks}} books</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+        <div class="card">
+            <div class="content">
+                <div class="row">
+                    <div class="col-xs-5">
+                        <div class="icon-big icon-success text-center">
+                            <i class="ti-thumb-up"></i>
+                        </div>
+                    </div>
+                    <div class="col-xs-7">
+                        <div class="numbers">
+                            <p>Top rated</p>
+                                <span class="summaryStatsDetails">
+                                    <ng-pluralize count="topBookCount" when="{'0': ' no books', 
+                                         '1': ' 1 {{topBookRating}} book', 
+                                         'other': '{{topBookCount}} {{topBookRating}} books'}">
+                                    </ng-pluralize>
+                                </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-sm-6">
+        <div class="card">
+            <div class="content">
+                <div class="row">
+                    <a href="/fred">
+                        <div class="col-xs-5">
+                            <div class="icon-big icon-info text-center">
+                                <i class="ti-thumb-down"></i>
+                            </div>
+                        </div>
+                        <div class="col-xs-7">
+                            <div class="numbers">
+                                <p>Worst rated</p>
+                                <span class="summaryStatsDetails">
+                                    <ng-pluralize count="worstBookCount" when="{'0': ' no books', 
+                                         '1': ' 1 {{worstBookRating}} book', 
+                                         'other': '{{worstBookCount}} {{worstBookRating}} books'}">
+                                    </ng-pluralize>
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+        <div class="card">
+            <div class="content">
+                <div class="row">
+                    <div class="col-xs-5">
+                        <div class="icon-big icon-danger text-center">
+                            <i class="ti-cup"></i>
+                        </div>
+                    </div>
+                    <div class="col-xs-7">
+                        <div class="numbers">
+                            <p>Most Popular Genre</p>
+                            Spy novels
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -12,10 +12,18 @@
      * AngularJS will instantiate a singleton by calling "new" on this function.
      */
     angular.module('booksWebApp')
-        .service('summaryDataService', function () {
+        .service('summaryDataService', function ($http, $log, booksConstants) {
 
-            this.doSomething = function () {
+            this.getBooks = function () {
+                var url = booksConstants.apiEndPoint + '/booksstats';
 
+                return $http.get(url)
+                    .then(function onSuccess(response) {
+                        return response.data;
+                    }).catch(function onError(error) {
+                        $log.error('Failed to get summary data for books. Error data: ' + JSON.stringify(error));
+                        throw error;
+                    });
             };
         
 
