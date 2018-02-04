@@ -17,7 +17,8 @@
             'ngResource',
             'ngRoute',
             'ngSanitize',
-            'ngTouch'
+            'ngTouch',
+            'bootstrap3-typeahead'
         ])
         .constant('booksConstants', {
             // ************************************
@@ -70,13 +71,18 @@
                 })
                 .when('/users', {
                     templateUrl: 'views/adminusers.html',
-                    controller: 'UserCtrl',
+                    controller: 'MenuCtrl',
                     controllerAs: 'users'
                 })
                 .when('/book/:id', {
                     templateUrl: 'views/bookdetails.html',
                     controller: 'BookCtrl',
                     controllerAs: 'book'
+                })
+                .when('/bookbygenre/:genre', {
+                    templateUrl: 'views/summary.html',
+                    controller: 'BookGenresCtrl',
+                    controllerAs: 'bookGenres'
                 })
                 .otherwise({
                     redirectTo: '/'

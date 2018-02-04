@@ -12,7 +12,9 @@
     angular.module('booksWebApp')
         .controller('SummaryCtrl', function ($scope, $log, $location, summaryDataService, bookDataService, booksConstants, menuService) {
 
-            var currentSearchType = 'byBooks', currentSearchRating = '', currentSearchGenre = '';
+            var currentSearchType = 'byBooks',
+                currentSearchRating = '',
+                currentSearchGenre = '';
 
             $scope.dataRetrievalError = false;
             $scope.bookDeletedOk = false;
@@ -129,7 +131,7 @@
             };
 
             $scope.booksByRating = function (rating) {
-                menuService.setMenuItem(booksConstants.menuItems.RATING);
+                menuService.setMenuItem(booksConstants.menuItems.SUMMARY);
                 currentSearchType = 'byRating';
                 currentSearchRating = rating;
                 $scope.currentPage = 0;
@@ -145,7 +147,7 @@
             };
 
             $scope.booksByGenre = function (genre) {
-                menuService.setMenuItem(booksConstants.menuItems.GENRE);
+                menuService.setMenuItem(booksConstants.menuItems.SUMMARY);
                 currentSearchType = 'byGenre';
                 currentSearchGenre = genre;
                 $scope.currentPage = 0;

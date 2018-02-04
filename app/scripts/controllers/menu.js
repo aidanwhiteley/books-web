@@ -4,14 +4,14 @@
 
     /**
      * @ngdoc function
-     * @name booksWebApp.controller:UserCtrl
+     * @name booksWebApp.controller:MenuCtrl
      * @description
-     * # UserCtrl
+     * # MenuCtrl
      * Controller of the booksWebApp
      */
     angular.module('booksWebApp')
-        .controller('UserCtrl', function ($scope, $log, $location, userDataService, menuService, booksConstants) {
-        
+        .controller('MenuCtrl', function ($scope, $log, $location, userDataService, menuService, booksConstants, bookDataService) {
+
             menuService.setMenuItem(booksConstants.menuItems.ADMINUSERS);
 
             /**
@@ -132,10 +132,36 @@
                 $scope.msgUserUpdatedOK = false;
                 $scope.msgUserUpdatedNotOK = false;
             };
-        
+
             $scope.currentMenuItem = function () {
                 return menuService.getMenuItem();
             };
 
+
+            $scope.getBookGenres = function () {
+                bookDataService.getBookGenres()
+                    .then(
+                        function (data) {
+                            $scope.listOfGenres = data;
+                        },
+                        function (errors) {
+                            $log.error('Failed to get list of genres: ' + JSON.stringify(errors));
+                        }
+                    );
+            };
+        
+            $scope.getBookGenres();
+
+            $scope.displayText = function (item) {
+                return item.genre + ' (' + item.countOfBooks + ' book' + (item.countOfBooks > 1 ? 's' : '') + ')';
+            };
+
+            $scope.afterSelect = function (item) {
+                console.log("after Select: " + JSON.stringify(item));
+            };
+
+            $scope.searchByGenre = function () {
+                menuService.setMenuItem(booksConstants.menuItems.GENRE);
+            };
         });
 }());

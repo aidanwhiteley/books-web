@@ -363,8 +363,12 @@ hr {
     .off-canvas-sidebar[data-background-color="black"] .logo .simple-text {
       color: #FFFFFF; }
   .sidebar[data-background-color="black"] .nav li:not(.active) > a,
+
+  
   .off-canvas-sidebar[data-background-color="black"] .nav li:not(.active) > a {
     color: #FFFFFF; }
+  
+
   .sidebar[data-background-color="black"] .nav .divider,
   .off-canvas-sidebar[data-background-color="black"] .nav .divider {
     background-color: rgba(255, 255, 255, 0.2); }
@@ -1370,6 +1374,7 @@ textarea.form-control {
   .footer .heart {
     color: #EB5E28; }
 
+/**** Commented out as coflicts with typeahead drop down menu
 .dropdown-menu {
   background-color: #FFFCF5;
   border: 0 none;
@@ -1457,6 +1462,7 @@ textarea.form-control {
     background-color: #F3BB45; }
   .dropdown-menu.dropdown-danger > li > a:hover, .dropdown-menu.dropdown-danger > li > a:focus {
     background-color: #EB5E28; }
+*/
 
 .btn-group.select {
   overflow: hidden; }
@@ -2237,6 +2243,7 @@ textarea.form-control {
   .navbar-search-form {
     display: none; }
 
+/**
   .navbar-nav > li > .dropdown-menu,
   .dropdown .dropdown-menu {
     transform: translate3d(0px, -40px, 0px);
@@ -2272,7 +2279,7 @@ textarea.form-control {
   .navbar-nav.navbar-left > li > .dropdown-menu:after {
     right: auto;
     left: 12px; }
-
+*/
   .navbar .navbar-header {
     margin-left: 10px; }
 
@@ -2670,17 +2677,20 @@ textarea.form-control {
       opacity: 0; }
     100% {
       opacity: 1; } }
+    
+/*
   .dropdown-menu .divider {
     background-color: rgba(229, 229, 229, 0.15); }
-
+*/
   .navbar-nav {
     margin: 1px 0; }
 
+/*
   .dropdown-menu {
     display: none; }
     .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
       background-color: transparent; }
-
+*/
   .navbar-fixed-top {
     -webkit-backface-visibility: hidden; }
 

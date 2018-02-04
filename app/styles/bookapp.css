@@ -113,3 +113,39 @@
 .summaryStatsDetails {
     font-size: 0.65em;
 }
+
+.dropdown-menu {
+ position:relative;
+ width: 75%;
+ top: 0px !important;
+    left: 25px !important;
+}
+
+.sidebar[data-background-color="black"] .nav li:not(.active) > a.dropdown-item , .off-canvas-sidebar[data-background-color="black"] .nav li:not(.active) > a.dropdown-item {
+    color: #000000;
+}
+
+input.searchByEntry {
+    width: 75%;
+    margin-left: 25px;
+}
+
+.form-control::-moz-placeholder {
+  color: #000000;
+  opacity: 0.5;
+  filter: alpha(opacity=50); }
+
+.form-control:-moz-placeholder {
+  color: #000000;
+  opacity: 0.5;
+  filter: alpha(opacity=50); }
+
+.form-control::-webkit-input-placeholder {
+  color: #000000;
+  opacity: 0.5;
+  filter: alpha(opacity=50); }
+
+.form-control:-ms-input-placeholder {
+  color: #000000;
+  opacity: 0.5;
+  filter: alpha(opacity=50); }
