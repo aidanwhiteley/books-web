@@ -17,23 +17,23 @@
             this.createBook = function (book) {
 
                 var url = booksConstants.secureApiEndPoint + '/books';
-                
+
                 book.entered = new Date();
 
                 return $http.post(url, book)
                     .then(function onSuccess(response) {
                         return response.data;
                     }).catch(function onError(error) {
-                    
+
                         $log.error('Failed to create a new book. Error data: ' + JSON.stringify(error));
                         throw error;
                     });
-                
+
             };
 
             this.updateBook = function (book) {
                 var url = booksConstants.secureApiEndPoint + '/books';
- 
+
                 return $http.put(url, book)
                     .then(function onSuccess(response) {
                         return response.data;
@@ -78,6 +78,18 @@
                         return response.data;
                     }).catch(function onError(error) {
                         $log.error('Failed to get books. Error data: ' + JSON.stringify(error));
+                        throw error;
+                    });
+            };
+
+            this.getBooksByRating = function (rating, page, size) {
+                var url = booksConstants.apiEndPoint + '/books/?rating=' + rating + '&page=' + page + '&size=' + size;
+
+                return $http.get(url)
+                    .then(function onSuccess(response) {
+                        return response.data;
+                    }).catch(function onError(error) {
+                        $log.error('Failed to get books by rating. Error data: ' + JSON.stringify(error));
                         throw error;
                     });
             };

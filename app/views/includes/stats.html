@@ -3,16 +3,18 @@
         <div class="card">
             <div class="content">
                 <div class="row">
-                    <div class="col-xs-5">
-                        <div class="icon-big icon-warning text-center">
-                            <i class="ti-book"></i>
+                    <a ng-click="booksSummary()" href="">
+                        <div class="col-xs-5">
+                            <div class="icon-big icon-warning text-center">
+                                <i class="ti-book"></i>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-xs-7">
-                        <div class="numbers">
-                            <p>Books reviewed</p><span class="summaryStatsDetails">{{countBooks}} books</span>
+                        <div class="col-xs-7">
+                            <div class="numbers">
+                                <p>Books reviewed</p><span class="summaryStatsDetails">{{countBooks}} books</span>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -21,22 +23,24 @@
         <div class="card">
             <div class="content">
                 <div class="row">
-                    <div class="col-xs-5">
-                        <div class="icon-big icon-success text-center">
-                            <i class="ti-thumb-up"></i>
+                    <a ng-click="booksByRating(topBookRating)" href="">
+                        <div class="col-xs-5">
+                            <div class="icon-big icon-success text-center">
+                                <i class="ti-thumb-up"></i>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-xs-7">
-                        <div class="numbers">
-                            <p>Top rated</p>
+                        <div class="col-xs-7">
+                            <div class="numbers">
+                                <p>Top rated</p>
                                 <span class="summaryStatsDetails">
                                     <ng-pluralize count="topBookCount" when="{'0': ' no books', 
                                          '1': ' 1 {{topBookRating}} book', 
                                          'other': '{{topBookCount}} {{topBookRating}} books'}">
                                     </ng-pluralize>
                                 </span>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
         </div>
@@ -46,7 +50,7 @@
         <div class="card">
             <div class="content">
                 <div class="row">
-                    <a href="/fred">
+                    <a ng-click="booksByRating(worstBookRating)" href="">
                         <div class="col-xs-5">
                             <div class="icon-big icon-info text-center">
                                 <i class="ti-thumb-down"></i>

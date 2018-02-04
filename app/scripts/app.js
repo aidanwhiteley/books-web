@@ -26,7 +26,16 @@
 
             apiEndPoint: 'http://localhost:8080/api',
             secureApiEndPoint: 'http://localhost:8080/secure/api',
-            defaultPageSize: 5
+            defaultPageSize: 5,
+            menuItems: {
+                'SUMMARY': 'summary',
+                'RATING': 'rating',
+                'GENRE': 'genre',
+                'AUTHOR': 'author',
+                'READER': 'reader',
+                'ADDBOOK': 'addbook',
+                'ADMINUSERS': 'adminusers'
+            }
         })
         .config(function ($locationProvider, $routeProvider, $logProvider, $httpProvider) {
 

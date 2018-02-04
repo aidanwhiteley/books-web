@@ -1,4 +1,4 @@
-/*global angular: false, $: false, google: false */
+/*global angular: false, $: false */
 (function () {
     'use strict';
 
@@ -19,7 +19,7 @@
                     .then(
                         function (data) {
                             $scope.book = data;
-                            $scope.book.displayGooglePreview = data.googleBookDetails.accessInfo.embeddable && 
+                            $scope.book.displayGooglePreview = data.googleBookDetails.accessInfo.embeddable &&
                                 data.googleBookDetails.accessInfo.viewability !== 'NO_PAGES';
                         },
                         function () {
@@ -32,14 +32,14 @@
             }
 
             $scope.bookDetails = function () {
-                $('#mytabs a:first').tab('show') // Select first tab
+                $('#mytabs a:first').tab('show'); // Select first tab
             };
 
             $scope.bookComments = function () {
-                $('#mytabs a:last').tab('show') // Select last tab
+                $('#mytabs a:last').tab('show'); // Select last tab
             };
-        
-            
+
+
 
         });
 }());

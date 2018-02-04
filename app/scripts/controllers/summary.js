@@ -10,26 +10,43 @@
      * Controller of the booksWebApp
      */
     angular.module('booksWebApp')
-        .controller('SummaryCtrl', function ($scope, $log, $location, summaryDataService, bookDataService, booksConstants) {
+        .controller('SummaryCtrl', function ($scope, $log, $location, summaryDataService, bookDataService, booksConstants, menuService) {
+
+            var currentSearchType = 'byBooks', currentSearchRating = '';
 
             $scope.dataRetrievalError = false;
             $scope.bookDeletedOk = false;
             $scope.deletedBook = '';
             $scope.currentPage = 0;
+        
+            menuService.setMenuItem(booksConstants.menuItems.SUMMARY);
 
             $scope.getBooks = function () {
-                bookDataService.getBooks($scope.currentPage, booksConstants.defaultPageSize)
-                    .then(
-                        function (data) {
-                            $scope.data = data;
-                        },
-                        function () {
-                            $log.error('Failed to get book data');
-                            $scope.dataRetrievalError = true;
-                        }
-                    );
+                if (currentSearchType === 'byBooks') {
+                    bookDataService.getBooks($scope.currentPage, booksConstants.defaultPageSize)
+                        .then(
+                            function (data) {
+                                $scope.data = data;
+                            },
+                            function () {
+                                $log.error('Failed to get book data');
+                                $scope.dataRetrievalError = true;
+                            }
+                        );
+                } else if (currentSearchType === 'byRating') {
+                    bookDataService.getBooksByRating(currentSearchRating, $scope.currentPage, booksConstants.defaultPageSize)
+                        .then(
+                            function (data) {
+                                $scope.data = data;
+                            },
+                            function () {
+                                $log.error('Failed to get book data');
+                                $scope.dataRetrievalError = true;
+                            }
+                        );
+                }
             };
-        
+
             $scope.getSummaryData = function () {
                 summaryDataService.getBooks()
                     .then(
@@ -45,10 +62,10 @@
 
             $scope.getBooks();
             $scope.getSummaryData();
-        
+
             $scope.decodeSummaryData = function (data) {
                 var topBookRating, topBookCount, worstBookRating, worstBookCount;
-                
+
                 $scope.countBooks = data.count;
 
                 if (data.countGreatBooks > 0) {
@@ -69,7 +86,7 @@
                 }
                 $scope.topBookRating = topBookRating;
                 $scope.topBookCount = topBookCount;
-                
+
                 if (data.countTerribleBooks > 0) {
                     worstBookRating = "terrible";
                     worstBookCount = data.countTerribleBooks;
@@ -86,13 +103,13 @@
                     worstBookRating = "great";
                     worstBookCount = data.countGreatBooks;
                 }
-                
+
                 $scope.topBookRating = topBookRating;
                 $scope.topBookCount = topBookCount;
-                
+
                 $scope.worstBookRating = worstBookRating;
                 $scope.worstBookCount = worstBookCount;
-                
+
             };
 
             $scope.next = function () {
@@ -146,6 +163,20 @@
 
             $scope.bookDetails = function (book) {
                 $location.path('/book/' + book.id);
+            };
+
+            $scope.booksByRating = function (rating) {
+                menuService.setMenuItem(booksConstants.menuItems.RATING);
+                currentSearchType = 'byRating';
+                currentSearchRating = rating;
+                $scope.getBooks();
+            };
+        
+            $scope.booksSummary = function () {
+                menuService.setMenuItem(booksConstants.menuItems.SUMMARY);
+                currentSearchType = 'byBooks';
+                currentSearchRating = '';
+                $scope.getBooks();
             };
 
         });

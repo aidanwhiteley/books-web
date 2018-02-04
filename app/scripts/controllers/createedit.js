@@ -10,7 +10,7 @@
      * Controller of the booksWebApp
      */
     angular.module('booksWebApp')
-        .controller('CreateEditCtrl', function ($scope, $log, $location, $anchorScroll, bookDataService) {
+        .controller('CreateEditCtrl', function ($scope, $log, $location, $anchorScroll, bookDataService, menuService, booksConstants) {
 
             $scope.bookCreateOk = false;
             $scope.bookCreateError = false;
@@ -19,6 +19,8 @@
             $scope.bookUpdateOK = false;
             $scope.googleMatchesIndex = 0;
             $scope.googleBookData = [];
+        
+            menuService.setMenuItem(booksConstants.menuItems.ADDBOOK);
 
             $scope.options = [
                 {

@@ -10,7 +10,9 @@
      * Controller of the booksWebApp
      */
     angular.module('booksWebApp')
-        .controller('UserCtrl', function ($scope, $log, $location, userDataService) {
+        .controller('UserCtrl', function ($scope, $log, $location, userDataService, menuService, booksConstants) {
+        
+            menuService.setMenuItem(booksConstants.menuItems.ADMINUSERS);
 
             /**
              * Get user data
@@ -129,6 +131,10 @@
                 $scope.msgUserDeletedSelfNotAllowed = false;
                 $scope.msgUserUpdatedOK = false;
                 $scope.msgUserUpdatedNotOK = false;
+            };
+        
+            $scope.currentMenuItem = function () {
+                return menuService.getMenuItem();
             };
 
         });

@@ -35,7 +35,7 @@
                                 <p><b>Review Date: </b>{{book.entered[2] + '-' + book.entered[1] + '-' + book.entered[0]}}</p>
                                 <p><b>Genre: </b>{{book.genre}}</p>
                                 <p class="reviewDetail"><b>Reviewer's Summary:</b> {{book.summary}}</p>
-                                <p ng-if="book.createdBy.fullName"><b>Reviewer: {{book.createdBy.fullName}}</b></p>
+                                <p ng-if="book.createdBy.fullName"><b>Reviewer:</b> {{book.createdBy.fullName}}</p>
                                 <p ng-if="book.displayGooglePreview">
                                     <a href="https://books.google.co.uk/books?id={{book.googleBookId}}&printsec=frontcover#v=onepage&q&f=true" target="_blank">
                                         <img class="" ng-src="./images/gbs_preview_button1.gif">
