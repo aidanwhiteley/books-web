@@ -94,6 +94,18 @@
                     });
             };
 
+            this.getBooksByGenre = function (genre, page, size) {
+                var url = booksConstants.apiEndPoint + '/books/?genre=' + genre + '&page=' + page + '&size=' + size;
+
+                return $http.get(url)
+                    .then(function onSuccess(response) {
+                        return response.data;
+                    }).catch(function onError(error) {
+                        $log.error('Failed to get books by genre. Error data: ' + JSON.stringify(error));
+                        throw error;
+                    });
+            };
+
             this.getGoogleBooks = function (title) {
                 var url = booksConstants.apiEndPoint + '/googlebooks/?title=' + title;
 
