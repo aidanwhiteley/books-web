@@ -19,16 +19,16 @@
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
                         <li role="presentation" class="active"><a data-target="#bookDetails" aria-controls="bookDetails" role="tab" data-toggle="tab">Book details</a></li>
-                        <li role="presentation"><a data-target="#bookComments" aria-controls="bookComments" role="tab" data-toggle="tab">Other readers comments</a></li>
+                        <li role="presentation"><a data-target="#googleBooksSummary" aria-controls="googleBooksSummary" role="tab" data-toggle="tab">Google Books Summary</a></li>
                     </ul>
 
 
                     <!-- Tab panes -->
                     <div class="tab-content" id="mytabs">
                         <div role="tabpanel" class="tab-pane active" id="bookDetails">
-                            <div class="content">
-                                <img ng-if="book.googleBookDetails.volumeInfo.imageLinks.small" class="rounded pull-left listThumbnail" ng-src="{{book.googleBookDetails.volumeInfo.imageLinks.small}}">
-                                <img ng-if="!book.googleBookDetails.volumeInfo.imageLinks.small && book.googleBookDetails.volumeInfo.imageLinks.smallThumbnail" class="rounded pull-left listThumbnail" ng-src="{{book.googleBookDetails.volumeInfo.imageLinks.smallThumbnail}}">
+                            <div class="bookCard content">
+                                <img ng-if="book.googleBookDetails.volumeInfo.imageLinks.thumbnail" class="rounded pull-left listThumbnail" ng-src="{{book.googleBookDetails.volumeInfo.imageLinks.thumbnail}}">
+                                <img ng-if="!book.googleBookDetails.volumeInfo.imageLinks.thumbnail && book.googleBookDetails.volumeInfo.imageLinks.smallThumbnail" class="rounded pull-left listThumbnail" ng-src="{{book.googleBookDetails.volumeInfo.imageLinks.smallThumbnail}}">
                                 <p><b>Title: </b>{{book.title}}</p>
                                 <p><b>Author: </b>{{book.author}}</p>
                                 <p><b>Rating: </b>{{book.rating | capitalize}}</p>
@@ -41,16 +41,23 @@
                                         <img class="" ng-src="./images/gbs_preview_button1.gif">
                                     </a>
                                 </p>
-                                
+
                                 <hr>
-                                <p class="googleSummary"><b>Google Summary:</b></p>
-                                <div id="googleSummaryDetail" ng-bind-html="book.googleBookDetails.volumeInfo.description"></div>
+
+                                <div class="comments">
+                                    Here will be some comments
+                                </div>
+
+
                             </div>
                         </div>
 
-                        <div role="tabpanel" class="tab-pane" id="bookComments">
-                            <div class="comments">
-                                Here will be some comments
+                        <div role="tabpanel" class="tab-pane" id="googleBooksSummary">
+                            <div class="bookCard content">
+                                <img ng-if="book.googleBookDetails.volumeInfo.imageLinks.thumbnail" class="rounded pull-left listThumbnail" ng-src="{{book.googleBookDetails.volumeInfo.imageLinks.thumbnail}}">
+                                <img ng-if="!book.googleBookDetails.volumeInfo.imageLinks.thumbnail && book.googleBookDetails.volumeInfo.imageLinks.smallThumbnail" class="rounded pull-left listThumbnail" ng-src="{{book.googleBookDetails.volumeInfo.imageLinks.smallThumbnail}}">
+                                <p class="googleSummary"><b>Google Summary:</b></p>
+                                <div id="googleSummaryDetail" ng-bind-html="book.googleBookDetails.volumeInfo.description"></div>
                             </div>
                         </div>
                     </div>

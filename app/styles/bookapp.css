@@ -91,10 +91,10 @@
 }
 
 #googleSummaryDetail {
-    font-size: 12px;
+    font-size: 14px;
 }
 #googleSummaryDetail p {
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .bookspager {
@@ -153,4 +153,8 @@ input.searchByEntry {
 
 .menuCriteriaInput {
     display: none;
+}
+
+.bookCard {
+    padding-bottom: 50px !important;
 }

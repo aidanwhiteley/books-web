@@ -119,7 +119,7 @@
             };
 
             this.getBooksByReader = function (reader, page, size) {
-                var url = booksConstants.apiEndPoint + '/books/?reader=' + reader + '&page=' + page + '&size=' + size;
+                var url = booksConstants.secureApiEndPoint + '/books/?reader=' + reader + '&page=' + page + '&size=' + size;
 
                 return $http.get(url)
                     .then(function onSuccess(response) {
