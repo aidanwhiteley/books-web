@@ -227,5 +227,19 @@
                 $("#findByReaderInput").removeClass('menuCriteriaInput');
                 menuService.setMenuItem(booksConstants.menuItems.READER);
             };
+        
+            // ****************** Select by rating *************
+            $scope.ratings = ['Great', 'Good', 'OK', 'Poor', 'Terrible'];
+        
+            $scope.searchByRating = function () {
+                //$scope.byAuthorInput = '';
+                $("#findByRatingInput").removeClass('menuCriteriaInput');
+                menuService.setMenuItem(booksConstants.menuItems.RATING);
+            };
+        
+            $scope.ratingSelected = function (selected) {
+                $location.url('/booksbyrating/?rating=' + encodeURI(selected)).replace();
+                //$scope.$apply();
+            }
         });
 }());

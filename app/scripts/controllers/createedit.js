@@ -19,7 +19,7 @@
             $scope.bookUpdateOK = false;
             $scope.googleMatchesIndex = 0;
             $scope.googleBookData = [];
-        
+
             menuService.setMenuItem(booksConstants.menuItems.ADDBOOK);
 
             $scope.options = [
@@ -57,6 +57,11 @@
                                     $scope.book = {};
                                     $scope.bookForm.$setPristine();
                                     $scope.bookForm.$setUntouched();
+                                    
+                                    // Later decision to go to summary page after creating new book.
+                                    // However, above code left in place in case the decision changes!
+                                    $location.url('/').replace();
+                                    $scope.$apply();
                                 },
                                 function () {
                                     $scope.resetMessaging();
@@ -103,37 +108,41 @@
 
             $scope.searchGoogle = function (book) {
 
-                var trimmedTitle, minumumValidInput = 2,  i;
+                var trimmedTitle, minumumValidInput = 2, i;
 
-                // We are only supporting recent browsers
-                trimmedTitle = book.title.trim();
+                // Check that we have some input
+                if (book && book.title) {
 
-                if (trimmedTitle.length > minumumValidInput) {
+                    // We are only supporting recent browsers
+                    trimmedTitle = book.title.trim();
 
-                    $scope.googleMatchesIndex = 0;
+                    if (trimmedTitle.length > minumumValidInput) {
 
-                    bookDataService.getGoogleBooks(book.title)
-                        .then(
-                            function (data) {
-                                $scope.googleBookData = data.items;
+                        $scope.googleMatchesIndex = 0;
 
-                                // If the passed in "book" has a googleBookId set against it, we now
-                                // iterate through the matches to see if we can find it again.
-                                // There is a risk that this new Google Book search won't return the
-                                // book the user previously selected!
-                                if (book.googleBookId && book.googleBookId !== '') {
-                                    for (i = 0; i < data.items.length; i = i + 1) {
-                                        if (data.items[i].id === book.googleBookId) {
-                                            $scope.googleMatchesIndex = i;
-                                            $scope.book.foundOnGoogle = true;
+                        bookDataService.getGoogleBooks(book.title)
+                            .then(
+                                function (data) {
+                                    $scope.googleBookData = data.items;
+
+                                    // If the passed in "book" has a googleBookId set against it, we now
+                                    // iterate through the matches to see if we can find it again.
+                                    // There is a risk that this new Google Book search won't return the
+                                    // book the user previously selected!
+                                    if (book.googleBookId && book.googleBookId !== '') {
+                                        for (i = 0; i < data.items.length; i = i + 1) {
+                                            if (data.items[i].id === book.googleBookId) {
+                                                $scope.googleMatchesIndex = i;
+                                                $scope.book.foundOnGoogle = true;
+                                            }
                                         }
                                     }
+                                },
+                                function (errors) {
+                                    $log.error('Failed to retrieve Google book data: ' + JSON.stringify(errors));
                                 }
-                            },
-                            function (errors) {
-                                $log.error('Failed to retrieve Google book data: ' + JSON.stringify(errors));
-                            }
-                        );
+                            );
+                    }
                 }
             };
 
@@ -167,6 +176,30 @@
 
 
             $scope.checkIfExistingBook();
+
+            // ***** By Genre existing data for typeahead ******
+            $scope.getBookGenres = function () {
+                bookDataService.getBookGenres()
+                    .then(
+                        function (data) {
+                            $scope.listOfGenres = data;
+                        },
+                        function (errors) {
+                            $log.error('Failed to get list of genres: ' + JSON.stringify(errors));
+                        }
+                    );
+            };
+
+            $scope.getBookGenres();
+
+            $scope.byGenreDisplayText = function (item) {
+                return item.genre;
+            };
+
+            $scope.byGenreAfterSelect = function (item) {
+                $log.debug("Selected: " + item.genre);
+            };
+
 
         });
 }());

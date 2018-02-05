@@ -16,7 +16,8 @@
                 currentSearchRating = '',
                 currentSearchGenre = '',
                 currentSearchAuthor = '',
-                currentSearchReader = '';
+                currentSearchReader = '',
+                currentSerachRating = '';
 
             $scope.dataRetrievalError = false;
             $scope.bookDeletedOk = false;
@@ -81,6 +82,17 @@
                                 $scope.dataRetrievalError = true;
                             }
                         );
+                } else if (currentSearchType === 'byRating') {
+                    bookDataService.getBooksByRating(currentSearchRating, $scope.currentPage, booksConstants.defaultPageSize)
+                        .then(
+                            function (data) {
+                                $scope.data = data;
+                            },
+                            function () {
+                                $log.error('Failed to get book data by rating');
+                                $scope.dataRetrievalError = true;
+                            }
+                        );
                 }
             };
 
@@ -106,6 +118,9 @@
             } else if ($location.path().indexOf('booksbyreader') >= 0) {
                 currentSearchType = 'byReader';
                 currentSearchReader = $routeParams.reader;
+            } else if ($location.path().indexOf('booksbyrating') >= 0) {
+                currentSearchType = 'byRating';
+                currentSearchRating = $routeParams.rating;
             }
         
             $scope.getBooks();

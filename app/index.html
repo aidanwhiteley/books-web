@@ -49,10 +49,18 @@
                         </a>
                     </li>
                     <li ng-class="{'active' : currentMenuItem() === 'rating'}">
-                        <a href="#/summary">
+                        <a ng-click="searchByRating()" href="">
                             <i class="ti-star"></i>
                             <p>By Rating</p>
                         </a>
+                        <form ng-hide="currentMenuItem() !== 'rating'">
+                            <fieldset>
+                                <div class="form-group">
+                                    <select class="form-control searchByEntry menuCriteriaInput" id="findByRatingInput" 
+                                            ng-model="selectedName" ng-options="item for item in ratings" ng-change="ratingSelected(selectedName)"></select>
+                                </div>
+                            </fieldset>
+                        </form>
                     </li>
                     <li ng-class="{'active' : currentMenuItem() === 'genre'}">
                         <a ng-click="searchByGenre()" href="">
@@ -62,7 +70,7 @@
                         <form ng-hide="currentMenuItem() !== 'genre'">
                             <fieldset>
                                 <div class="form-group">
-                                    <input id="findByGenreInput" class="form-control searchByEntry menuCriteriaInput" placeholder="Start typing genre.." type="text" bs3-typeahead bs3-promise="listOfGenres" bs3-displayText="byGenreDisplayText" bs3-afterSelect="byGenreAfterSelect" ng-model="byGenreInput">
+                                    <input id="findByGenreInput" autocomplete="off" class="form-control searchByEntry menuCriteriaInput" placeholder="Start typing genre.." type="text" bs3-typeahead bs3-promise="listOfGenres" bs3-displayText="byGenreDisplayText" bs3-afterSelect="byGenreAfterSelect" ng-model="byGenreInput">
                                 </div>
                             </fieldset>
                         </form>
@@ -75,7 +83,7 @@
                         <form ng-hide="currentMenuItem() !== 'author'">
                             <fieldset>
                                 <div class="form-group">
-                                    <input id="findByAuthorInput" class="form-control searchByEntry menuCriteriaInput" placeholder="Start typing author name.." type="text" bs3-typeahead bs3-promise="listOfAuthors" bs3-displayText="byAuthorDisplayText" bs3-afterSelect="byAuthorAfterSelect" ng-model="byAuthorInput">
+                                    <input id="findByAuthorInput" autocomplete="off" class="form-control searchByEntry menuCriteriaInput" placeholder="Start typing author name.." type="text" bs3-typeahead bs3-promise="listOfAuthors" bs3-displayText="byAuthorDisplayText" bs3-afterSelect="byAuthorAfterSelect" ng-model="byAuthorInput">
                                 </div>
                             </fieldset>
                         </form>
@@ -88,7 +96,7 @@
                         <form ng-hide="currentMenuItem() !== 'reader'">
                             <fieldset>
                                 <div class="form-group">
-                                    <input id="findByReaderInput" class="form-control searchByEntry menuCriteriaInput" placeholder="Start typing readers name..." type="text" bs3-typeahead bs3-promise="listOfReaders" bs3-displayText="byReaderDisplayText" bs3-afterSelect="byReaderAfterSelect" ng-model="byReaderInput">
+                                    <input id="findByReaderInput" autocomplete="off" class="form-control searchByEntry menuCriteriaInput" placeholder="Start typing readers name..." type="text" bs3-typeahead bs3-promise="listOfReaders" bs3-displayText="byReaderDisplayText" bs3-afterSelect="byReaderAfterSelect" ng-model="byReaderInput">
                                 </div>
                             </fieldset>
                         </form>

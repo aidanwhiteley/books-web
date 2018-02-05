@@ -130,6 +130,11 @@ input.searchByEntry {
     margin-left: 25px;
 }
 
+select.searchByEntry {
+    width: 75%;
+    margin-left: 25px;
+}
+
 .form-control::-moz-placeholder {
   color: #000000;
   opacity: 0.5;

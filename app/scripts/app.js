@@ -94,6 +94,11 @@
                     controller: 'SummaryCtrl',
                     controllerAs: 'summary'
                 })
+                .when('/booksbyrating', {
+                    templateUrl: 'views/summary.html',
+                    controller: 'SummaryCtrl',
+                    controllerAs: 'summary'
+                })
                 .otherwise({
                     redirectTo: '/'
                 });
