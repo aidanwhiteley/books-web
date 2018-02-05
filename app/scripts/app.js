@@ -79,10 +79,20 @@
                     controller: 'BookCtrl',
                     controllerAs: 'book'
                 })
-                .when('/bookbygenre/:genre', {
+                .when('/booksbygenre', {
                     templateUrl: 'views/summary.html',
-                    controller: 'BookGenresCtrl',
-                    controllerAs: 'bookGenres'
+                    controller: 'SummaryCtrl',
+                    controllerAs: 'summary'
+                })
+                .when('/booksbyauthor', {
+                    templateUrl: 'views/summary.html',
+                    controller: 'SummaryCtrl',
+                    controllerAs: 'summary'
+                })
+                .when('/booksbyreader', {
+                    templateUrl: 'views/summary.html',
+                    controller: 'SummaryCtrl',
+                    controllerAs: 'summary'
                 })
                 .otherwise({
                     redirectTo: '/'

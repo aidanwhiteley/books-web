@@ -1,4 +1,4 @@
-/*global angular: false */
+/*global angular: false, $: false */
 (function () {
     'use strict';
 
@@ -137,7 +137,7 @@
                 return menuService.getMenuItem();
             };
 
-
+            // ***** By Genre ******
             $scope.getBookGenres = function () {
                 bookDataService.getBookGenres()
                     .then(
@@ -149,19 +149,83 @@
                         }
                     );
             };
-        
+
             $scope.getBookGenres();
 
-            $scope.displayText = function (item) {
+            $scope.byGenreDisplayText = function (item) {
                 return item.genre + ' (' + item.countOfBooks + ' book' + (item.countOfBooks > 1 ? 's' : '') + ')';
             };
 
-            $scope.afterSelect = function (item) {
-                console.log("after Select: " + JSON.stringify(item));
+            $scope.byGenreAfterSelect = function (item) {
+                $location.url('/booksbygenre/?genre=' + encodeURI(item.genre)).replace();
+                $scope.$apply();
             };
 
             $scope.searchByGenre = function () {
+                $scope.byGenreInput = '';
+                $("#findByGenreInput").removeClass('menuCriteriaInput');
                 menuService.setMenuItem(booksConstants.menuItems.GENRE);
+            };
+
+            // ***** By Author ******
+            $scope.getBookAuthors = function () {
+                bookDataService.getBookAuthors()
+                    .then(
+                        function (data) {
+                            $scope.listOfAuthors = data;
+                        },
+                        function (errors) {
+                            $log.error('Failed to get list of authors: ' + JSON.stringify(errors));
+                        }
+                    );
+            };
+
+            $scope.getBookAuthors();
+
+            $scope.byAuthorDisplayText = function (item) {
+                return item.author + ' (' + item.countOfBooks + ' book' + (item.countOfBooks > 1 ? 's' : '') + ')';
+            };
+
+            $scope.byAuthorAfterSelect = function (item) {
+                $location.url('/booksbyauthor/?author=' + encodeURI(item.author)).replace();
+                $scope.$apply();
+            };
+
+            $scope.searchByAuthor = function () {
+                $scope.byAuthorInput = '';
+                $("#findByAuthorInput").removeClass('menuCriteriaInput');
+                menuService.setMenuItem(booksConstants.menuItems.AUTHOR);
+            };
+        
+        
+            // ***** By Reader ******
+            $scope.getBookReaders = function () {
+                bookDataService.getBookReaders()
+                    .then(
+                        function (data) {
+                            $scope.listOfReaders = data;
+                        },
+                        function (errors) {
+                            $log.error('Failed to get list of readers: ' + JSON.stringify(errors));
+                        }
+                    );
+            };
+
+            $scope.getBookReaders();
+
+            $scope.byReaderDisplayText = function (item) {
+                return item.reader + ' (' + item.countOfBooks + ' book' + (item.countOfBooks > 1 ? 's' : '') + ')';
+            };
+
+            $scope.byReaderAfterSelect = function (item) {
+                $location.url('/booksbyreader/?reader=' + encodeURI(item.reader)).replace();
+                $scope.$apply();
+            };
+
+            $scope.searchByReader = function () {
+                $scope.byReaderInput = '';
+                $("#findByReaderInput").removeClass('menuCriteriaInput');
+                menuService.setMenuItem(booksConstants.menuItems.READER);
             };
         });
 }());

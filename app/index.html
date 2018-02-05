@@ -7,13 +7,13 @@
 
     <title>Cloudy Book Club</title>
 
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0 name=viewport" />
     <meta name="viewport" content="width=device-width" />
 
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
-    <link rel='stylesheet' href='bower_components/bootstrap/dist/css/bootstrap.css' />
-    <link rel='stylesheet' href='bower_components/animate.css/animate.css' />
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/animate.css/animate.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -24,7 +24,7 @@
 
     <!--  Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-    <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Muli:400,300" rel="stylesheet" type="text/css">
 
 
 </head>
@@ -62,22 +62,36 @@
                         <form ng-hide="currentMenuItem() !== 'genre'">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control searchByEntry" placeholder="Start typing genre.." type="text" bs3-typeahead bs3-promise="listOfGenres" bs3-displayText="displayText" bs3-afterSelect="afterSelect" ng-model="value">
+                                    <input id="findByGenreInput" class="form-control searchByEntry menuCriteriaInput" placeholder="Start typing genre.." type="text" bs3-typeahead bs3-promise="listOfGenres" bs3-displayText="byGenreDisplayText" bs3-afterSelect="byGenreAfterSelect" ng-model="byGenreInput">
                                 </div>
                             </fieldset>
                         </form>
                     </li>
                     <li ng-class="{'active' : currentMenuItem() === 'author'}">
-                        <a href="#/summary">
+                        <a ng-click="searchByAuthor()" href="">
                             <i class="ti-id-badge"></i>
                             <p>By Author</p>
                         </a>
+                        <form ng-hide="currentMenuItem() !== 'author'">
+                            <fieldset>
+                                <div class="form-group">
+                                    <input id="findByAuthorInput" class="form-control searchByEntry menuCriteriaInput" placeholder="Start typing author name.." type="text" bs3-typeahead bs3-promise="listOfAuthors" bs3-displayText="byAuthorDisplayText" bs3-afterSelect="byAuthorAfterSelect" ng-model="byAuthorInput">
+                                </div>
+                            </fieldset>
+                        </form>
                     </li>
                     <li ng-if="user.editor || user.admin" ng-class="{'active' : currentMenuItem() === 'reader'}">
-                        <a href="#/summary">
+                        <a ng-click="searchByReader()" href="">
                             <i class="ti-user"></i>
                             <p>By Reader</p>
                         </a>
+                        <form ng-hide="currentMenuItem() !== 'reader'">
+                            <fieldset>
+                                <div class="form-group">
+                                    <input id="findByReaderInput" class="form-control searchByEntry menuCriteriaInput" placeholder="Start typing readers name..." type="text" bs3-typeahead bs3-promise="listOfReaders" bs3-displayText="byReaderDisplayText" bs3-afterSelect="byReaderAfterSelect" ng-model="byReaderInput">
+                                </div>
+                            </fieldset>
+                        </form>
                     </li>
                     <li ng-if="user.editor || user.admin" ng-class="{'active' : currentMenuItem() === 'addbook'}">
                         <a href="#/add">

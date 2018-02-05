@@ -105,7 +105,31 @@
                         throw error;
                     });
             };
-        
+
+            this.getBooksByAuthor = function (author, page, size) {
+                var url = booksConstants.apiEndPoint + '/books/?author=' + author + '&page=' + page + '&size=' + size;
+
+                return $http.get(url)
+                    .then(function onSuccess(response) {
+                        return response.data;
+                    }).catch(function onError(error) {
+                        $log.error('Failed to get books by author. Error data: ' + JSON.stringify(error));
+                        throw error;
+                    });
+            };
+
+            this.getBooksByReader = function (reader, page, size) {
+                var url = booksConstants.apiEndPoint + '/books/?reader=' + reader + '&page=' + page + '&size=' + size;
+
+                return $http.get(url)
+                    .then(function onSuccess(response) {
+                        return response.data;
+                    }).catch(function onError(error) {
+                        $log.error('Failed to get books by reader. Error data: ' + JSON.stringify(error));
+                        throw error;
+                    });
+            };
+
             this.getBookGenres = function () {
                 var url = booksConstants.apiEndPoint + '/books/genres';
 
@@ -115,6 +139,34 @@
                     }).catch(function onError(error) {
                         $log.error('Failed to get list of book genres. Error data: ' + JSON.stringify(error));
                         throw error;
+                    });
+            };
+
+            this.getBookAuthors = function () {
+                var url = booksConstants.apiEndPoint + '/books/authors';
+
+                return $http.get(url)
+                    .then(function onSuccess(response) {
+                        return response.data;
+                    }).catch(function onError(error) {
+                        $log.error('Failed to get list of book authors. Error data: ' + JSON.stringify(error));
+                        throw error;
+                    });
+            };
+
+            this.getBookReaders = function () {
+                var url = booksConstants.secureApiEndPoint + '/books/readers';
+
+                return $http.get(url)
+                    .then(function onSuccess(response) {
+                        return response.data;
+                    }).catch(function onError(error) {
+                        if (error.status !== 403) {
+                            $log.error('Failed to get list of book readers. Error data: ' + JSON.stringify(error));
+                            throw error;
+                        } else {
+                            return [];
+                        }
                     });
             };
 

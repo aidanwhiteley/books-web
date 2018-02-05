@@ -148,4 +148,9 @@ input.searchByEntry {
 .form-control:-ms-input-placeholder {
   color: #000000;
   opacity: 0.5;
-  filter: alpha(opacity=50); }
+  filter: alpha(opacity=50); 
+}
+
+.menuCriteriaInput {
+    display: none;
+}

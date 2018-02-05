@@ -10,11 +10,13 @@
      * Controller of the booksWebApp
      */
     angular.module('booksWebApp')
-        .controller('SummaryCtrl', function ($scope, $log, $location, summaryDataService, bookDataService, booksConstants, menuService) {
+        .controller('SummaryCtrl', function ($scope, $log, $location, $routeParams, summaryDataService, bookDataService, booksConstants, menuService) {
 
             var currentSearchType = 'byBooks',
                 currentSearchRating = '',
-                currentSearchGenre = '';
+                currentSearchGenre = '',
+                currentSearchAuthor = '',
+                currentSearchReader = '';
 
             $scope.dataRetrievalError = false;
             $scope.bookDeletedOk = false;
@@ -42,7 +44,7 @@
                                 $scope.data = data;
                             },
                             function () {
-                                $log.error('Failed to get book data');
+                                $log.error('Failed to get book data by rating');
                                 $scope.dataRetrievalError = true;
                             }
                         );
@@ -53,7 +55,29 @@
                                 $scope.data = data;
                             },
                             function () {
-                                $log.error('Failed to get book data');
+                                $log.error('Failed to get book data by genre');
+                                $scope.dataRetrievalError = true;
+                            }
+                        );
+                } else if (currentSearchType === 'byAuthor') {
+                    bookDataService.getBooksByAuthor(currentSearchAuthor, $scope.currentPage, booksConstants.defaultPageSize)
+                        .then(
+                            function (data) {
+                                $scope.data = data;
+                            },
+                            function () {
+                                $log.error('Failed to get book data by authir');
+                                $scope.dataRetrievalError = true;
+                            }
+                        );
+                } else if (currentSearchType === 'byReader') {
+                    bookDataService.getBooksByReader(currentSearchReader, $scope.currentPage, booksConstants.defaultPageSize)
+                        .then(
+                            function (data) {
+                                $scope.data = data;
+                            },
+                            function () {
+                                $log.error('Failed to get book data by reader');
                                 $scope.dataRetrievalError = true;
                             }
                         );
@@ -73,6 +97,17 @@
                     );
             };
 
+            if ($location.path().indexOf('booksbygenre') >= 0) {
+                currentSearchType = 'byGenre';
+                currentSearchGenre = $routeParams.genre;
+            } else if ($location.path().indexOf('booksbyauthor') >= 0) {
+                currentSearchType = 'byAuthor';
+                currentSearchAuthor = $routeParams.author;
+            } else if ($location.path().indexOf('booksbyreader') >= 0) {
+                currentSearchType = 'byReader';
+                currentSearchReader = $routeParams.reader;
+            }
+        
             $scope.getBooks();
             $scope.getSummaryData();
 
