@@ -232,7 +232,6 @@
             $scope.ratings = ['Great', 'Good', 'OK', 'Poor', 'Terrible'];
         
             $scope.searchByRating = function () {
-                //$scope.byAuthorInput = '';
                 $("#findByRatingInput").removeClass('menuCriteriaInput');
                 menuService.setMenuItem(booksConstants.menuItems.RATING);
             };
