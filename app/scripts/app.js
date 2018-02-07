@@ -1,15 +1,13 @@
-/*global angular: false */
+/*global angular: false, window: false */
 (function () {
     'use strict';
 
-    /**
-     * @ngdoc overview
-     * @name booksWebApp
-     * @description
-     * # booksWebApp
-     *
-     * Main module of the application.
-     */
+    // Import "environment" variables if present (from env.js)
+    var env = {};
+    if (window) {
+        Object.assign(env, window.__env);
+    }
+
     angular
         .module('booksWebApp', [
             'ngAnimate',
@@ -23,11 +21,11 @@
         .constant('booksConstants', {
             // ************************************
             // Constants that control app behaviour.
+            // Most of these are externalised to 
+            // the env.js file.
             // ************************************
 
-            apiEndPoint: 'http://localhost:8080/api',
-            secureApiEndPoint: 'http://localhost:8080/secure/api',
-            defaultPageSize: 5,
+            'env': env,
             menuItems: {
                 'SUMMARY': 'summary',
                 'RATING': 'rating',
@@ -38,13 +36,15 @@
                 'ADMINUSERS': 'adminusers'
             }
         })
-        .config(function ($locationProvider, $routeProvider, $logProvider, $httpProvider) {
+        .config(function ($locationProvider, $routeProvider, $logProvider, $httpProvider, booksConstants) {
 
             // Needed for CORS in development (at least)
-            $httpProvider.defaults.withCredentials = true;
+            if (booksConstants.env.useCORS) {
+                $httpProvider.defaults.withCredentials = true;
+            }
 
             // TODO - this is not working - therefore log statements coded to info level!
-            $logProvider.debugEnabled(true);
+            $logProvider.debugEnabled(booksConstants.env.debugOn);
 
             $locationProvider.hashPrefix('');
             //$locationProvider.html5Mode({

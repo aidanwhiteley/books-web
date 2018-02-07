@@ -14,7 +14,7 @@
         .service('userDataService', function ($http, $q, $log, booksConstants) {
 
             this.getUser = function () {
-                var url = booksConstants.secureApiEndPoint + '/user';
+                var url = booksConstants.env.secureApiEndPoint + '/user';
 
                 return $http.get(url)
                     .then(function onSuccess(response) {
@@ -28,7 +28,7 @@
             };
 
             this.getUsers = function () {
-                var url = booksConstants.secureApiEndPoint + '/users';
+                var url = booksConstants.env.secureApiEndPoint + '/users';
 
                 return $http.get(url)
                     .then(function onSuccess(response) {
@@ -40,7 +40,7 @@
             };
 
             this.deleteUser = function (user) {
-                var url = booksConstants.secureApiEndPoint + '/users/' + user.id;
+                var url = booksConstants.env.secureApiEndPoint + '/users/' + user.id;
 
                 return $http.delete(url)
                     .then(function onSuccess(response) {
@@ -57,7 +57,7 @@
             this.alterUserPermissions = function (user) {
                 var url, clientRoles = {};
 
-                url = booksConstants.secureApiEndPoint + '/users/' + user.id;
+                url = booksConstants.env.secureApiEndPoint + '/users/' + user.id;
 
                 clientRoles.id = user.id;
                 clientRoles.admin = user.admin;

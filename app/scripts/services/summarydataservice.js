@@ -15,7 +15,7 @@
         .service('summaryDataService', function ($http, $log, booksConstants) {
 
             this.getBooks = function () {
-                var url = booksConstants.apiEndPoint + '/books/stats';
+                var url = booksConstants.env.apiEndPoint + '/books/stats';
 
                 return $http.get(url)
                     .then(function onSuccess(response) {

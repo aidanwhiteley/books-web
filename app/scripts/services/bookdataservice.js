@@ -16,7 +16,7 @@
 
             this.createBook = function (book) {
 
-                var url = booksConstants.secureApiEndPoint + '/books';
+                var url = booksConstants.env.secureApiEndPoint + '/books';
 
                 book.entered = new Date();
 
@@ -32,7 +32,7 @@
             };
 
             this.updateBook = function (book) {
-                var url = booksConstants.secureApiEndPoint + '/books';
+                var url = booksConstants.env.secureApiEndPoint + '/books';
 
                 return $http.put(url, book)
                     .then(function onSuccess(response) {
@@ -45,7 +45,7 @@
 
 
             this.deleteBook = function (book) {
-                var url = booksConstants.secureApiEndPoint + '/books/' + book.id;
+                var url = booksConstants.env.secureApiEndPoint + '/books/' + book.id;
 
                 return $http.delete(url)
                     .then(function onSuccess(response) {
@@ -58,7 +58,7 @@
             };
 
             this.getBook = function (id) {
-                var url = booksConstants.apiEndPoint + '/books/' + id;
+                var url = booksConstants.env.apiEndPoint + '/books/' + id;
 
                 return $http.get(url)
                     .then(function onSuccess(response) {
@@ -71,7 +71,7 @@
 
 
             this.getBooks = function (page, size) {
-                var url = booksConstants.apiEndPoint + '/books/?page=' + page + '&size=' + size;
+                var url = booksConstants.env.apiEndPoint + '/books/?page=' + page + '&size=' + size;
 
                 return $http.get(url)
                     .then(function onSuccess(response) {
@@ -83,7 +83,7 @@
             };
 
             this.getBooksByRating = function (rating, page, size) {
-                var url = booksConstants.apiEndPoint + '/books/?rating=' + rating + '&page=' + page + '&size=' + size;
+                var url = booksConstants.env.apiEndPoint + '/books/?rating=' + rating + '&page=' + page + '&size=' + size;
 
                 return $http.get(url)
                     .then(function onSuccess(response) {
@@ -95,7 +95,7 @@
             };
 
             this.getBooksByGenre = function (genre, page, size) {
-                var url = booksConstants.apiEndPoint + '/books/?genre=' + genre + '&page=' + page + '&size=' + size;
+                var url = booksConstants.env.apiEndPoint + '/books/?genre=' + genre + '&page=' + page + '&size=' + size;
 
                 return $http.get(url)
                     .then(function onSuccess(response) {
@@ -107,7 +107,7 @@
             };
 
             this.getBooksByAuthor = function (author, page, size) {
-                var url = booksConstants.apiEndPoint + '/books/?author=' + author + '&page=' + page + '&size=' + size;
+                var url = booksConstants.env.apiEndPoint + '/books/?author=' + author + '&page=' + page + '&size=' + size;
 
                 return $http.get(url)
                     .then(function onSuccess(response) {
@@ -119,7 +119,7 @@
             };
 
             this.getBooksByReader = function (reader, page, size) {
-                var url = booksConstants.secureApiEndPoint + '/books/?reader=' + reader + '&page=' + page + '&size=' + size;
+                var url = booksConstants.env.secureApiEndPoint + '/books/?reader=' + reader + '&page=' + page + '&size=' + size;
 
                 return $http.get(url)
                     .then(function onSuccess(response) {
@@ -131,7 +131,7 @@
             };
 
             this.getBookGenres = function () {
-                var url = booksConstants.apiEndPoint + '/books/genres';
+                var url = booksConstants.env.apiEndPoint + '/books/genres';
 
                 return $http.get(url)
                     .then(function onSuccess(response) {
@@ -143,7 +143,7 @@
             };
 
             this.getBookAuthors = function () {
-                var url = booksConstants.apiEndPoint + '/books/authors';
+                var url = booksConstants.env.apiEndPoint + '/books/authors';
 
                 return $http.get(url)
                     .then(function onSuccess(response) {
@@ -155,7 +155,7 @@
             };
 
             this.getBookReaders = function () {
-                var url = booksConstants.secureApiEndPoint + '/books/readers';
+                var url = booksConstants.env.secureApiEndPoint + '/books/readers';
 
                 return $http.get(url)
                     .then(function onSuccess(response) {
@@ -171,7 +171,7 @@
             };
 
             this.getGoogleBooks = function (title) {
-                var url = booksConstants.apiEndPoint + '/googlebooks/?title=' + title;
+                var url = booksConstants.env.apiEndPoint + '/googlebooks/?title=' + title;
 
                 return $http.get(url)
                     .then(function onSuccess(response) {

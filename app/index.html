@@ -109,13 +109,13 @@
                     </li>
                     <li ng-if="!user" class="notLoggedOn logonOptions">
                         <br><br>
-                        <a href="http://localhost:8080/login/facebook">
+                        <a href="{{env.logonFacebookEndPoint}}">
                             <i class="ti-facebook"></i>
                             <p>Login with Facebook</p>
                         </a>
                     </li>
                     <li ng-if="!user" class="notLoggedOn logonOptions">
-                        <a class="logonOptions" href="http://localhost:8080/login/google">
+                        <a class="logonOptions" href="{{env.logonGoogleEndPoint}}">
                             <i class="ti-google"></i>
                             <p>Login with Google</p>
                         </a>
@@ -204,6 +204,8 @@
 
         </div>
     </div>
+    
+    <script src="env.js"></script>
 
     <!-- build:js(.) scripts/vendor.js -->
     <!-- bower:js -->

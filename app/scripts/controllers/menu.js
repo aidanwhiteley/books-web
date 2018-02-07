@@ -13,6 +13,8 @@
         .controller('MenuCtrl', function ($scope, $log, $location, userDataService, menuService, booksConstants, bookDataService) {
 
             menuService.setMenuItem(booksConstants.menuItems.ADMINUSERS);
+        
+            $scope.env = booksConstants.env;
 
             /**
              * Get user data
@@ -121,7 +123,7 @@
 
             $scope.pad = function (str, max) {
                 str = str.toString();
-                return str.length < max ? $scope.pad("0" + str, max) : str;
+                return str.length < max ? $scope.pad('0' + str, max) : str;
             };
 
             $scope.revertMessaging = function () {
@@ -163,7 +165,7 @@
 
             $scope.searchByGenre = function () {
                 $scope.byGenreInput = '';
-                $("#findByGenreInput").removeClass('menuCriteriaInput');
+                $('#findByGenreInput').removeClass('menuCriteriaInput');
                 menuService.setMenuItem(booksConstants.menuItems.GENRE);
             };
 
@@ -193,7 +195,7 @@
 
             $scope.searchByAuthor = function () {
                 $scope.byAuthorInput = '';
-                $("#findByAuthorInput").removeClass('menuCriteriaInput');
+                $('#findByAuthorInput').removeClass('menuCriteriaInput');
                 menuService.setMenuItem(booksConstants.menuItems.AUTHOR);
             };
         
@@ -224,7 +226,7 @@
 
             $scope.searchByReader = function () {
                 $scope.byReaderInput = '';
-                $("#findByReaderInput").removeClass('menuCriteriaInput');
+                $('#findByReaderInput').removeClass('menuCriteriaInput');
                 menuService.setMenuItem(booksConstants.menuItems.READER);
             };
         
@@ -232,13 +234,13 @@
             $scope.ratings = ['Great', 'Good', 'OK', 'Poor', 'Terrible'];
         
             $scope.searchByRating = function () {
-                $("#findByRatingInput").removeClass('menuCriteriaInput');
+                $('#findByRatingInput').removeClass('menuCriteriaInput');
                 menuService.setMenuItem(booksConstants.menuItems.RATING);
             };
         
             $scope.ratingSelected = function (selected) {
                 $location.url('/booksbyrating/?rating=' + encodeURI(selected)).replace();
                 //$scope.$apply();
-            }
+            };
         });
 }());

@@ -13,11 +13,10 @@
         .controller('SummaryCtrl', function ($scope, $log, $location, $routeParams, summaryDataService, bookDataService, booksConstants, menuService) {
 
             var currentSearchType = 'byBooks',
-                currentSearchRating = '',
                 currentSearchGenre = '',
                 currentSearchAuthor = '',
                 currentSearchReader = '',
-                currentSerachRating = '';
+                currentSearchRating = '';
 
             $scope.dataRetrievalError = false;
             $scope.bookDeletedOk = false;
@@ -28,7 +27,7 @@
 
             $scope.getBooks = function () {
                 if (currentSearchType === 'byBooks') {
-                    bookDataService.getBooks($scope.currentPage, booksConstants.defaultPageSize)
+                    bookDataService.getBooks($scope.currentPage, booksConstants.env.defaultPageSize)
                         .then(
                             function (data) {
                                 $scope.data = data;
@@ -39,7 +38,7 @@
                             }
                         );
                 } else if (currentSearchType === 'byRating') {
-                    bookDataService.getBooksByRating(currentSearchRating, $scope.currentPage, booksConstants.defaultPageSize)
+                    bookDataService.getBooksByRating(currentSearchRating, $scope.currentPage, booksConstants.env.defaultPageSize)
                         .then(
                             function (data) {
                                 $scope.data = data;
@@ -50,7 +49,7 @@
                             }
                         );
                 } else if (currentSearchType === 'byGenre') {
-                    bookDataService.getBooksByGenre(currentSearchGenre, $scope.currentPage, booksConstants.defaultPageSize)
+                    bookDataService.getBooksByGenre(currentSearchGenre, $scope.currentPage, booksConstants.env.defaultPageSize)
                         .then(
                             function (data) {
                                 $scope.data = data;
@@ -61,7 +60,7 @@
                             }
                         );
                 } else if (currentSearchType === 'byAuthor') {
-                    bookDataService.getBooksByAuthor(currentSearchAuthor, $scope.currentPage, booksConstants.defaultPageSize)
+                    bookDataService.getBooksByAuthor(currentSearchAuthor, $scope.currentPage, booksConstants.env.defaultPageSize)
                         .then(
                             function (data) {
                                 $scope.data = data;
@@ -72,7 +71,7 @@
                             }
                         );
                 } else if (currentSearchType === 'byReader') {
-                    bookDataService.getBooksByReader(currentSearchReader, $scope.currentPage, booksConstants.defaultPageSize)
+                    bookDataService.getBooksByReader(currentSearchReader, $scope.currentPage, booksConstants.env.defaultPageSize)
                         .then(
                             function (data) {
                                 $scope.data = data;
@@ -83,7 +82,7 @@
                             }
                         );
                 } else if (currentSearchType === 'byRating') {
-                    bookDataService.getBooksByRating(currentSearchRating, $scope.currentPage, booksConstants.defaultPageSize)
+                    bookDataService.getBooksByRating(currentSearchRating, $scope.currentPage, booksConstants.env.defaultPageSize)
                         .then(
                             function (data) {
                                 $scope.data = data;
