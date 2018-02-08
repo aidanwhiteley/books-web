@@ -22,19 +22,17 @@
     <link rel="stylesheet" href="styles/bookapp.css">
     <!-- endbuild -->
 
-    <!--  Fonts and icons     -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Muli:400,300" rel="stylesheet" type="text/css">
-
 
 </head>
 
 <body ng-app="booksWebApp">
 
-    <div class="wrapper">
+    <div class="wrapper" ng-controller="MenuCtrl">
         <div class="sidebar" data-background-color="black" data-active-color="warning">
 
-            <div class="sidebar-wrapper" ng-controller="MenuCtrl">
+            <div class="sidebar-wrapper">
                 <div class="logo">
                     <a href="#" class="simple-text">
                         Cloudy Book Club
@@ -56,8 +54,7 @@
                         <form ng-hide="currentMenuItem() !== 'rating'">
                             <fieldset>
                                 <div class="form-group">
-                                    <select class="form-control searchByEntry menuCriteriaInput" id="findByRatingInput" 
-                                            ng-model="selectedName" ng-options="item for item in ratings" ng-change="ratingSelected(selectedName)"></select>
+                                    <select class="form-control searchByEntry menuCriteriaInput" id="findByRatingInput" ng-model="selectedName" ng-options="item for item in ratings" ng-change="ratingSelected(selectedName)"></select>
                                 </div>
                             </fieldset>
                         </form>
@@ -149,22 +146,16 @@
                         </button>
                         <a id="navbar" class="navbar-brand" href="#">Books we've been reading</a>
                     </div>
-                    <!-- div class="collapse navbar-collapse">
+                    <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
                             <li>
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="ti-panel"></i>
-                                    <p>Stats</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="ti-settings"></i>
-                                    <p>Settings</p>
+                                <a href="#help">
+                                    <i class="ti-help-alt"></i>
+                                    <p>Help / info</p>
                                 </a>
                             </li>
                         </ul>
-                    </div -->
+                    </div>
                 </div>
             </nav>
 
@@ -180,13 +171,13 @@
                         <ul>
 
                             <li>
-                                <a href="https://thegpsblog.com" target="_blank">
-                                    TheGpsBlog.com
+                                <a href="#privacy">
+                                    Privacy Policy
                                 </a>
                             </li>
                             <li>
-                                <a href="http://aidanwhiteley.com" target="_blank">
-                                   Web site
+                                <a href="#help">
+                                   Help
                                 </a>
                             </li>
                             <li>
@@ -204,7 +195,7 @@
 
         </div>
     </div>
-    
+
     <script src="env.js"></script>
 
     <!-- build:js(.) scripts/vendor.js -->
@@ -236,7 +227,7 @@
     <script src="scripts/utils/bootstrap-checkbox-radio.js"></script>
     <script src="scripts/utils/bootstrap-notify.js"></script>
     <script src="scripts/utils/paper-dashboard.js"></script>
-    
+
 
     <!-- endbuild -->
 </body>

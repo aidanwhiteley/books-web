@@ -1,0 +1,22 @@
+[{
+    "genre": "Novel",
+    "countOfBooks": 6
+}, {
+    "genre": "Whodunnit",
+    "countOfBooks": 2
+}, {
+    "genre": "Thriller",
+    "countOfBooks": 1
+}, {
+    "genre": "Biography",
+    "countOfBooks": 1
+}, {
+    "genre": "Spy / Thriller",
+    "countOfBooks": 1
+}, {
+    "genre": "Autobiography",
+    "countOfBooks": 1
+}, {
+    "genre": "Adventure / romance",
+    "countOfBooks": 1
+}]

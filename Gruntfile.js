@@ -24,6 +24,8 @@ module.exports = function (grunt) {
     app: require('./bower.json').appPath || 'app',
     dist: 'dist'
   };
+    
+  var os = require('os'); os.tmpDir = os.tmpdir;
 
   // Define the configuration for all the tasks
   grunt.initConfig({
@@ -381,7 +383,8 @@ module.exports = function (grunt) {
             '*.{ico,png,txt}',
             '*.html',
             'images/{,*/}*.{webp}',
-            'styles/fonts/{,*/}*.*'
+            'styles/fonts/{,*/}*.*',
+            'env.js'  
           ]
         }, {
           expand: true,

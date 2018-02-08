@@ -1,0 +1,15 @@
+{
+    "id": "9999c351ba3f031ac490060",
+    "authenticationServiceId": "99999648358715714959",
+    "firstName": "Cloudy",
+    "lastName": "Bookclub",
+    "fullName": "Cloudy Bookclub",
+    "email": "example1@gmail.com",
+    "link": null,
+    "picture": "https://lh3.googleusercontent.com/-QAibbIG4v9E/AAAAAAAAAAI/AAAAAAAAAAg/fqJREZdqwok/photo.jpg",
+    "lastLogon": [2018, 2, 8, 18, 51, 33, 555000000],
+    "firstLogon": [2018, 2, 8, 18, 51, 33, 555000000],
+    "roles": ["ROLE_EDITOR", "ROLE_ADMIN", "ROLE_USER"],
+    "authProvider": "GOOGLE",
+    "firstVisit": true
+}

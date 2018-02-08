@@ -15,7 +15,8 @@
     "angular-bootstrap3-typeahead": "latest"
   },
   "devDependencies": {
-    "angular-mocks": "^1.4.0"
+    "angular-mocks": "^1.4.0",
+    "jasmine-jquery": "^2.1.1"
   },
   "appPath": "app",
   "moduleName": "booksWebApp",

@@ -163,3 +163,7 @@ select.searchByEntry {
 .bookCard {
     padding-bottom: 50px !important;
 }
+
+.privacy {
+    padding: 20px;
+}

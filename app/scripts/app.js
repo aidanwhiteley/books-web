@@ -3,9 +3,10 @@
     'use strict';
 
     // Import "environment" variables if present (from env.js)
-    var env = {};
+    var env = window.__env;
     if (window) {
-        Object.assign(env, window.__env);
+        //Object.assign(env, window.__env);
+        //$.extend({}, window.__env, env);
     }
 
     angular
@@ -98,6 +99,12 @@
                     templateUrl: 'views/summary.html',
                     controller: 'SummaryCtrl',
                     controllerAs: 'summary'
+                })
+                .when('/privacy', {
+                    templateUrl: 'views/privacy.html'
+                })
+                .when('/help', {
+                    templateUrl: 'views/help.html'
                 })
                 .otherwise({
                     redirectTo: '/'
