@@ -3,6 +3,10 @@
     'use strict';
     
     window.__env = window.__env || {};
+    
+    // *************************************************************
+    // Settings that control the application functionality
+    // *************************************************************
 
     // Endpoint for unsecured API calls.
     // Can be relative path unless using CORS
@@ -25,5 +29,20 @@
     
     // Are we using CORS - normally development only
     window.__env.useCORS = true;
+    
+    // *************************************************************
+    // Settings that control the application look and feel
+    // *************************************************************
+    
+    // The book club name
+    window.__env.applicationName = 'The Cloudy Book Club';
+    
+    // The book club scope
+    window.__env.bookClubmembersScope = 'you know Aidan or Liz or live in Cockwood';
+    
+    // THe book club admin email
+    window.__env.bookClubAdminEmail = 'thecloudybookclub@gmail.com';
+    
+    
 
 }(this));

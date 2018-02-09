@@ -3,10 +3,9 @@
     'use strict';
 
     // Import "environment" variables if present (from env.js)
-    var env = window.__env;
-    if (window) {
-        //Object.assign(env, window.__env);
-        //$.extend({}, window.__env, env);
+    var env;
+    if (window && window.__env) {
+        env = window.__env;
     }
 
     angular
@@ -34,7 +33,8 @@
                 'AUTHOR': 'author',
                 'READER': 'reader',
                 'ADDBOOK': 'addbook',
-                'ADMINUSERS': 'adminusers'
+                'ADMINUSERS': 'adminusers',
+                'NONE': 'none'
             }
         })
         .config(function ($locationProvider, $routeProvider, $logProvider, $httpProvider, booksConstants) {
@@ -104,7 +104,9 @@
                     templateUrl: 'views/privacy.html'
                 })
                 .when('/help', {
-                    templateUrl: 'views/help.html'
+                    templateUrl: 'views/help.html',
+                    controller: 'HelpCtrl',
+                    controllerAs: 'help'
                 })
                 .otherwise({
                     redirectTo: '/'

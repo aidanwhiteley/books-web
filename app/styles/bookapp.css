@@ -164,6 +164,6 @@ select.searchByEntry {
     padding-bottom: 50px !important;
 }
 
-.privacy {
+.privacy, .help {
     padding: 20px;
 }
