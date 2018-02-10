@@ -21,7 +21,7 @@
                     <p ng-if="isAnonymous">Thanks for browsing the site.</p>
                     <p>You can currently read basic book review information entered by our members but you cannot post your own reviews or comment on the reviews of others. Additionally, you can't see details of who has posted a review. <span ng-if="isAnonymous">Logging on via Google or Facebook is the first step in getting more access to the application and its content.</span></p>
 
-                    <p ng-if="isUser">If {{env.bookClubmembersScope}} and want to get full access to existing reviews and comments and maybe write your own reviews or comments, please drop and email to {{env.bookClubAdminEmail}} and we'll get you added to the list of registered users.</p>
+                    <p ng-if="isUser">If {{env.bookClubmembersScope}} and want to get full access to existing reviews and comments and maybe write your own reviews or comments, please drop and email to <a href="mailto:{{env.bookClubAdminEmail}}?Subject=Book%20Club%20Signup" target="_top">{{env.bookClubAdminEmail}}</a> and we'll get you added to the list of registered users asap.</p>
                 </div>
                 <div ng-if="isEditor && (!isAdmin)">
                     <p>Thanks for registering with {{env.applicationName}}.</p>
@@ -59,26 +59,23 @@
                 <ul>
                     <li>If writing a review or comment on the site, please remember that:</li>
                     <ul>
-                        <li>While your name may only visible to other &quot;members&quot; of the site, anything you write in a review or comment is publically visible on t'internet and 
-                        will, eventually, be slurped by Google</li>
-                        <li>If you logon, your name, picture (if any) and email address is read from Google or Facebook and your name and picture (but not email address) is visible to other web site &quot;members&quot; on 
-                        any reviews or comments you make</li>
+                        <li>While your name may only visible to other &quot;members&quot; of the site, anything you write in a review or comment is publically visible on t'internet and will, eventually, be slurped by Google</li>
+                        <li>If you logon, your name, picture (if any) and email address is read from Google or Facebook and your name and picture (but not email address) is visible to other web site &quot;members&quot; on any reviews or comments you make</li>
                         <li>Be nice - I'm told authors like Jeffery Archer and E.L. James regularly read the reviews on this site</li>
                     </ul>
-                    <li>When first logging on to the application you will be asked by Google or Facebook whether you are happy for {{env.applicationName}} to access
-                    your basic profile details (including your name, email address and picture). If you are <b>not</b> happy, say &quot;no&quot; - simples.</li>
+                    <li>When first logging on to the application you will be asked by Google or Facebook whether you are happy for {{env.applicationName}} to access your basic profile details (including your name, email address and picture). If you are <b>not</b> happy, say &quot;no&quot; - simples.</li>
                     <li>You can delete or update any book review you have written at any point. If you have commented on a book review and the reviewer deletes their review, your carefully written comment will head inexorably towards <a href="https://www.urbandictionary.com/define.php?term=%2Fdev%2Fnull">/dev/null</a> - sorry!</li>
                     <li>You can delete (but not update) any comment you have left on any book review at any point. However, if you delete a comment, it will be shown as &quot;deleted by &lt;your name&gt;&quot; rather than completely removed.</li>
                 </ul>
-                
+
                 <h3>Privacy Policy</h3>
                 <p>There's some stuff <a href="#/privacy">here</a>.</p>
 
                 <hr>
 
-                <p>Finally, <span ng-if="isAnonymous || isUser">if you do register for the site,</span> please remember - the first rule of <del><i>Fight Club</i></del> {{env.applicationName}}<br> 
-                    &quot;<i>You do not give any Jeffery Archer book more than than two stars in a review!</i>&quot;</p>                
-                
+                <p>Finally, <span ng-if="isAnonymous || isUser">if you do register for the site,</span> please remember - the first rule of <del><i>Fight Club</i></del> {{env.applicationName}}<br> &quot;
+                    <i>You do not give any Jeffery Archer book more than than two stars in a review!</i>&quot;</p>
+
             </div>
         </div>
     </div>
