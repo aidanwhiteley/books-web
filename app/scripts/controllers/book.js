@@ -56,21 +56,23 @@
 
             $scope.getUserData();
 
-            $scope.saveComment = function (comment, book, commentsForm) {
+            $scope.saveComment = function (newComment, book, commentsForm) {
 
                 var commentToPost = {};
-                commentToPost.comment = comment;
+                commentToPost.comment = newComment;
 
                 if (commentsForm.$valid) {
 
                     bookDataService.saveComment(commentToPost, book.id)
                         .then(
                             function (data) {
-                                $scope.book = data;
+                                $scope.book.comments = data.comments;
+                                $scope.newComment = '';
+                                $scope.commentSaveError = false;
                             },
-                            function () {
+                            function (errors) {
                                 $scope.commentSaveError = true;
-                                $log.error('Error saving book comment ');
+                                $log.error('Error saving book comment: ' + JSON.stringify(errors));
                             }
                         );
                 }

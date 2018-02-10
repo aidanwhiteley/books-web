@@ -1,8 +1,15 @@
 <div class="container-fluid">
     <div ng-if="bookRetrievalError" class="row">
         <div class="col-lg-12 col-sm-12">
-            <div class="alert alert-success">
+            <div class="alert alert-warning">
                 <p>Sorry - we've been unable to retrieve details of the requested book - please try later.</p>
+            </div>
+        </div>
+    </div>
+    <div ng-if="commentSaveError" class="row">
+        <div class="col-lg-12 col-sm-12">
+            <div class="alert alert-warning">
+                <p>Sorry - we've been unable to save your comment - please try later.</p>
             </div>
         </div>
     </div>
@@ -69,13 +76,16 @@
 
                                     <form ng-if="user.editor || user.admin" name="commentsForm" novalidate class="comments-form">
                                         <label for="commentEntry">Add review comments</label>
-                                        <textarea id="summaryArea" rows="4" name="commentEntry" ng-model="comment" class="form-control border-input" placeholder="Your comments on the book or the book review..." value="" aria-describedby="commentHelpBlock" required min="1" max="1000"></textarea>
+                                        
+                                        <textarea id="summaryArea" rows="4" name="newComment" ng-model="$parent.newComment" class="form-control border-input" placeholder="Your comments on the book or the book review..." value="" aria-describedby="commentHelpBlock" required min="1" max="1000"></textarea>
+                                        
                                         <small id="commentHelpBlock" class="form-text">
                                           Enter anything you like about the book, the book review or previous comments.<br>
                                           Remember: all entries as publicly visible.
                                         </small>
+                                        
                                         <div class="text-center">
-                                            <button type="submit" ng-click="saveComment(comment, book, commentsForm)" ng-disabled="commentsForm.$invalid" class="btn btn-info btn-fill btn-wd">Submit comment</button>
+                                            <button type="submit" ng-click="saveComment(newComment, book, commentsForm)" ng-disabled="commentsForm.$invalid" class="btn btn-info btn-fill btn-wd">Submit comment</button>
                                         </div>
                                     </form>
                                 </div>
