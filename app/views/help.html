@@ -19,7 +19,7 @@
                 <h3>Your current permissions</h3>
                 <div ng-if="(isAnonymous || isUser && (!isAdmin))">
                     <p ng-if="isAnonymous">Thanks for browsing the site.</p>
-                    <p>You can currently read basic book review information entered by our members. However, you cannot yet read review comments, post your own reviews or comment on the reviews of others. Additionally, you can't see details of who has posted a review. <span ng-if="isAnonymous">Logging on via Google or Facebook is the first step in getting more access to the application and its content.</span></p>
+                    <p>You can currently read basic book review information and comemnts entered by our members. However, you cannot post your own reviews or comment on the reviews of others. Additionally, you can't see details of who has posted a review or comment. <span ng-if="isAnonymous">Logging on via Google or Facebook is the first step in getting more access to the application and its content.</span></p>
 
                     <p ng-if="isUser">If {{env.bookClubmembersScope}} and want to get full access to existing reviews and comments and maybe write your own reviews or comments, please drop an email to <a href="mailto:{{env.bookClubAdminEmail}}?Subject=Book%20Club%20Signup" target="_top">{{env.bookClubAdminEmail}}</a> and we'll get you added to the list of registered users asap.</p>
                 </div>
@@ -61,7 +61,7 @@
                 <ul>
                     <li>If writing a review or comment on the site, please remember that:</li>
                     <ul>
-                        <li>While your name may only visible to other &quot;members&quot; of the site, anything you write in a review is publically visible on t'internet and will, eventually, be slurped by Google. You should assume your comments are also publically visible (in fact, by default, they are only visible to other &quot;members&quot; of the site)</li>
+                        <li>While your name may only visible to other &quot;members&quot; of the site, anything you write in a review or comment is publically visible on t'internet and will, eventually, be slurped by Google. </li>
                         <li>If you logon, your name, picture (if any) and email address is read from Google or Facebook and your name and picture (but not email address) is visible to other web site &quot;members&quot; on any reviews or comments you make</li>
                         <li>Be nice - I'm told authors like Jeffery Archer and E.L. James regularly read the reviews on this site. Even your least favourite authors probably have feelings (and some, no doubt, can be litigious).</li>
                     </ul>
