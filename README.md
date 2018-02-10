@@ -3,7 +3,7 @@
 This is the companion project to https://github.com/aidanwhiteley/books which provides a REST based server side 
 implementation consumed by this Angular 1.x application.
 
-The application is an online, local book club - so nothing to revoltionary here I'm afraid!
+The application is an online, local book club - so nothing too revolutionary here I'm afraid!
 
 ## Build & development
 
@@ -62,3 +62,7 @@ The application should be running at https://cloudybookclub.com/
 
 If you haven't logged on to the application yet, here's a screen grab for what is looked like (from a while back - it is still actively being developed)
 ![Screen shot](https://github.com/aidanwhiteley/books-web/blob/master/app/images/cloudy-book-club-screen-grab.jpg "Book review")
+
+## Acknowledgements
+The UI for this application is based on the free "Paper Dashboard" admin web site template from Creative Tim - available at https://www.creative-tim.com/product/paper-dashboard-angular
+and released under the MIT license.
