@@ -13,12 +13,37 @@
     angular.module('booksWebApp')
         .service('userDataService', function ($http, $q, $log, booksConstants) {
 
+            var cachedUserData = null, deferred, user;
+        
+            function isAdmin(user) {
+                return (-1 !== user.roles.indexOf('ROLE_ADMIN'));
+            }
+
+            function isEditor(user) {
+                return (-1 !== user.roles.indexOf('ROLE_EDITOR'));
+            }
+
             this.getUser = function () {
+
                 var url = booksConstants.env.secureApiEndPoint + '/user';
+
+                // Note - a logged on user cant alter their own data. However, this
+                //        caching does mean that a user will need to refresh the page
+                //        before they see any change in their permissions.
+                if (cachedUserData) {
+                    deferred = $q.defer();
+                    deferred.resolve(cachedUserData);
+                    return deferred.promise;
+                }
 
                 return $http.get(url)
                     .then(function onSuccess(response) {
-                        return response.data;
+                        user = response.data;
+                        user.admin = isAdmin(user);
+                        user.editor = isEditor(user);
+
+                        cachedUserData = user;
+                        return user;
                     }).catch(function onError(error) {
                         if (error.status !== 403) {
                             $log.error('Failed to get data for user. Error data: ' + JSON.stringify(error));
@@ -28,10 +53,14 @@
             };
 
             this.getUsers = function () {
-                var url = booksConstants.env.secureApiEndPoint + '/users';
+                var url = booksConstants.env.secureApiEndPoint + '/users', i;
 
                 return $http.get(url)
                     .then(function onSuccess(response) {
+                        for (i = 0; i < response.data.length; i = i + 1) {
+                            response.data[i].admin = isAdmin(response.data[i]);
+                            response.data[i].editor = isEditor(response.data[i]);
+                        }
                         return response.data;
                     }).catch(function onError(error) {
                         $log.error('Failed to get list of users. Error data: ' + JSON.stringify(error));

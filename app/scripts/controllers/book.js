@@ -10,7 +10,7 @@
      * Controller of the booksWebApp
      */
     angular.module('booksWebApp')
-        .controller('BookCtrl', function ($scope, $log, $routeParams, bookDataService) {
+        .controller('BookCtrl', function ($scope, $log, $routeParams, bookDataService, userDataService) {
 
             $scope.id = $routeParams.id;
 
@@ -39,6 +39,47 @@
                 $('#mytabs a:last').tab('show'); // Select last tab
             };
 
+            $scope.getUserData = function () {
+                userDataService.getUser()
+                    .then(
+                        function (data) {
+                            $scope.user = data;
+                        },
+                        function (errors) {
+                            if (errors.status !== 403) {
+                                $log.error('Failed to get user data: ' + JSON.stringify(errors));
+                            }
+                            $scope.user = null;
+                        }
+                    );
+            };
+
+            $scope.getUserData();
+
+            $scope.saveComment = function (comment, book, commentsForm) {
+
+                var commentToPost = {};
+                commentToPost.comment = comment;
+
+                if (commentsForm.$valid) {
+
+                    bookDataService.saveComment(commentToPost, book.id)
+                        .then(
+                            function (data) {
+                                $scope.book = data;
+                            },
+                            function () {
+                                $scope.commentSaveError = true;
+                                $log.error('Error saving book comment ');
+                            }
+                        );
+                }
+            };
+
+            $scope.pad = function (str, max) {
+                str = str.toString();
+                return str.length < max ? $scope.pad('0' + str, max) : str;
+            };
 
 
         });

@@ -172,3 +172,24 @@ select.searchByEntry {
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
 }
+
+.commentsRow {
+    margin-bottom: 15px;
+}
+
+.commentDetail {
+    font-size: 14px;
+    white-space: pre-wrap;
+}
+
+.commentMeta {
+    font-size: 10px;
+}
+
+.comments-form {
+    padding-top: 20px;
+}
+
+.commentThumbnail {    
+    border-radius: 62.5rem;
+}

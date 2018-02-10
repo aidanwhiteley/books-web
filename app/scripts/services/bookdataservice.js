@@ -182,5 +182,19 @@
                     });
             };
 
+            this.saveComment = function (comment, bookId) {
+
+                var url = booksConstants.env.secureApiEndPoint + '/books/' + bookId + '/comments';
+
+                return $http.post(url, comment)
+                    .then(function onSuccess(response) {
+                        return response.data;
+                    }).catch(function onError(error) {
+                        $log.error('Failed to save a book comment. Error data: ' + JSON.stringify(error));
+                        throw error;
+                    });
+
+            };
+
         });
 }());

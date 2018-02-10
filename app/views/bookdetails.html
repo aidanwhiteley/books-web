@@ -35,11 +35,9 @@
                                 <p><b>Review Date: </b>{{book.entered[2] + '-' + book.entered[1] + '-' + book.entered[0]}}</p>
                                 <p><b>Genre: </b>{{book.genre}}</p>
                                 <p class="reviewDetail"><b>Reviewer's Summary:</b> {{book.summary}}</p>
-                                <p ng-if="book.createdBy && book.createdBy.fullName"><b>Reviewer:</b> 
+                                <p ng-if="book.createdBy && book.createdBy.fullName"><b>Reviewer:</b>
                                     <span ng-if="book.createdBy && book.createdBy.picture && book.createdBy.link"><br><a href="{{book.createdBy.link}}" target="_blank"><img class="rounded listThumbnail" ng-src="{{book.createdBy.picture}}" height="50"></a></span>
-                                    <span ng-if="book.createdBy && book.createdBy.picture && !book.createdBy.link"><br><img class="rounded listThumbnail" ng-src="{{book.createdBy.picture}}" height="50"></span>
-                                    
-                                    {{book.createdBy.fullName}}
+                                    <span ng-if="book.createdBy && book.createdBy.picture && !book.createdBy.link"><br><img class="rounded listThumbnail" ng-src="{{book.createdBy.picture}}" height="50"></span> {{book.createdBy.fullName}}
                                 </p>
                                 <p ng-if="book.displayGooglePreview">
                                     <b>Book Preview:</b>
@@ -51,7 +49,35 @@
                                 <hr>
 
                                 <div class="comments">
-                                    Here will be some comments
+                                    <h5>Comments</h5>
+                                    <p ng-if="(!book.comments || book.comments.length === 0) && (user.editor || user.admin)">Be the first to comment on this book review!</p>
+
+                                    <div ng-if="(book.comments || book.comments.length > 0)" class="container-fluid">
+                                        <div class="row commentsRow" ng-repeat="comment in book.comments">
+                                            <div class="col-xs-1">
+                                                <img ng-if="comment.owner.picture" class="commentThumbnail" ng-src="{{comment.owner.picture}}" height="75">
+                                            </div>
+                                            <div class="col-xs-9">
+                                                <div class="commentMeta">{{comment.owner.fullName}} - {{comment.entered[2] + '/' + comment.entered[1] + '/' + comment.entered[0] + ' ' + comment.entered[3] + ':' + pad(comment.entered[4], 2)}}</div>
+                                                <span class="commentDetail">{{comment.comment}}</span>
+                                            </div>
+                                            <div class="col-xs-2">
+                                                Delete?
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <form ng-if="user.editor || user.admin" name="commentsForm" novalidate class="comments-form">
+                                        <label for="commentEntry">Add review comments</label>
+                                        <textarea id="summaryArea" rows="4" name="commentEntry" ng-model="comment" class="form-control border-input" placeholder="Your comments on the book or the book review..." value="" aria-describedby="commentHelpBlock" required min="1" max="1000"></textarea>
+                                        <small id="commentHelpBlock" class="form-text">
+                                          Enter anything you like about the book, the book review or previous comments.<br>
+                                          Remember: all entries as publicly visible.
+                                        </small>
+                                        <div class="text-center">
+                                            <button type="submit" ng-click="saveComment(comment, book, commentsForm)" ng-disabled="commentsForm.$invalid" class="btn btn-info btn-fill btn-wd">Submit comment</button>
+                                        </div>
+                                    </form>
                                 </div>
 
 

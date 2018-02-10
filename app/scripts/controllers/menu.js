@@ -24,10 +24,7 @@
                 userDataService.getUser()
                     .then(
                         function (data) {
-                            data.admin = $scope.isAdmin(data);
-                            data.editor = $scope.isEditor(data);
                             $scope.user = data;
-
                             // Show help page on first logon
                             if ($scope.user.firstVisit) {
                                 $location.url('/help').replace();
@@ -44,15 +41,9 @@
 
             $scope.getUsers = function () {
 
-                var i;
-
                 userDataService.getUsers()
                     .then(
                         function (data) {
-                            for (i = 0; i < data.length; i = i + 1) {
-                                data[i].admin = $scope.isAdmin(data[i]);
-                                data[i].editor = $scope.isEditor(data[i]);
-                            }
                             $scope.users = data;
                         },
                         function (errors) {
@@ -67,14 +58,6 @@
             if ($location.path() === '/users') {
                 $scope.getUsers();
             }
-
-            $scope.isAdmin = function (user) {
-                return (-1 !== user.roles.indexOf('ROLE_ADMIN'));
-            };
-
-            $scope.isEditor = function (user) {
-                return (-1 !== user.roles.indexOf('ROLE_EDITOR'));
-            };
 
             $scope.deleteUser = function (user) {
 
