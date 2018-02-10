@@ -46,6 +46,11 @@
     // The book club admin contact email
     window.__env.bookClubContactEmail = 'contact@cloudybookclub.com';
     
+    // Welcome / intro text
+    window.__env.welcomeText = 'Welcome to The Cloudy Book Club!';
+    window.__env.welcomeBackText = 'Welcome back. Your last logon was on';
+    window.__env.tagLineText = 'Books we\'ve been reading';
+    
     
 
 }(this));

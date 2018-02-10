@@ -35,7 +35,7 @@
             <div class="sidebar-wrapper">
                 <div class="logo">
                     <a href="#" class="simple-text">
-                        Cloudy Book Club
+                        {{env.applicationName}}
                     </a>
                 </div>
 
@@ -125,8 +125,8 @@
                     </li>
                 </ul>
                 <div ng-if="user" class="loggedOn">
-                    <p class="welcomeText" ng-if="user.firstVisit">Hi {{user.firstName}}. Welcome to The Cloudy Book Club!</p>
-                    <p class="welcomeText" ng-if="!user.firstVisit">Hi {{user.firstName}}. Welcome back. Your last logon was on {{user.lastLogon[2]}}/{{user.lastLogon[1]}}/{{user.lastLogon[0]}}</p>
+                    <p class="welcomeText" ng-if="user.firstVisit">Hi {{user.firstName}}. {{env.welcomeText}}</p>
+                    <p class="welcomeText" ng-if="!user.firstVisit">Hi {{user.firstName}}. {{env.welcomeBackText}} {{user.lastLogon[2]}}/{{user.lastLogon[1]}}/{{user.lastLogon[0]}}</p>
                 </div>
 
 
@@ -144,7 +144,7 @@
                             <span class="icon-bar bar2"></span>
                             <span class="icon-bar bar3"></span>
                         </button>
-                        <a id="navbar" class="navbar-brand" href="#">Books we've been reading</a>
+                        <a id="navbar" class="navbar-brand" href="#">{{env.tagLineText}}</a>
                     </div>
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
