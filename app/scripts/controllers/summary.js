@@ -10,13 +10,14 @@
      * Controller of the booksWebApp
      */
     angular.module('booksWebApp')
-        .controller('SummaryCtrl', function ($scope, $log, $location, $routeParams, summaryDataService, bookDataService, booksConstants, menuService) {
+        .controller('SummaryCtrl', function ($scope, $log, $location, $routeParams, $window, summaryDataService, bookDataService, booksConstants, menuService) {
 
             var currentSearchType = 'byBooks',
                 currentSearchGenre = '',
                 currentSearchAuthor = '',
                 currentSearchReader = '',
-                currentSearchRating = '';
+                currentSearchRating = '',
+                screenWidth = $window.innerWidth;
 
             $scope.dataRetrievalError = false;
             $scope.bookDeletedOk = false;
@@ -24,6 +25,8 @@
             $scope.currentPage = 0;
 
             menuService.setMenuItem(booksConstants.menuItems.SUMMARY);
+        
+            $scope.screenWidth = screenWidth;
 
             $scope.getBooks = function () {
                 if (currentSearchType === 'byBooks') {

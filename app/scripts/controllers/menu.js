@@ -31,7 +31,6 @@
                             // Show help page on first logon
                             if ($scope.user.firstVisit) {
                                 $location.url('/help').replace();
-                                $scope.$apply();
                             }
                         },
                         function (errors) {
@@ -253,7 +252,7 @@
             $scope.displayContactDetails = function () {
                 $.notify({
                     icon: 'ti-email',
-                    message: "You can contact " + booksConstants.env.applicationName + ' by emailing ' + booksConstants.env.bookClubContactEmail
+                    message: 'You can contact ' + booksConstants.env.applicationName + ' by emailing ' + booksConstants.env.bookClubContactEmail
                 }, {
                     type: 'success',
                     delay: 4000,

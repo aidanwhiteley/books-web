@@ -34,7 +34,7 @@
 
             <div class="sidebar-wrapper">
                 <div class="logo">
-                    <a href="#" class="simple-text">
+                    <a href="#" class="simple-text" ng-cloak>
                         {{env.applicationName}}
                     </a>
                 </div>
@@ -46,7 +46,7 @@
                             <p>Summary</p>
                         </a>
                     </li>
-                    <li ng-class="{'active' : currentMenuItem() === 'rating'}">
+                    <li class="hidden-xs hidden-sm" ng-class="{'active' : currentMenuItem() === 'rating'}">
                         <a ng-click="searchByRating()" href="">
                             <i class="ti-star"></i>
                             <p>By Rating</p>
@@ -59,7 +59,7 @@
                             </fieldset>
                         </form>
                     </li>
-                    <li ng-class="{'active' : currentMenuItem() === 'genre'}">
+                    <li class="hidden-xs hidden-sm" ng-class="{'active' : currentMenuItem() === 'genre'}">
                         <a ng-click="searchByGenre()" href="">
                             <i class="ti-folder"></i>
                             <p>By Genre</p>
@@ -72,7 +72,7 @@
                             </fieldset>
                         </form>
                     </li>
-                    <li ng-class="{'active' : currentMenuItem() === 'author'}">
+                    <li class="hidden-xs hidden-sm" ng-class="{'active' : currentMenuItem() === 'author'}">
                         <a ng-click="searchByAuthor()" href="">
                             <i class="ti-id-badge"></i>
                             <p>By Author</p>
@@ -85,7 +85,7 @@
                             </fieldset>
                         </form>
                     </li>
-                    <li ng-if="user.editor || user.admin" ng-class="{'active' : currentMenuItem() === 'reader'}">
+                    <li class="hidden-xs hidden-sm" ng-if="user.editor || user.admin" ng-class="{'active' : currentMenuItem() === 'reader'}">
                         <a ng-click="searchByReader()" href="">
                             <i class="ti-user"></i>
                             <p>By Reader</p>
@@ -123,11 +123,12 @@
                             <p>Admin users</p>
                         </a>
                     </li>
-                </ul>
-                <div ng-if="user" class="loggedOn">
+                    <li ng-if="user" class="loggedOn">
                     <p class="welcomeText" ng-if="user.firstVisit">Hi {{user.firstName}}. {{env.welcomeText}}</p>
                     <p class="welcomeText" ng-if="!user.firstVisit">Hi {{user.firstName}}. {{env.welcomeBackText}} {{user.lastLogon[2]}}/{{user.lastLogon[1]}}/{{user.lastLogon[0]}}</p>
-                </div>
+                    </li>
+                </ul>
+                
 
 
 
@@ -144,7 +145,7 @@
                             <span class="icon-bar bar2"></span>
                             <span class="icon-bar bar3"></span>
                         </button>
-                        <a id="navbar" class="navbar-brand" href="#">{{env.tagLineText}}</a>
+                        <a id="navbar" class="navbar-brand" href="#" ng-cloak>{{env.tagLineText}}</a>
                     </div>
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-right">
@@ -154,7 +155,7 @@
                                     <p>Help / info</p>
                                 </a>
                             </li>
-                            <li>
+                            <li class="hidden-xs hidden-sm" >
                                 <a ng-click="displayContactDetails()" href="">
                                     <i class="ti-email"></i>
                                     <p>Contact</p>

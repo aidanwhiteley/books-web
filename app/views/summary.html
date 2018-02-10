@@ -16,7 +16,7 @@
         </div>
     </div>
 
-    <div ng-include="'views/includes/stats.html'"></div>
+    <div ng-if="screenWidth >= 768" ng-include="'views/includes/stats.html'"></div>
     
     <div class="row">
 
@@ -24,7 +24,6 @@
             <div class="card">
                 <div class="header">
                     <h4 class="title">Recently added books</h4>
-                    <p class="category">Most recently read / added</p>
                 </div>
                 <div class="content">
 
@@ -35,9 +34,9 @@
                                 <th>Title</th>
                                 <th>Author</th>
                                 <th>Rating</th>
-                                <th>Date</th>
+                                <th class="hidden-xs hidden-sm">Date</th>
                                 <th>Genre</th>
-                                <th>See more...</th>
+                                <th class="hidden-xs hidden-sm">See more...</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -45,9 +44,9 @@
                                 <td><a ng-href="#/book/{{book.id}}">{{book.title}}</a></td>
                                 <td>{{book.author}}</td>
                                 <td>{{book.rating | capitalize}}</td>
-                                <td>{{book.entered[2] + '-' + book.entered[1] + '-' + book.entered[0]}}</td>
+                                <td class="hidden-xs hidden-sm">{{book.entered[2] + '-' + book.entered[1] + '-' + book.entered[0]}}</td>
                                 <td>{{book.genre}}</td>
-                                <td>
+                                <td class="hidden-xs hidden-sm">
                                     <button type="button" class="btn btn-primary" ng-click="toggleSelected(book)"><i ng-class="book.expanded ? 'ti-angle-up' : 'ti-angle-down'"></i></button>
                                 </td>
                             </tr>
@@ -72,7 +71,7 @@
                             <li ng-class="{'disabled': data.last}" ><a ng-click="next()" href="">Next</a></li>
                         </ul>
                     </nav>
-
+                    
 
                     <div class="footer">
                         <hr>
@@ -84,5 +83,6 @@
         </div>
     </div>
 
-
+    <div ng-if="screenWidth < 768" ng-include="'views/includes/stats.html'"></div>
+    
 </div>

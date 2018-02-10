@@ -55,6 +55,9 @@ That said, there's very little presentation or business logic in this front end 
 
 So, the low test coverage in this app isn't top of the list of concerns.
 
+## Building for live
+Running `grunt` will run the automated tests and then package the code for live (running various merge and minification tasks).
+
 ### Live application example
 And what does all this effort get you? 
 

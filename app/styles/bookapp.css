@@ -34,8 +34,9 @@
 }
 
 .welcomeText {
-    text-transform: none;
-    font-size: 14px; 
+    text-transform: none !important;
+    font-size: 14px !important; 
+    font-weight: 100 !important;
     color: white;
 }
 
@@ -166,4 +167,8 @@ select.searchByEntry {
 
 .privacy, .help {
     padding: 20px;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
 }
