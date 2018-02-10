@@ -11,17 +11,17 @@
                     <p>welcome to {{env.applicationName}}! Here's some quick info on how to get the best out of the application.</p>
                 </div>
 
-                <div ng-if="user && user.firstVisit">
+                <div ng-if="user && user.firstVisit" class="well">
                     <h3>First logon</h3>
-                    <p>Thanks so much for logging on to the {{env.applicationName}} for the first time. There's a few pointers below about how the application works. You can always re-read these by clicking the <i class="ti-help-alt"></i> icon (Help / info) towards the top right of the screen at any time.</p>
+                    <p>Thanks so much for logging on to the {{env.applicationName}} for the first time. There's a few pointers below about how the application works. You can always re-read these by clicking the <i class="ti-help-alt"></i> icon (Help / info) towards the top of the screen at any time.</p>
                 </div>
 
                 <h3>Your current permissions</h3>
                 <div ng-if="(isAnonymous || isUser && (!isAdmin))">
                     <p ng-if="isAnonymous">Thanks for browsing the site.</p>
-                    <p>You can currently read basic book review information entered by our members but you cannot post your own reviews or comment on the reviews of others. Additionally, you can't see details of who has posted a review. <span ng-if="isAnonymous">Logging on via Google or Facebook is the first step in getting more access to the application and its content.</span></p>
+                    <p>You can currently read basic book review information entered by our members. However, you cannot yet read review comments, post your own reviews or comment on the reviews of others. Additionally, you can't see details of who has posted a review. <span ng-if="isAnonymous">Logging on via Google or Facebook is the first step in getting more access to the application and its content.</span></p>
 
-                    <p ng-if="isUser">If {{env.bookClubmembersScope}} and want to get full access to existing reviews and comments and maybe write your own reviews or comments, please drop and email to <a href="mailto:{{env.bookClubAdminEmail}}?Subject=Book%20Club%20Signup" target="_top">{{env.bookClubAdminEmail}}</a> and we'll get you added to the list of registered users asap.</p>
+                    <p ng-if="isUser">If {{env.bookClubmembersScope}} and want to get full access to existing reviews and comments and maybe write your own reviews or comments, please drop an email to <a href="mailto:{{env.bookClubAdminEmail}}?Subject=Book%20Club%20Signup" target="_top">{{env.bookClubAdminEmail}}</a> and we'll get you added to the list of registered users asap.</p>
                 </div>
                 <div ng-if="isEditor && (!isAdmin)">
                     <p>Thanks for registering with {{env.applicationName}}.</p>
@@ -51,6 +51,8 @@
                             <li>Click the "Google Books Summary" tab to read the book review on Google. Caveat Reader - Google Books reviews vary in quality!</li>
                         </ul>
                     </li>
+                    <li>When entering a book review, the application will show a range of possible matches on Google Books (based on what you have typed in to the book's Title field). If you
+                    scroll through the suggestions and click the displayed checkbox when the best match is shown, this adds the Google Summary and Google Preview functionality to your book review.</li>
                     <li>That's about it - that's all it does at the moment.</li>
                 </ul>
 
@@ -59,13 +61,15 @@
                 <ul>
                     <li>If writing a review or comment on the site, please remember that:</li>
                     <ul>
-                        <li>While your name may only visible to other &quot;members&quot; of the site, anything you write in a review or comment is publically visible on t'internet and will, eventually, be slurped by Google</li>
+                        <li>While your name may only visible to other &quot;members&quot; of the site, anything you write in a review is publically visible on t'internet and will, eventually, be slurped by Google. You should assume your comments are also publically visible (in fact, by default, they are only visible to other &quot;members&quot; of the site)</li>
                         <li>If you logon, your name, picture (if any) and email address is read from Google or Facebook and your name and picture (but not email address) is visible to other web site &quot;members&quot; on any reviews or comments you make</li>
-                        <li>Be nice - I'm told authors like Jeffery Archer and E.L. James regularly read the reviews on this site</li>
+                        <li>Be nice - I'm told authors like Jeffery Archer and E.L. James regularly read the reviews on this site. Even your least favourite authors probably have feelings (and some, no doubt, can be litigious).</li>
                     </ul>
                     <li>When first logging on to the application you will be asked by Google or Facebook whether you are happy for {{env.applicationName}} to access your basic profile details (including your name, email address and picture). If you are <b>not</b> happy, say &quot;no&quot; - simples.</li>
-                    <li>You can delete or update any book review you have written at any point. If you have commented on a book review and the reviewer deletes their review, your carefully written comment will head inexorably towards <a href="https://www.urbandictionary.com/define.php?term=%2Fdev%2Fnull">/dev/null</a> - sorry!</li>
+                    <li>You can delete or update any book review you have written at any point. If you have commented on a book review and the reviewer deletes their review, your carefully written comment will head inexorably towards <a href="https://en.wikipedia.org/wiki/Null_device" target="_blank">/dev/null</a> - sorry!</li>
                     <li>You can delete (but not update) any comment you have left on any book review at any point. However, if you delete a comment, it will be shown as &quot;deleted by &lt;your name&gt;&quot; rather than completely removed.</li>
+                    <li>Finally, {{env.applicationName}} is not responsible for the reviews or comments posted by web site members. However, we will immediately take down any 
+                    user generated content that is highlighted to us as being clearly libellous or otherwise illegal. Please use the <i class="ti-email"></i> Contact link to get in touch.</li>
                 </ul>
 
                 <h3>Privacy Policy</h3>

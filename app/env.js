@@ -40,8 +40,11 @@
     // The book club scope
     window.__env.bookClubmembersScope = 'you know Aidan or Liz or live in Cockwood';
     
-    // THe book club admin email
+    // The book club admin / signup email
     window.__env.bookClubAdminEmail = 'signup@cloudybookclub.com';
+    
+    // The book club admin contact email
+    window.__env.bookClubContactEmail = 'contact@cloudybookclub.com';
     
     
 

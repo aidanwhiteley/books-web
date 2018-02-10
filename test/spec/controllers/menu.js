@@ -16,8 +16,8 @@
             scope = $rootScope.$new();
             log = $log;
 
-            // Because we mocked out the HTTP calls in the getRemoteData method in the dataService, we
-            // now load up the test JSON (from test/mock directory) into the individual services.
+            // We mock out the HTTP calls in the service methods and
+            // load up test JSON (from test/mock directory) into the individual services.
             // Dont know why path must start with base/...
             // See https://stackoverflow.com/questions/17370427/loading-a-mock-json-file-within-karmaangularjs-test
             jasmine.getJSONFixtures().fixturesPath = 'base/test/mock';

@@ -13,7 +13,7 @@
         .controller('MenuCtrl', function ($scope, $log, $location, userDataService, menuService, booksConstants, bookDataService) {
 
             menuService.setMenuItem(booksConstants.menuItems.ADMINUSERS);
-        
+
             $scope.env = booksConstants.env;
 
             /**
@@ -27,6 +27,12 @@
                             data.admin = $scope.isAdmin(data);
                             data.editor = $scope.isEditor(data);
                             $scope.user = data;
+
+                            // Show help page on first logon
+                            if ($scope.user.firstVisit) {
+                                $location.url('/help').replace();
+                                $scope.$apply();
+                            }
                         },
                         function (errors) {
                             if (errors.status !== 403) {
@@ -198,8 +204,8 @@
                 $('#findByAuthorInput').removeClass('menuCriteriaInput');
                 menuService.setMenuItem(booksConstants.menuItems.AUTHOR);
             };
-        
-        
+
+
             // ***** By Reader ******
             $scope.getBookReaders = function () {
                 bookDataService.getBookReaders()
@@ -229,18 +235,30 @@
                 $('#findByReaderInput').removeClass('menuCriteriaInput');
                 menuService.setMenuItem(booksConstants.menuItems.READER);
             };
-        
+
             // ****************** Select by rating *************
             $scope.ratings = ['Great', 'Good', 'OK', 'Poor', 'Terrible'];
-        
+
             $scope.searchByRating = function () {
                 $('#findByRatingInput').removeClass('menuCriteriaInput');
                 menuService.setMenuItem(booksConstants.menuItems.RATING);
             };
-        
+
             $scope.ratingSelected = function (selected) {
                 $location.url('/booksbyrating/?rating=' + encodeURI(selected)).replace();
                 //$scope.$apply();
+            };
+
+            // Contact email display
+            $scope.displayContactDetails = function () {
+                $.notify({
+                    icon: 'ti-email',
+                    message: "You can contact " + booksConstants.env.applicationName + ' by emailing ' + booksConstants.env.bookClubContactEmail
+                }, {
+                    type: 'success',
+                    delay: 4000,
+                    timer: 1000
+                });
             };
         });
 }());
