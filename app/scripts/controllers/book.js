@@ -69,13 +69,32 @@
                                 $scope.book.comments = data.comments;
                                 $scope.newComment = '';
                                 $scope.commentSaveError = false;
+                                $scope.commentDeleteError = false;
                             },
                             function (errors) {
                                 $scope.commentSaveError = true;
+                                $scope.commentDeleteError = false;
                                 $log.error('Error saving book comment: ' + JSON.stringify(errors));
                             }
                         );
                 }
+            };
+
+            $scope.deleteComment = function (bookId, commentId) {
+
+                bookDataService.deleteComment(bookId, commentId)
+                    .then(
+                        function (data) {
+                            $scope.book.comments = data.comments;
+                            $scope.commentSaveError = false;
+                            $scope.commentDeleteError = false;
+                        },
+                        function (errors) {
+                            $scope.commentSaveError = false;
+                            $scope.commentDeleteError = true;
+                            $log.error('Error deleting book comment: ' + JSON.stringify(errors));
+                        }
+                    );
             };
 
             $scope.pad = function (str, max) {

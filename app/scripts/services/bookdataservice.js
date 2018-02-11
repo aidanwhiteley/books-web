@@ -195,6 +195,20 @@
                     });
 
             };
+        
+            this.deleteComment = function (bookId, commentId) {
+
+                var url = booksConstants.env.secureApiEndPoint + '/books/' + bookId + '/comments/' + commentId;
+
+                return $http.delete(url)
+                    .then(function onSuccess(response) {
+                        return response.data;
+                    }).catch(function onError(error) {
+                        $log.error('Failed to delete a book comment. Error data: ' + JSON.stringify(error));
+                        throw error;
+                    });
+
+            };
 
         });
 }());
