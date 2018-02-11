@@ -10,7 +10,7 @@
      * Controller of the booksWebApp
      */
     angular.module('booksWebApp')
-        .controller('BookCtrl', function ($scope, $log, $routeParams, bookDataService, userDataService) {
+        .controller('BookCtrl', function ($scope, $log, $routeParams, $location, bookDataService, userDataService) {
 
             $scope.id = $routeParams.id;
 
@@ -93,6 +93,24 @@
                             $scope.commentSaveError = false;
                             $scope.commentDeleteError = true;
                             $log.error('Error deleting book comment: ' + JSON.stringify(errors));
+                        }
+                    );
+            };
+        
+            $scope.updateBook = function (book) {
+                $location.path('/edit/').search({
+                    id: book.id
+                });
+            };
+        
+            $scope.deleteBook = function (book) {
+                bookDataService.deleteBook(book)
+                    .then(
+                        function () {
+                            $location.url('/').replace();
+                        },
+                        function () {
+                            $log.error('Failed to delete book with id: ' + book.id);
                         }
                     );
             };

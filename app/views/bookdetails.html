@@ -65,39 +65,51 @@
                                 <div class="comments">
                                     <h5>Comments</h5>
                                     <p ng-if="(!book.comments || book.comments.length === 0) && (user.editor || user.admin)">Be the first to comment on this book review!</p>
+                                    <p ng-if="(!book.comments || book.comments.length === 0) && (!user && !user.editor && !user.admin)">There are no comments yet on this book.</p>
 
                                     <div ng-if="(book.comments || book.comments.length > 0)" class="container-fluid">
                                         <div class="row commentsRow" ng-repeat="comment in book.comments">
-                                            <div class="col-xs-1">
+                                            <div ng-if="book.allowComment" class="col-xs-1">
                                                 <img ng-if="comment.owner.picture && (!comment.deleted)" class="commentThumbnail" ng-src="{{comment.owner.picture}}" height="75">
                                             </div>
                                             <div ng-if="!comment.deleted" class="col-xs-9">
-                                                <div class="commentMeta">{{comment.owner.fullName}} - {{comment.entered[2] + '/' + comment.entered[1] + '/' + comment.entered[0] + ' ' + comment.entered[3] + ':' + pad(comment.entered[4], 2)}}</div>
+                                                <div class="commentMeta"><span ng-if="comment.owner.fullName">{{comment.owner.fullName}} - </span>{{comment.entered[2] + '/' + comment.entered[1] + '/' + comment.entered[0] + ' ' + comment.entered[3] + ':' + pad(comment.entered[4], 2)}}</div>
                                                 <span class="commentDetail">{{comment.comment}}</span>
                                             </div>
                                             <div ng-if="comment.deleted" class="col-xs-9">
-                                                <div class="commentMeta">Comment deleted by {{comment.deletedBy}}</div>
+                                                <div class="commentMeta">Comment deleted <span ng-if="comment.deletedBy">by {{comment.deletedBy}}</span></div>
                                             </div>
                                             <div class="col-xs-2">
-                                                <button ng-if="!comment.deleted" type="button" class="btn btn-xs btn-danger btnList" ng-click="deleteComment(book.id, comment.id)"><i class="ti-close"> Delete</i></button>
+                                                <button ng-if="!comment.deleted && comment.allowDelete" type="button" class="btn btn-xs btn-danger btnList" ng-click="deleteComment(book.id, comment.id)"><i class="ti-close"> Delete</i></button>
+                                            </div>
+                                            <div ng-if="!book.allowComment" class="col-xs-1">
                                             </div>
                                         </div>
                                     </div>
 
                                     <form ng-if="user.editor || user.admin" name="commentsForm" novalidate class="comments-form">
                                         <label for="commentEntry">Add review comments</label>
-                                        
+
                                         <textarea id="summaryArea" rows="4" name="newComment" ng-model="$parent.newComment" class="form-control border-input" placeholder="Your comments on the book or the book review..." value="" aria-describedby="commentHelpBlock" required min="1" max="1000"></textarea>
-                                        
+
                                         <small id="commentHelpBlock" class="form-text">
                                           Enter a comment about the book, the book review or previous comments.<br>
                                           Remember: all entries as publicly visible.
                                         </small>
-                                        
+
                                         <div class="text-center">
                                             <button type="submit" ng-click="saveComment(newComment, book, commentsForm)" ng-disabled="commentsForm.$invalid" class="btn btn-info btn-fill btn-wd">Submit comment</button>
                                         </div>
                                     </form>
+                                </div>
+
+
+                                <div class="adminControls" ng-if="book.allowUpdate || book.allowDelete">
+                                    <h5>Update or delete book review</h5>
+                                    <div class="text-center">
+                                        <button type="submit" ng-click="updateBook(book)" class="btn btn-info btn-fill btn-wd maint-button">Update Book Review</button>
+                                        <button type="submit" ng-click="deleteBook(book)" class="btn btn-danger btn-fill btn-wd maint-button">Delete Book Review</button>
+                                    </div>
                                 </div>
 
 

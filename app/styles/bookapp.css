@@ -82,7 +82,7 @@
 }
 
 .reviewDetail {
-    font-size: 14px;
+    font-size: 16px;
     white-space: pre-wrap;
 }
 
@@ -192,4 +192,13 @@ select.searchByEntry {
 
 .commentThumbnail {    
     border-radius: 62.5rem;
+}
+
+.adminControls {
+    margin-top: 50px;
+}
+
+.maint-button {
+    margin-left: 20px;
+    margin-right: 20px;
 }

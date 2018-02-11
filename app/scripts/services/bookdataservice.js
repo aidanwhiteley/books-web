@@ -38,7 +38,7 @@
                     .then(function onSuccess(response) {
                         return response.data;
                     }).catch(function onError(error) {
-                        $log.error('Failed to update an existing new book. Error data: ' + JSON.stringify(error));
+                        $log.error('Failed to update an existing book. Error data: ' + JSON.stringify(error));
                         throw error;
                     });
             };
