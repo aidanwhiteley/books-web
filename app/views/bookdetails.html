@@ -65,7 +65,7 @@
                                 <div class="comments">
                                     <h5>Comments</h5>
                                     <p ng-if="(!book.comments || book.comments.length === 0) && (user.editor || user.admin)">Be the first to comment on this book review!</p>
-                                    <p ng-if="(!book.comments || book.comments.length === 0) && (!user && !user.editor && !user.admin)">There are no comments yet on this book.</p>
+                                    <p ng-if="(!book.comments || book.comments.length === 0) && (!user.editor && !user.admin)">There are no comments yet on this book.</p>
 
                                     <div ng-if="(book.comments || book.comments.length > 0)" class="container-fluid">
                                         <div class="row commentsRow" ng-repeat="comment in book.comments">
