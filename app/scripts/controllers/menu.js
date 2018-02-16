@@ -10,7 +10,7 @@
      * Controller of the booksWebApp
      */
     angular.module('booksWebApp')
-        .controller('MenuCtrl', function ($scope, $log, $location, userDataService, menuService, booksConstants, bookDataService) {
+        .controller('MenuCtrl', function ($scope, $log, $location, $window, userDataService, menuService, booksConstants, bookDataService) {
 
             menuService.setMenuItem(booksConstants.menuItems.ADMINUSERS);
 
@@ -20,14 +20,21 @@
              * Get user data
              */
             $scope.getUserData = function () {
-
+                
                 userDataService.getUser()
                     .then(
                         function (data) {
                             $scope.user = data;
                             // Show help page on first logon
                             if ($scope.user.firstVisit) {
-                                $location.url('/help').replace();
+                                if ($window.sessionStorage && $window.sessionStorage.helpSeen) {
+                                    // Do nothing 
+                                } else {
+                                    if ($window.sessionStorage) {
+                                        $window.sessionStorage.helpSeen = 'true';
+                                    }
+                                    $location.url('/help').replace();
+                                }            
                             }
                         },
                         function (errors) {

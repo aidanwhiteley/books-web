@@ -123,12 +123,18 @@
                             <p>Admin users</p>
                         </a>
                     </li>
+                    <li ng-if="user">
+                        <a href="{{env.logoutEndPoint}}">
+                            <i class="ti-close"></i>
+                            <p>Logout</p>
+                        </a>
+                    </li>
                     <li ng-if="user" class="loggedOn">
-                    <p class="welcomeText" ng-if="user.firstVisit">Hi {{user.firstName}}. {{env.welcomeText}}</p>
-                    <p class="welcomeText" ng-if="!user.firstVisit">Hi {{user.firstName}}. {{env.welcomeBackText}} {{user.lastLogon[2]}}/{{user.lastLogon[1]}}/{{user.lastLogon[0]}}</p>
+                        <p class="welcomeText" ng-if="user.firstVisit">Hi {{user.firstName}}. {{env.welcomeText}}</p>
+                        <p class="welcomeText" ng-if="!user.firstVisit">Hi {{user.firstName}}. {{env.welcomeBackText}} {{user.lastLogon[2]}}/{{user.lastLogon[1]}}/{{user.lastLogon[0]}}</p>
                     </li>
                 </ul>
-                
+
 
 
 
@@ -155,7 +161,7 @@
                                     <p>Help / info</p>
                                 </a>
                             </li>
-                            <li class="hidden-xs hidden-sm" >
+                            <li class="hidden-xs hidden-sm">
                                 <a ng-click="displayContactDetails()" href="">
                                     <i class="ti-email"></i>
                                     <p>Contact</p>

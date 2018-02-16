@@ -27,6 +27,10 @@
     // Can be relative path unless using CORS
     window.__env.logonFacebookEndPoint = 'http://localhost:8080/login/facebook';
     
+    // The URL to initiate logout
+    // Can be relative path unless using CORS
+    window.__env.logoutEndPoint = "http://localhost:8080/logout";
+    
     // Are we using CORS - normally development only
     window.__env.useCORS = true;
     
