@@ -29,9 +29,10 @@
     
     // The URL to initiate logout
     // Can be relative path unless using CORS
-    window.__env.logoutEndPoint = "http://localhost:8080/logout";
+    window.__env.logoutEndPoint = "http://localhost:8080/secure/api/logout";
     
-    // Are we using CORS - normally development only
+    // Are we using CORS - normally development only. 
+    // If you set this to true there is no XSRF enabled so beware!
     window.__env.useCORS = true;
     
     // *************************************************************

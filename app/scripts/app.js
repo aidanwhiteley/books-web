@@ -54,6 +54,8 @@
             //    rewriteLinks: false
             //});
 
+            $httpProvider.interceptors.push('routeUnauthorizedInterceptor');
+
             $routeProvider
                 .when('/', {
                     templateUrl: 'views/summary.html',
@@ -108,6 +110,11 @@
                     controller: 'HelpCtrl',
                     controllerAs: 'help'
                 })
+                .when('/helpLogon', {
+                    templateUrl: 'views/helpLogon.html',
+                    controller: 'HelpCtrl',
+                    controllerAs: 'help'
+                })
                 .otherwise({
                     redirectTo: '/'
                 });
@@ -117,6 +124,21 @@
             // TODO - move this filter somewhere more appropriate
             return function (input) {
                 return (input) ? input.charAt(0).toUpperCase() + input.substr(1).toLowerCase() : '';
+            };
+        }).factory('routeUnauthorizedInterceptor', function ($q, $location, $log) {
+            return {
+                responseError: function (rejection) {
+                    // Intercept HTTP 401/403 responses
+                    if (/40(1|3)/.test(rejection.status)) {
+                        if (rejection.data.path === '/secure/api/user' || rejection.data.path === '/secure/api/books/readers') {
+                            // Do nothing - expected
+                        } else {
+                            $log.warn('Got a 403', rejection);
+                            $location.url('/helpLogon').replace();
+                        }
+                    }
+                    return $q.reject(rejection);
+                }
             };
         });
 }());

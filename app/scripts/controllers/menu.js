@@ -34,7 +34,7 @@
                                         $window.sessionStorage.helpSeen = 'true';
                                     }
                                     $location.url('/help').replace();
-                                }            
+                                }
                             }
                         },
                         function (errors) {
@@ -47,7 +47,6 @@
             };
 
             $scope.getUsers = function () {
-
                 userDataService.getUsers()
                     .then(
                         function (data) {
@@ -132,6 +131,19 @@
 
             $scope.currentMenuItem = function () {
                 return menuService.getMenuItem();
+            };
+        
+            $scope.logout = function () {
+                userDataService.logout()
+                    .then(
+                        function () {
+                            $scope.user = null;
+                            $location.url('/').replace();
+                        },
+                        function (data) {
+                            $log.error('Failed to log out user: ' + JSON.stringify(data));
+                        }
+                    );
             };
 
             // ***** By Genre ******

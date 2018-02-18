@@ -14,7 +14,7 @@
         .service('userDataService', function ($http, $q, $log, booksConstants) {
 
             var cachedUserData = null, deferred, user;
-        
+
             function isAdmin(user) {
                 return (-1 !== user.roles.indexOf('ROLE_ADMIN'));
             }
@@ -53,7 +53,8 @@
             };
 
             this.getUsers = function () {
-                var url = booksConstants.env.secureApiEndPoint + '/users', i;
+                var url = booksConstants.env.secureApiEndPoint + '/users',
+                    i;
 
                 return $http.get(url)
                     .then(function onSuccess(response) {
@@ -104,5 +105,20 @@
                     });
             };
 
+            this.logout = function () {
+                var url = booksConstants.env.logoutEndPoint;
+
+                return $http.post(url)
+                    .then(function onSuccess(response) {
+                        return response;
+                    }).catch(function onError(error) {
+                        $log.error('Failed to log the user out using POST to server: ' + JSON.stringify(error));
+                        throw error;
+                    });
+
+            };
+
         });
+
+
 }());
