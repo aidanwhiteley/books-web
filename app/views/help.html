@@ -19,7 +19,7 @@
                 <h3>Your current permissions</h3>
                 <div ng-if="(isAnonymous || isUser && (!isAdmin))">
                     <p ng-if="isAnonymous">Thanks for browsing the site.</p>
-                    <p>You can currently read basic book review information and comemnts entered by our members. However, you cannot post your own reviews or comment on the reviews of others. Additionally, you can't see details of who has posted a review or comment. <span ng-if="isAnonymous">Logging on via Google or Facebook is the first step in getting more access to the application and its content.</span></p>
+                    <p>You can currently read basic book review information and comments entered by our members. However, you cannot post your own reviews or comment on the reviews of others. Additionally, you can't see details of who has posted a review or comment. <span ng-if="isAnonymous">Logging on via Google or Facebook is the first step in getting more access to the application and its content.</span></p>
 
                     <p ng-if="isUser">If {{env.bookClubmembersScope}} and want to get full access to existing reviews and comments and maybe write your own reviews or comments, please drop an email to <a href="mailto:{{env.bookClubAdminEmail}}?Subject=Book%20Club%20Signup" target="_top">{{env.bookClubAdminEmail}}</a> and we'll get you added to the list of registered users asap.</p>
                 </div>
@@ -42,7 +42,7 @@
                 <h3>How does it all work</h3>
                 <ul>
                     <li>Someone signs up for the application and writes a review of a book they have just read</li>
-                    <li>Some else who has signed up for the application reads the review and sort of agrees but they read it slightly differently. They reply to the review with a "comment"</li>
+                    <li>Some else who has signed up for the application reads the review and sort of agrees but they read the book slightly differently. They reply to the review with a "comment"</li>
                     <li>Some else who has signed up for the application reads the comment and gets what the person was saying but sees it from a different angle. They reply with a follow on comment</li>
                     <li>... and the world continues to go round while we natter about books...</li>
                     <li>In the mean time, someone else reads the review and thinks &quot;<i>that sounds interesting - where can I find out more without borrowing the book from my neighbour?</i>&quot; Ah - happy days - there may be two options
@@ -74,11 +74,13 @@
                 
                 <h3>Mobiles and tablets</h3>
                 <p>The application should work fine on mobile and tablet screens - please let me know via the Contact link if it doesn't on your device.</p>
-                <p>However, some menu items are only available on larger (desktop) screens.                <p>However, some menu items are only available on larger (desktop) screens.</p>
-</p>
+                <p>However, some menu items are only available on larger (desktop) screens.</p>
 
                 <h3>Privacy Policy</h3>
                 <p>There's some stuff <a href="#/privacy">here</a>.</p>
+                
+                <h3>Source Code</h3>
+                <p>The source code for this application is freely available <a href="https://github.com/aidanwhiteley" target="_blank">here</a>.</p>
 
                 <hr>
 
