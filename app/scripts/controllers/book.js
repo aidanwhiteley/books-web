@@ -19,7 +19,7 @@
                     .then(
                         function (data) {
                             $scope.book = data;
-                            $scope.book.displayGooglePreview = data.googleBookDetails.accessInfo.embeddable &&
+                            $scope.book.displayGooglePreview = data.googleBookDetails && data.googleBookDetails.accessInfo.embeddable &&
                                 data.googleBookDetails.accessInfo.viewability !== 'NO_PAGES';
                         },
                         function () {

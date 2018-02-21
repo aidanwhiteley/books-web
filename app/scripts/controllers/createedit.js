@@ -61,7 +61,7 @@
                                     // Later decision to go to summary page after creating new book.
                                     // However, above code left in place in case the decision changes!
                                     $location.url('/').replace();
-                                    $scope.$apply();
+                                    //$scope.$apply();
                                 },
                                 function () {
                                     $scope.resetMessaging();
@@ -130,12 +130,18 @@
                                     // There is a risk that this new Google Book search won't return the
                                     // book the user previously selected!
                                     if (book.googleBookId && book.googleBookId !== '') {
+                                        $scope.book.foundOnGoogle = false;
                                         for (i = 0; i < data.items.length; i = i + 1) {
                                             if (data.items[i].id === book.googleBookId) {
                                                 $scope.googleMatchesIndex = i;
                                                 $scope.book.foundOnGoogle = true;
                                             }
                                         }
+                                    } else {
+                                        // If there are any matching books returned we set the checkbox as ticked
+                                        // on the first item displayed.
+                                        $scope.book.foundOnGoogle = true;
+                                        $scope.book.googleBookId = $scope.googleBookData[0].id;
                                     }
                                 },
                                 function (errors) {
@@ -171,7 +177,11 @@
             };
 
             $scope.googleCheckBoxTicked = function () {
-                $scope.book.googleBookId = $scope.googleBookData[$scope.googleMatchesIndex].id;
+                if ($scope.book.foundOnGoogle) {
+                    $scope.book.googleBookId = $scope.googleBookData[$scope.googleMatchesIndex].id;
+                } else {
+                    delete $scope.book.googleBookId;
+                }
             };
 
 
@@ -197,7 +207,7 @@
             };
 
             $scope.byGenreAfterSelect = function (item) {
-                $log.debug("Selected: " + item.genre);
+                $log.debug('Selected: ' + item.genre);
             };
 
 

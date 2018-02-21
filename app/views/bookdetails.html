@@ -33,7 +33,7 @@
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
                         <li role="presentation" class="active"><a data-target="#bookDetails" aria-controls="bookDetails" role="tab" data-toggle="tab">Book details</a></li>
-                        <li role="presentation"><a data-target="#googleBooksSummary" aria-controls="googleBooksSummary" role="tab" data-toggle="tab">Google Books Summary</a></li>
+                        <li ng-if="book.googleBookDetails" role="presentation"><a data-target="#googleBooksSummary" aria-controls="googleBooksSummary" role="tab" data-toggle="tab">Google Books Summary</a></li>
                     </ul>
 
 
@@ -50,8 +50,9 @@
                                 <p><b>Genre: </b>{{book.genre}}</p>
                                 <p class="reviewDetail"><b>Reviewer's Summary:</b> {{book.summary}}</p>
                                 <p ng-if="book.createdBy && book.createdBy.fullName"><b>Reviewer:</b>
-                                    <span ng-if="book.createdBy && book.createdBy.picture && book.createdBy.link"><br><a href="{{book.createdBy.link}}" target="_blank"><img class="rounded listThumbnail" ng-src="{{book.createdBy.picture}}" height="50"></a></span>
-                                    <span ng-if="book.createdBy && book.createdBy.picture && !book.createdBy.link"><br><img class="rounded listThumbnail" ng-src="{{book.createdBy.picture}}" height="50"></span> {{book.createdBy.fullName}}
+                                    {{book.createdBy.fullName}}
+                                    <span ng-if="book.createdBy && book.createdBy.picture && book.createdBy.link"><a href="{{book.createdBy.link}}" target="_blank"><img class="commentThumbnail" ng-src="{{book.createdBy.picture}}" height="75"></a></span>
+                                    <span ng-if="book.createdBy && book.createdBy.picture && !book.createdBy.link"><img class="commentThumbnail" ng-src="{{book.createdBy.picture}}" height="75"></span> 
                                 </p>
                                 <p ng-if="book.displayGooglePreview">
                                     <b>Book Preview:</b>
