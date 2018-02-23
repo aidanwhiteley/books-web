@@ -230,7 +230,7 @@
                 $location.url('/booksbyreader/?reader=' + encodeURI(item.reader)).replace();
                 $scope.$apply();
             };
-
+        
             $scope.searchByReader = function () {
                 $scope.byReaderInput = '';
                 $('#findByReaderInput').removeClass('menuCriteriaInput');
@@ -241,7 +241,7 @@
             $scope.ratings = ['Great', 'Good', 'OK', 'Poor', 'Terrible'];
 
             $scope.searchByRating = function () {
-                $('#findByRatingInput').removeClass('menuCriteriaInput');
+                $('.findByRatingInput').removeClass('menuCriteriaInput');
                 menuService.setMenuItem(booksConstants.menuItems.RATING);
             };
 

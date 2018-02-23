@@ -1,0 +1,99 @@
+<div class="logo">
+    <a href="#" class="simple-text" ng-cloak>{{env.applicationName}}</a>
+</div>
+
+<ul class="nav">
+    <li ng-class="{'active' : currentMenuItem() === 'summary'}">
+        <a href="#/summary">
+            <i class="ti-files"></i>
+            <p>Summary</p>
+        </a>
+    </li>
+    <li class="hidden-xs hidden-sm" ng-class="{'active' : currentMenuItem() === 'rating'}">
+        <a ng-click="searchByRating()" href="">
+            <i class="ti-star"></i>
+            <p>By Rating</p>
+        </a>
+        <form ng-hide="currentMenuItem() !== 'rating'">
+            <fieldset>
+                <div class="form-group">
+                    <select class="form-control searchByEntry menuCriteriaInput findByRatingInput" ng-model="$parent.selectedName" ng-options="item for item in ratings" ng-change="ratingSelected(selectedName)"></select>
+                </div>
+            </fieldset>
+        </form>
+    </li>
+    <li class="hidden-xs hidden-sm" ng-class="{'active' : currentMenuItem() === 'genre'}">
+        <a ng-click="searchByGenre()" href="">
+            <i class="ti-folder"></i>
+            <p>By Genre</p>
+        </a>
+        <form ng-hide="currentMenuItem() !== 'genre'">
+            <fieldset>
+                <div class="form-group">
+                    <input id="findByGenreInput" autocomplete="off" class="form-control searchByEntry menuCriteriaInput" placeholder="Start typing genre.." type="text" bs3-typeahead bs3-promise="listOfGenres" bs3-displayText="byGenreDisplayText" bs3-afterSelect="byGenreAfterSelect" ng-model="$parent.byGenreInput">
+                </div>
+            </fieldset>
+        </form>
+    </li>
+    <li class="hidden-xs hidden-sm" ng-class="{'active' : currentMenuItem() === 'author'}">
+        <a ng-click="searchByAuthor()" href="">
+            <i class="ti-id-badge"></i>
+            <p>By Author</p>
+        </a>
+        <form ng-hide="currentMenuItem() !== 'author'">
+            <fieldset>
+                <div class="form-group">
+                    <input id="findByAuthorInput" autocomplete="off" class="form-control searchByEntry menuCriteriaInput" placeholder="Start typing author name.." type="text" bs3-typeahead bs3-promise="listOfAuthors" bs3-displayText="byAuthorDisplayText" bs3-afterSelect="byAuthorAfterSelect" ng-model="$parent.byAuthorInput">
+                </div>
+            </fieldset>
+        </form>
+    </li>
+    <li class="hidden-xs hidden-sm" ng-if="user.editor || user.admin" ng-class="{'active' : currentMenuItem() === 'reader'}">
+        <a ng-click="searchByReader()" href="">
+            <i class="ti-user"></i>
+            <p>By Reader</p>
+        </a>
+        <form ng-hide="currentMenuItem() !== 'reader'">
+            <fieldset>
+                <div class="form-group">
+                    <input id="findByReaderInput" autocomplete="off" class="form-control searchByEntry menuCriteriaInput" placeholder="Start typing readers name.." type="text" bs3-typeahead bs3-promise="listOfReaders" bs3-displayText="byReaderDisplayText" bs3-afterSelect="byReaderAfterSelect" ng-model="$parent.byReaderInput">
+                </div>
+            </fieldset>
+        </form>
+    </li>
+    <li ng-if="user.editor || user.admin" ng-class="{'active' : currentMenuItem() === 'addbook'}">
+        <a href="#/add">
+            <i class="ti-pencil-alt"></i>
+            <p>Add a book</p>
+        </a>
+    </li>
+    <li ng-if="!user" class="notLoggedOn logonOptions">
+        <br><br>
+        <a href="{{env.logonFacebookEndPoint}}">
+            <i class="ti-facebook"></i>
+            <p>Login with Facebook</p>
+        </a>
+    </li>
+    <li ng-if="!user" class="notLoggedOn logonOptions">
+        <a class="logonOptions" href="{{env.logonGoogleEndPoint}}">
+            <i class="ti-google"></i>
+            <p>Login with Google</p>
+        </a>
+    </li>
+    <li ng-if="user.admin" ng-class="{'active' : currentMenuItem() === 'adminusers'}">
+        <a href="#/users">
+            <i class="ti-view-list"></i>
+            <p>Admin users</p>
+        </a>
+    </li>
+    <li ng-if="user">
+        <a ng-click="logout()" href="">
+            <i class="ti-close"></i>
+            <p>Logout</p>
+        </a>
+    </li>
+    <li ng-if="user" class="loggedOn">
+        <p class="welcomeText" ng-if="user.firstVisit">Hi {{user.firstName}}. {{env.welcomeText}}</p>
+        <p class="welcomeText" ng-if="!user.firstVisit">Hi {{user.firstName}}. {{env.welcomeBackText}} {{user.lastLogon[2]}}/{{user.lastLogon[1]}}/{{user.lastLogon[0]}}</p>
+    </li>
+</ul>
