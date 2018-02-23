@@ -59,6 +59,7 @@ pd = {
     }),
     initRightMenu: function(){
          if(!navbar_initialized){
+             /*
             $off_canvas_sidebar = $('nav').find('.navbar-collapse').first().clone(true);
 
             $sidebar = $('.sidebar');
@@ -94,12 +95,15 @@ pd = {
             $off_canvas_sidebar.html(navbar_content);
 
             $('body').append($off_canvas_sidebar);
+            */
 
              $toggle = $('.navbar-toggle');
 
+             /*
              $off_canvas_sidebar.find('a').removeClass('btn btn-round btn-default');
              $off_canvas_sidebar.find('button').removeClass('btn-round btn-fill btn-info btn-primary btn-success btn-danger btn-warning btn-neutral');
              $off_canvas_sidebar.find('button').addClass('btn-simple btn-block');
+             */
 
              $toggle.click(function (){
                 if(pd.misc.navbar_menu_visible == 1) {

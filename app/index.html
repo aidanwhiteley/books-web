@@ -31,7 +31,7 @@
 
     <div class="wrapper" ng-controller="MenuCtrl">
         <div class="sidebar" data-background-color="black" data-active-color="warning">
-            <div ng-include="'views/includes/sidebar-menu.html'" class="sidebar-wrapper"></div>
+            <div ng-include="'views/includes/sidebar-menu.html'"></div>
         </div>
 
         <div class="main-panel">
@@ -136,6 +136,7 @@
     <script src="scripts/utils/paper-dashboard.js"></script>
     <!-- endbuild -->
 
+    <div ng-include="'views/includes/sidebar-menu.html'" class="collapse navbar-collapse off-canvas-sidebar"></div>
 </body>
 
 </html>

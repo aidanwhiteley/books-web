@@ -172,7 +172,7 @@
 
             $scope.searchByGenre = function () {
                 $scope.byGenreInput = '';
-                $('#findByGenreInput').removeClass('menuCriteriaInput');
+                $('.findByGenreInput').removeClass('menuCriteriaInput');
                 menuService.setMenuItem(booksConstants.menuItems.GENRE);
             };
 
@@ -202,7 +202,7 @@
 
             $scope.searchByAuthor = function () {
                 $scope.byAuthorInput = '';
-                $('#findByAuthorInput').removeClass('menuCriteriaInput');
+                $('.findByAuthorInput').removeClass('menuCriteriaInput');
                 menuService.setMenuItem(booksConstants.menuItems.AUTHOR);
             };
 
@@ -233,7 +233,7 @@
         
             $scope.searchByReader = function () {
                 $scope.byReaderInput = '';
-                $('#findByReaderInput').removeClass('menuCriteriaInput');
+                $('.findByReaderInput').removeClass('menuCriteriaInput');
                 menuService.setMenuItem(booksConstants.menuItems.READER);
             };
 
