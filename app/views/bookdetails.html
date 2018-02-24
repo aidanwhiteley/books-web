@@ -70,17 +70,17 @@
 
                                     <div ng-if="(book.comments || book.comments.length > 0)" class="container-fluid">
                                         <div class="row commentsRow" ng-repeat="comment in book.comments">
-                                            <div ng-if="book.allowComment" class="col-xs-1">
+                                            <div ng-if="book.allowComment" class="col-xs-4 col-sm-3 col-md-2">
                                                 <img ng-if="comment.owner.picture && (!comment.deleted)" class="commentThumbnail" ng-src="{{comment.owner.picture}}" height="75">
                                             </div>
-                                            <div ng-if="!comment.deleted" class="col-xs-9">
+                                            <div ng-if="!comment.deleted" class="col-xs-8 col-sm-7 col-md-8">
                                                 <div class="commentMeta"><span ng-if="comment.owner.fullName">{{comment.owner.fullName}} - </span>{{comment.entered[2] + '/' + comment.entered[1] + '/' + comment.entered[0] + ' ' + comment.entered[3] + ':' + pad(comment.entered[4], 2)}}</div>
                                                 <span class="commentDetail">{{comment.comment}}</span>
                                             </div>
-                                            <div ng-if="comment.deleted" class="col-xs-9">
+                                            <div ng-if="comment.deleted" class="col-xs-12 col-sm-12 col-md-12">
                                                 <div class="commentMeta">Comment deleted <span ng-if="comment.deletedBy">by {{comment.deletedBy}}</span></div>
                                             </div>
-                                            <div class="col-xs-2">
+                                            <div class="col-xs-3 col-sm-2 col-md-2">
                                                 <button ng-if="!comment.deleted && comment.allowDelete" type="button" class="btn btn-xs btn-danger btnList" ng-click="deleteComment(book.id, comment.id)"><i class="ti-close"> Delete</i></button>
                                             </div>
                                             <div ng-if="!book.allowComment" class="col-xs-1">

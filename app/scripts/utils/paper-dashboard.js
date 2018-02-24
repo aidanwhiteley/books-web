@@ -20,6 +20,7 @@
 var fixedTop = false;
 var transparent = true;
 var navbar_initialized = false;
+var toggleClickHandlersSet = false;
 
 $(document).ready(function () {
     window_width = $(window).width();
@@ -37,7 +38,7 @@ $(document).ready(function () {
 // activate collapse right menu when the windows is resized
 $(window).resize(function () {
     if ($(window).width() <= 991) {
-        pd.initRightMenu();
+        pd.initToggle();
     }
 });
 
@@ -104,7 +105,7 @@ pd = {
         $off_canvas_sidebar.find('a').removeClass('btn btn-round btn-default');
         $off_canvas_sidebar.find('button').removeClass('btn-round btn-fill btn-info btn-primary btn-success btn-danger btn-warning btn-neutral');
         $off_canvas_sidebar.find('button').addClass('btn-simple btn-block');
-        
+
         // Attach a click handler to close the menu when any link is clicked
         $off_canvas_sidebar.find('a').click(function () {
             $('.navbar-toggle').trigger('click');
@@ -113,39 +114,43 @@ pd = {
     },
 
     initToggle: function () {
-        $toggle = $('.navbar-toggle');
 
-        $toggle.click(function () {
-            if (pd.misc.navbar_menu_visible == 1) {
-                $('html').removeClass('nav-open');
-                pd.misc.navbar_menu_visible = 0;
-                $('#bodyClick').remove();
-                setTimeout(function () {
-                    $toggle.removeClass('toggled');
-                }, 400);
+        if (!toggleClickHandlersSet) {
 
-            } else {
-                setTimeout(function () {
-                    $toggle.addClass('toggled');
-                }, 430);
+            $toggle = $('.navbar-toggle');
 
-                pd.initRightMenu();
-                div = '<div id="bodyClick"></div>';
-                $(div).appendTo("body").click(function () {
+            $toggle.click(function () {
+                if (pd.misc.navbar_menu_visible == 1) {
                     $('html').removeClass('nav-open');
                     pd.misc.navbar_menu_visible = 0;
                     $('#bodyClick').remove();
                     setTimeout(function () {
                         $toggle.removeClass('toggled');
                     }, 400);
-                });
 
-                $('html').addClass('nav-open');
-                pd.misc.navbar_menu_visible = 1;
+                } else {
+                    setTimeout(function () {
+                        $toggle.addClass('toggled');
+                    }, 430);
 
-            }
-        });
-        navbar_initialized = true;
+                    pd.initRightMenu();
+                    div = '<div id="bodyClick"></div>';
+                    $(div).appendTo("body").click(function () {
+                        $('html').removeClass('nav-open');
+                        pd.misc.navbar_menu_visible = 0;
+                        $('#bodyClick').remove();
+                        setTimeout(function () {
+                            $toggle.removeClass('toggled');
+                        }, 400);
+                    });
+
+                    $('html').addClass('nav-open');
+                    pd.misc.navbar_menu_visible = 1;
+
+                }
+            });
+            toggleClickHandlersSet = true;
+        }
     }
 
 }
