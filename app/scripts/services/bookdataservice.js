@@ -171,7 +171,7 @@
             };
 
             this.getGoogleBooks = function (title) {
-                var url = booksConstants.env.apiEndPoint + '/googlebooks/?title=' + title;
+                var url = booksConstants.env.secureApiEndPoint + '/googlebooks/?title=' + title;
 
                 return $http.get(url)
                     .then(function onSuccess(response) {
