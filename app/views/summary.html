@@ -22,7 +22,7 @@
 
         <div class="col-md-12">
             <div class="card">
-                <div class="header">
+                <div id="recentlyAddedId" class="header">
                     <h4 class="title">Recently added books</h4>
                 </div>
                 <div class="content">
@@ -35,7 +35,7 @@
                                 <th>Author</th>
                                 <th>Rating</th>
                                 <th class="hidden-xs hidden-sm">Date</th>
-                                <th>Genre</th>
+                                <th class="hidden-xs hidden-sm">Genre</th>
                                 <th class="hidden-xs hidden-sm">See more...</th>
                             </tr>
                         </thead>
@@ -45,7 +45,7 @@
                                 <td>{{book.author}}</td>
                                 <td>{{book.rating | capitalize}}</td>
                                 <td class="hidden-xs hidden-sm">{{book.entered[2] + '-' + book.entered[1] + '-' + book.entered[0]}}</td>
-                                <td>{{book.genre}}</td>
+                                <td class="hidden-xs hidden-sm">{{book.genre}}</td>
                                 <td class="hidden-xs hidden-sm">
                                     <button type="button" class="btn btn-primary" ng-click="toggleSelected(book)"><i ng-class="book.expanded ? 'ti-angle-up' : 'ti-angle-down'"></i></button>
                                 </td>

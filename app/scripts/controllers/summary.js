@@ -10,7 +10,7 @@
      * Controller of the booksWebApp
      */
     angular.module('booksWebApp')
-        .controller('SummaryCtrl', function ($scope, $log, $location, $routeParams, $window, summaryDataService, bookDataService, booksConstants, menuService) {
+        .controller('SummaryCtrl', function ($scope, $log, $location, $routeParams, $window, $anchorScroll, $timeout, summaryDataService, bookDataService, booksConstants, menuService) {
 
             var currentSearchType = 'byBooks',
                 currentSearchGenre = '',
@@ -25,7 +25,7 @@
             $scope.currentPage = 0;
 
             menuService.setMenuItem(booksConstants.menuItems.SUMMARY);
-        
+
             $scope.screenWidth = screenWidth;
 
             $scope.getBooks = function () {
@@ -124,7 +124,7 @@
                 currentSearchType = 'byRating';
                 currentSearchRating = $routeParams.rating;
             }
-        
+
             $scope.getBooks();
             $scope.getSummaryData();
 
@@ -188,6 +188,7 @@
                 currentSearchRating = rating;
                 $scope.currentPage = 0;
                 $scope.getBooks();
+                $scope.scrollTo('navbar');
             };
 
             $scope.booksSummary = function () {
@@ -196,6 +197,7 @@
                 currentSearchRating = '';
                 $scope.currentPage = 0;
                 $scope.getBooks();
+                $scope.scrollTo('navbar');
             };
 
             $scope.booksByGenre = function (genre) {
@@ -204,6 +206,14 @@
                 currentSearchGenre = genre;
                 $scope.currentPage = 0;
                 $scope.getBooks();
+                $scope.scrollTo('navbar');
+            };
+
+            $scope.scrollTo = function (elementId) {
+                $timeout(function () {
+                    $location.hash(elementId);
+                    $anchorScroll();
+                });
             };
 
         });
