@@ -20,7 +20,7 @@
              * Get user data
              */
             $scope.getUserData = function () {
-                
+
                 userDataService.getUser()
                     .then(
                         function (data) {
@@ -132,19 +132,7 @@
             $scope.currentMenuItem = function () {
                 return menuService.getMenuItem();
             };
-        
-            $scope.logout = function () {
-                userDataService.logout()
-                    .then(
-                        function () {
-                            $scope.user = null;
-                            $location.url('/').replace();
-                        },
-                        function (data) {
-                            $log.error('Failed to log out user: ' + JSON.stringify(data));
-                        }
-                    );
-            };
+
 
             // ***** By Genre ******
             $scope.getBookGenres = function () {
@@ -230,7 +218,7 @@
                 $location.url('/booksbyreader/?reader=' + encodeURI(item.reader)).replace();
                 $scope.$apply();
             };
-        
+
             $scope.searchByReader = function () {
                 $scope.byReaderInput = '';
                 $('.findByReaderInput').removeClass('menuCriteriaInput');

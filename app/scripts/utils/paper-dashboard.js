@@ -11,6 +11,9 @@
  =========================================================
 
  * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ 
+ * Hacked about by Aidan Whiteley as the menu this copies across as DOM elements using JQuery is an Angular implementation
+ * which, unsurprisngly, doesnt work when dynamically inserted into a document by JQuery.
 
  */
 
@@ -18,12 +21,12 @@ var fixedTop = false;
 var transparent = true;
 var navbar_initialized = false;
 
-$(document).ready(function(){
+$(document).ready(function () {
     window_width = $(window).width();
 
     // Init navigation toggle for small screens
-    if(window_width <= 991){
-        pd.initRightMenu();
+    if (window_width <= 991) {
+        pd.initToggle();
     }
 
     //  Activate the tooltips
@@ -32,113 +35,121 @@ $(document).ready(function(){
 });
 
 // activate collapse right menu when the windows is resized
-$(window).resize(function(){
-    if($(window).width() <= 991){
+$(window).resize(function () {
+    if ($(window).width() <= 991) {
         pd.initRightMenu();
     }
 });
 
 pd = {
-    misc:{
+    misc: {
         navbar_menu_visible: 0
     },
-    checkScrollForTransparentNavbar: debounce(function() {
-        if($(document).scrollTop() > 381 ) {
-            if(transparent) {
+    checkScrollForTransparentNavbar: debounce(function () {
+        if ($(document).scrollTop() > 381) {
+            if (transparent) {
                 transparent = false;
                 $('.navbar-color-on-scroll').removeClass('navbar-transparent');
                 $('.navbar-title').removeClass('hidden');
             }
         } else {
-            if( !transparent ) {
+            if (!transparent) {
                 transparent = true;
                 $('.navbar-color-on-scroll').addClass('navbar-transparent');
                 $('.navbar-title').addClass('hidden');
             }
         }
     }),
-    initRightMenu: function(){
-         if(!navbar_initialized){
-             /*
-            $off_canvas_sidebar = $('nav').find('.navbar-collapse').first().clone(true);
+    initRightMenu: function () {
 
-            $sidebar = $('.sidebar');
-            sidebar_bg_color = $sidebar.data('background-color');
-            sidebar_active_color = $sidebar.data('active-color');
+        // Tidy up
+        $('body').remove('.off-canvas-sidebar');
 
-            $logo = $sidebar.find('.logo').first();
-            logo_content = $logo[0].outerHTML;
+        $off_canvas_sidebar = $('nav').find('.navbar-collapse').first().clone(true);
 
-            ul_content = '';
+        $sidebar = $('.sidebar');
+        sidebar_bg_color = $sidebar.data('background-color');
+        sidebar_active_color = $sidebar.data('active-color');
 
-            // set the bg color and active color from the default sidebar to the off canvas sidebar;
-            $off_canvas_sidebar.attr('data-background-color',sidebar_bg_color);
-            $off_canvas_sidebar.attr('data-active-color',sidebar_active_color);
+        $logo = $sidebar.find('.logo').first();
+        logo_content = $logo[0].outerHTML;
 
-            $off_canvas_sidebar.addClass('off-canvas-sidebar');
+        ul_content = '';
 
-            //add the content from the regular header to the right menu
-            $off_canvas_sidebar.children('ul').each(function(){
-                content_buff = $(this).html();
-                ul_content = ul_content + content_buff;
-            });
+        // set the bg color and active color from the default sidebar to the off canvas sidebar;
+        $off_canvas_sidebar.attr('data-background-color', sidebar_bg_color);
+        $off_canvas_sidebar.attr('data-active-color', sidebar_active_color);
 
-            // add the content from the sidebar to the right menu
-            content_buff = $sidebar.find('.nav').html();
-            ul_content = ul_content + '<li class="divider"></li>'+ content_buff;
+        $off_canvas_sidebar.addClass('off-canvas-sidebar');
 
-            ul_content = '<ul class="nav navbar-nav">' + ul_content + '</ul>';
+        // add the content from the sidebar to the right menu
+        content_buff = $sidebar.find('.nav').html();
+        ul_content = ul_content + content_buff;
 
-            navbar_content = logo_content + ul_content;
-            navbar_content = '<div class="sidebar-wrapper">' + navbar_content + '</div>';
+        //add the content from the regular header to the right menu
+        $off_canvas_sidebar.children('ul').each(function () {
+            content_buff = $(this).html();
+            ul_content = ul_content + content_buff;
+        });
 
-            $off_canvas_sidebar.html(navbar_content);
+        ul_content = '<ul class="nav navbar-nav">' + ul_content + '</ul>';
 
-            $('body').append($off_canvas_sidebar);
-            */
+        navbar_content = logo_content + ul_content;
+        navbar_content = '<div class="sidebar-wrapper">' + navbar_content + '</div>';
 
-             $toggle = $('.navbar-toggle');
+        $off_canvas_sidebar.html(navbar_content);
 
-             /*
-             $off_canvas_sidebar.find('a').removeClass('btn btn-round btn-default');
-             $off_canvas_sidebar.find('button').removeClass('btn-round btn-fill btn-info btn-primary btn-success btn-danger btn-warning btn-neutral');
-             $off_canvas_sidebar.find('button').addClass('btn-simple btn-block');
-             */
+        $('body').append($off_canvas_sidebar);
 
-             $toggle.click(function (){
-                if(pd.misc.navbar_menu_visible == 1) {
+        $off_canvas_sidebar.find('a').removeClass('btn btn-round btn-default');
+        $off_canvas_sidebar.find('button').removeClass('btn-round btn-fill btn-info btn-primary btn-success btn-danger btn-warning btn-neutral');
+        $off_canvas_sidebar.find('button').addClass('btn-simple btn-block');
+        
+        // Attach a click handler to close the menu when any link is clicked
+        $off_canvas_sidebar.find('a').click(function () {
+            $('.navbar-toggle').trigger('click');
+        })
+
+    },
+
+    initToggle: function () {
+        $toggle = $('.navbar-toggle');
+
+        $toggle.click(function () {
+            if (pd.misc.navbar_menu_visible == 1) {
+                $('html').removeClass('nav-open');
+                pd.misc.navbar_menu_visible = 0;
+                $('#bodyClick').remove();
+                setTimeout(function () {
+                    $toggle.removeClass('toggled');
+                }, 400);
+
+            } else {
+                setTimeout(function () {
+                    $toggle.addClass('toggled');
+                }, 430);
+
+                pd.initRightMenu();
+                div = '<div id="bodyClick"></div>';
+                $(div).appendTo("body").click(function () {
                     $('html').removeClass('nav-open');
                     pd.misc.navbar_menu_visible = 0;
                     $('#bodyClick').remove();
-                     setTimeout(function(){
+                    setTimeout(function () {
                         $toggle.removeClass('toggled');
-                     }, 400);
+                    }, 400);
+                });
 
-                } else {
-                    setTimeout(function(){
-                        $toggle.addClass('toggled');
-                    }, 430);
+                $('html').addClass('nav-open');
+                pd.misc.navbar_menu_visible = 1;
 
-                    div = '<div id="bodyClick"></div>';
-                    $(div).appendTo("body").click(function() {
-                        $('html').removeClass('nav-open');
-                        pd.misc.navbar_menu_visible = 0;
-                        $('#bodyClick').remove();
-                         setTimeout(function(){
-                            $toggle.removeClass('toggled');
-                         }, 400);
-                    });
-
-                    $('html').addClass('nav-open');
-                    pd.misc.navbar_menu_visible = 1;
-
-                }
-            });
-            navbar_initialized = true;
-        }
-
+            }
+        });
+        navbar_initialized = true;
     }
+
 }
+
 
 
 // Returns a function, that, as long as it continues to be invoked, will not
@@ -147,14 +158,15 @@ pd = {
 // leading edge, instead of the trailing.
 
 function debounce(func, wait, immediate) {
-	var timeout;
-	return function() {
-		var context = this, args = arguments;
-		clearTimeout(timeout);
-		timeout = setTimeout(function() {
-			timeout = null;
-			if (!immediate) func.apply(context, args);
-		}, wait);
-		if (immediate && !timeout) func.apply(context, args);
-	};
-};
+    var timeout;
+    return function () {
+        var context = this,
+            args = arguments;
+        clearTimeout(timeout);
+        timeout = setTimeout(function () {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+        }, wait);
+        if (immediate && !timeout) func.apply(context, args);
+    };
+}

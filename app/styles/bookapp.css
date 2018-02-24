@@ -202,3 +202,8 @@ select.searchByEntry {
     margin-left: 20px;
     margin-right: 20px;
 }
+
+.logout-spinner {
+    padding-top: 50px;
+    padding-bottom: 100px;
+}
