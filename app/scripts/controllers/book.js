@@ -10,7 +10,7 @@
      * Controller of the booksWebApp
      */
     angular.module('booksWebApp')
-        .controller('BookCtrl', function ($scope, $log, $routeParams, $location, bookDataService, userDataService) {
+        .controller('BookCtrl', function ($scope, $log, $routeParams, $location, $window, bookDataService, userDataService) {
 
             $scope.id = $routeParams.id;
 
@@ -120,6 +120,8 @@
                 return str.length < max ? $scope.pad('0' + str, max) : str;
             };
 
+            // Doesnt seem to be working reliably
+            $window.scrollTo(0, 0);
 
         });
 }());

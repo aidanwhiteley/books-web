@@ -16,7 +16,8 @@
             'ngRoute',
             'ngSanitize',
             'ngTouch',
-            'bootstrap3-typeahead'
+            'bootstrap3-typeahead',
+            'angular-carousel-3d'
         ])
         .constant('booksConstants', {
             // ************************************
@@ -27,6 +28,7 @@
 
             'env': env,
             menuItems: {
+                'LANDING': 'landing',
                 'SUMMARY': 'summary',
                 'RATING': 'rating',
                 'GENRE': 'genre',
@@ -58,6 +60,11 @@
 
             $routeProvider
                 .when('/', {
+                    templateUrl: 'views/landing.html',
+                    controller: 'LandingCtrl',
+                    controllerAs: 'landing'
+                })
+                .when('/summary', {
                     templateUrl: 'views/summary.html',
                     controller: 'SummaryCtrl',
                     controllerAs: 'summary'
@@ -136,7 +143,7 @@
                     // Intercept HTTP 401/403 responses
                     if (/40(1|3)/.test(rejection.status)) {
                         if (rejection.data.path === '/secure/api/user' || rejection.data.path === '/secure/api/books/readers') {
-                            // Do nothing - expected
+                            // Do nothing - expected when user not logged on
                         } else {
                             $log.warn('Got a 403', rejection);
                             $location.url('/helpLogon').replace();

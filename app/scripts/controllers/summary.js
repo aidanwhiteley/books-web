@@ -10,7 +10,7 @@
      * Controller of the booksWebApp
      */
     angular.module('booksWebApp')
-        .controller('SummaryCtrl', function ($scope, $log, $location, $routeParams, $window, $anchorScroll, $timeout, summaryDataService, bookDataService, booksConstants, menuService) {
+        .controller('SummaryCtrl', function ($scope, $log, $location, $routeParams, $window, $timeout, summaryDataService, bookDataService, booksConstants, menuService) {
 
             var currentSearchType = 'byBooks',
                 currentSearchGenre = '',
@@ -81,17 +81,6 @@
                             },
                             function () {
                                 $log.error('Failed to get book data by reader');
-                                $scope.dataRetrievalError = true;
-                            }
-                        );
-                } else if (currentSearchType === 'byRating') {
-                    bookDataService.getBooksByRating(currentSearchRating, $scope.currentPage, booksConstants.env.defaultPageSize)
-                        .then(
-                            function (data) {
-                                $scope.data = data;
-                            },
-                            function () {
-                                $log.error('Failed to get book data by rating');
                                 $scope.dataRetrievalError = true;
                             }
                         );
@@ -188,7 +177,7 @@
                 currentSearchRating = rating;
                 $scope.currentPage = 0;
                 $scope.getBooks();
-                $scope.scrollTo('navbar');
+                $scope.scrollTo();
             };
 
             $scope.booksSummary = function () {
@@ -197,7 +186,7 @@
                 currentSearchRating = '';
                 $scope.currentPage = 0;
                 $scope.getBooks();
-                $scope.scrollTo('navbar');
+                $scope.scrollTo();
             };
 
             $scope.booksByGenre = function (genre) {
@@ -206,14 +195,15 @@
                 currentSearchGenre = genre;
                 $scope.currentPage = 0;
                 $scope.getBooks();
-                $scope.scrollTo('navbar');
+                $scope.scrollTo();
             };
 
-            $scope.scrollTo = function (elementId) {
+            // This isnt currently working reliably
+            $scope.scrollTo = function () {
                 $timeout(function () {
-                    $location.hash(elementId);
-                    $anchorScroll();
+                    $window.scrollTo(0, 0);
                 });
+                
             };
 
         });

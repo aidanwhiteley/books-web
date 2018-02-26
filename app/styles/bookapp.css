@@ -208,3 +208,7 @@ select.searchByEntry {
     padding-top: 50px;
     padding-bottom: 100px;
 }
+
+.arrow-right, .arrow-left {
+    opacity: 0.3;
+}

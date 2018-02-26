@@ -1,0 +1,38 @@
+<div class="container-fluid">
+
+    <div ng-if="dataRetrievalError" class="row">
+        <div class="col-lg-6 col-sm-12">
+            <div class="alert alert-danger">
+                <p>Oh whoops - there was a problem getting book data. Please try again later.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="card">
+                <div id="recentlyAddedId" class="header">
+                    <h4 class="title">Recently reviewed books</h4>
+                </div>
+                <div class="content">
+
+                    <carousel3d ng-model="slides" options="options" on-selected-click="selectedClick(index)" on-slide-change="slideChanged(index)" on-last-slide="lastSlide(index)" on-before-change="beforeChange(index)">
+
+                        <carousel3d-slide ng-repeat="slide in slides">
+                            <figure>
+                                <img ng-src="{{slide.src}}" alt="" />
+                                <!-- figcaption ng-bind="slide.caption"></figcaption -->
+                            </figure>
+                        </carousel3d-slide>
+
+                    </carousel3d>
+                    
+                    <p class="text-center">Click or tap to read the review details</p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
