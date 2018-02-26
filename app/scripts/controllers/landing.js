@@ -33,7 +33,7 @@
                                     if (smallWidthDevice) {
                                         if (data.content[i].googleBookDetails.volumeInfo.imageLinks.thumbnail) {
                                             bookSlides.push({
-                                                'src': data.content[i].googleBookDetails.volumeInfo.imageLinks.thumbnail,
+                                                'src': data.content[i].googleBookDetails.volumeInfo.imageLinks.thumbnail.replace('http://', 'https://'),
                                                 'caption': data.content[i].title + ' by ' + data.content[i].author,
                                                 'id': data.content[i].id
                                             });
@@ -41,7 +41,7 @@
                                     } else {
                                         if (data.content[i].googleBookDetails.volumeInfo.imageLinks.small) {
                                             bookSlides.push({
-                                                'src': data.content[i].googleBookDetails.volumeInfo.imageLinks.small,
+                                                'src': data.content[i].googleBookDetails.volumeInfo.imageLinks.small.replace('http://', 'https://'),
                                                 'caption': data.content[i].title + ' by ' + data.content[i].author,
                                                 'id': data.content[i].id
                                             });

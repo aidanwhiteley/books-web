@@ -41,8 +41,8 @@
                     <div class="tab-content" id="mytabs">
                         <div role="tabpanel" class="tab-pane active" id="bookDetails">
                             <div class="bookCard content">
-                                <img ng-if="book.googleBookDetails.volumeInfo.imageLinks.thumbnail" class="rounded pull-left listThumbnail" ng-src="{{book.googleBookDetails.volumeInfo.imageLinks.thumbnail}}">
-                                <img ng-if="!book.googleBookDetails.volumeInfo.imageLinks.thumbnail && book.googleBookDetails.volumeInfo.imageLinks.smallThumbnail" class="rounded pull-left listThumbnail" ng-src="{{book.googleBookDetails.volumeInfo.imageLinks.smallThumbnail}}">
+                                <img ng-if="book.googleBookDetails.volumeInfo.imageLinks.thumbnail" class="rounded pull-left listThumbnail" ng-src="{{book.googleBookDetails.volumeInfo.imageLinks.thumbnail.replace('http://', 'https://')}}">
+                                <img ng-if="!book.googleBookDetails.volumeInfo.imageLinks.thumbnail && book.googleBookDetails.volumeInfo.imageLinks.smallThumbnail" class="rounded pull-left listThumbnail" ng-src="{{book.googleBookDetails.volumeInfo.imageLinks.smallThumbnail.replace('http://', 'https://')}}">
                                 <p><b>Title: </b>{{book.title}}</p>
                                 <p><b>Author: </b>{{book.author}}</p>
                                 <p><b>Rating: </b>{{book.rating | capitalize}}</p>
@@ -119,8 +119,8 @@
 
                         <div role="tabpanel" class="tab-pane" id="googleBooksSummary">
                             <div class="bookCard content">
-                                <img ng-if="book.googleBookDetails.volumeInfo.imageLinks.thumbnail" class="rounded pull-left listThumbnail" ng-src="{{book.googleBookDetails.volumeInfo.imageLinks.thumbnail}}">
-                                <img ng-if="!book.googleBookDetails.volumeInfo.imageLinks.thumbnail && book.googleBookDetails.volumeInfo.imageLinks.smallThumbnail" class="rounded pull-left listThumbnail" ng-src="{{book.googleBookDetails.volumeInfo.imageLinks.smallThumbnail}}">
+                                <img ng-if="book.googleBookDetails.volumeInfo.imageLinks.thumbnail" class="rounded pull-left listThumbnail" ng-src="{{book.googleBookDetails.volumeInfo.imageLinks.thumbnail.replace('http://', 'https://')}}">
+                                <img ng-if="!book.googleBookDetails.volumeInfo.imageLinks.thumbnail && book.googleBookDetails.volumeInfo.imageLinks.smallThumbnail" class="rounded pull-left listThumbnail" ng-src="{{book.googleBookDetails.volumeInfo.imageLinks.smallThumbnail.replace('http://', 'https://')}}">
                                 <p class="googleSummary"><b>Google Summary:</b></p>
                                 <div id="googleSummaryDetail" ng-bind-html="book.googleBookDetails.volumeInfo.description"></div>
                             </div>

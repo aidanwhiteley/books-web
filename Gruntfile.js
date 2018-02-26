@@ -130,7 +130,8 @@ module.exports = function (grunt) {
       all: {
         src: [
           'Gruntfile.js',
-          '<%= yeoman.app %>/scripts/{,*/}*.js'
+          '<%= yeoman.app %>/scripts/{,*/}*.js',
+          '!app/scripts/utils/*.js'
         ]
       },
       test: {
@@ -145,7 +146,8 @@ module.exports = function (grunt) {
     jscs: {
       options: {
         config: '.jscsrc',
-        verbose: true
+        verbose: true,
+        excludeFiles: ['app/scripts/utils/**']
       },
       all: {
         src: [

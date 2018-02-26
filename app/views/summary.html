@@ -52,7 +52,7 @@
                             </tr>
                             <tr class="bookSummary" ng-if="book.expanded" ng-repeat-end="">
                                 <td class="bookSummary" colspan="5">
-                                    <img ng-if="book.googleBookDetails.volumeInfo.imageLinks.smallThumbnail" class="rounded pull-left listThumbnail" ng-src="{{book.googleBookDetails.volumeInfo.imageLinks.smallThumbnail}}">
+                                    <img ng-if="book.googleBookDetails.volumeInfo.imageLinks.smallThumbnail" class="rounded pull-left listThumbnail" ng-src="{{book.googleBookDetails.volumeInfo.imageLinks.smallThumbnail.replace('http://', 'https://')}}">
                                     <p class="reviewSummary"><b>Summary:</b> {{book.summary}}</p>
                                     <p ng-if="book.createdBy.fullName" class="reviewSummaryAuthor"><b>Reviewer: </b> {{book.createdBy.fullName}}</p>
                                 </td>

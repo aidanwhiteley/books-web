@@ -1,1 +1,4 @@
-app/scripts/utils
+app/scripts/utils/bootstrap-checkbox-radio.js
+app/scripts/utils/bootstrap-notify.js
+app/scripts/utils/paper-dashboard.js
+app/scripts/utils/ui-bootstrap-tpls-2.5.0.js
