@@ -56,6 +56,11 @@
     window.__env.welcomeBackText = 'Welcome back. Your last logon was on';
     window.__env.tagLineText = 'Books we\'ve been reading';
     
+    // Home page book images to display
+    window.__env.homePageBookImageCount = 15;
+    window.__env.homePageBookImageCountSmallDevice = 5;
+    window.__env.homePageBookSmallDeviceWidthBreakPoint = 500;
+    
     
 
 }(this));
