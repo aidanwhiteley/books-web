@@ -12,7 +12,7 @@
     angular.module('booksWebApp')
         .controller('LandingCtrl', function ($scope, $log, $location, $window, bookDataService, summaryDataService, booksConstants, menuService) {
 
-            var bookSlides = [], i, smallWidthDevice = false, booksToShow = 10;
+            var bookSlides = [], i, smallWidthDevice = false, booksToShow = 15;
 
             menuService.setMenuItem(booksConstants.menuItems.LANDING);
 
@@ -58,7 +58,7 @@
                                 perspective: 35,
                                 startSlide: 0,
                                 border: 0,
-                                dir: 'ltr',
+                                dir: 'rlt',
                                 controls: true,
                                 width: (smallWidthDevice ? 143 : 300),
                                 height: (smallWidthDevice ? 205 : 462),
