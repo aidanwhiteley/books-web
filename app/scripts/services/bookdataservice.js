@@ -130,6 +130,18 @@
                     });
             };
 
+            this.searchBooks = function (terms, page, size) {
+                var url = booksConstants.env.apiEndPoint + '/books/?search=' + terms + '&page=' + page + '&size=' + size;
+
+                return $http.get(url)
+                    .then(function onSuccess(response) {
+                        return response.data;
+                    }).catch(function onError(error) {
+                        $log.error('Failed to search books. Error data: ' + JSON.stringify(error));
+                        throw error;
+                    });
+            };
+
             this.getBookGenres = function () {
                 var url = booksConstants.env.apiEndPoint + '/books/genres';
 
@@ -195,7 +207,7 @@
                     });
 
             };
-        
+
             this.deleteComment = function (bookId, commentId) {
 
                 var url = booksConstants.env.secureApiEndPoint + '/books/' + bookId + '/comments/' + commentId;

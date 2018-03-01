@@ -17,6 +17,7 @@
                 currentSearchAuthor = '',
                 currentSearchReader = '',
                 currentSearchRating = '',
+                currentSearchTerms = '',
                 screenWidth = $window.innerWidth;
 
             $scope.dataRetrievalError = false;
@@ -84,6 +85,17 @@
                                 $scope.dataRetrievalError = true;
                             }
                         );
+                } else if (currentSearchType === 'bySearch') {
+                    bookDataService.searchBooks(currentSearchTerms, $scope.currentPage, booksConstants.env.defaultPageSize)
+                        .then(
+                            function (data) {
+                                $scope.data = data;
+                            },
+                            function () {
+                                $log.error('Failed to get search for books');
+                                $scope.dataRetrievalError = true;
+                            }
+                        );
                 }
             };
 
@@ -100,6 +112,9 @@
                     );
             };
 
+            /**
+             * Extract any parameters set by the left hand menu items.
+             */
             if ($location.path().indexOf('booksbygenre') >= 0) {
                 currentSearchType = 'byGenre';
                 currentSearchGenre = $routeParams.genre;
@@ -112,8 +127,12 @@
             } else if ($location.path().indexOf('booksbyrating') >= 0) {
                 currentSearchType = 'byRating';
                 currentSearchRating = $routeParams.rating;
+            } else if ($location.path().indexOf('bookssearch') >= 0) {
+                currentSearchType = 'bySearch';
+                currentSearchTerms = $routeParams.terms;
             }
 
+            // Iniitialise the page data
             $scope.getBooks();
             $scope.getSummaryData();
 
@@ -171,6 +190,10 @@
                 $location.path('/book/' + book.id);
             };
 
+
+            /** 
+             * Following three methods called from the "stats cards".
+             */
             $scope.booksByRating = function (rating) {
                 menuService.setMenuItem(booksConstants.menuItems.SUMMARY);
                 currentSearchType = 'byRating';
@@ -183,7 +206,6 @@
             $scope.booksSummary = function () {
                 menuService.setMenuItem(booksConstants.menuItems.SUMMARY);
                 currentSearchType = 'byBooks';
-                currentSearchRating = '';
                 $scope.currentPage = 0;
                 $scope.getBooks();
                 $scope.scrollTo();
@@ -203,7 +225,7 @@
                 $timeout(function () {
                     $window.scrollTo(0, 0);
                 });
-                
+
             };
 
         });

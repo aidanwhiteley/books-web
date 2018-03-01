@@ -249,5 +249,17 @@
                     timer: 1000
                 });
             };
+        
+            // ******************** Search functionality ***************************
+        
+            $scope.searchForReviews = function () {
+                var searchTerms = $scope.searchText;
+                if (!searchTerms || searchTerms.trim().length === 0) {
+                    return;
+                }
+                
+                $scope.searchText = '';
+                $location.url('/bookssearch/?terms=' + encodeURI(searchTerms)).replace();
+            };
         });
 }());

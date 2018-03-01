@@ -109,6 +109,11 @@
                     controller: 'SummaryCtrl',
                     controllerAs: 'summary'
                 })
+                .when('/bookssearch', {
+                    templateUrl: 'views/summary.html',
+                    controller: 'SummaryCtrl',
+                    controllerAs: 'summary'
+                })
                 .when('/logout', {
                     templateUrl: 'views/logout.html',
                     controller: 'LogoutCtrl',
