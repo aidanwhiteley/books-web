@@ -12,13 +12,17 @@
     angular.module('booksWebApp')
         .controller('LandingCtrl', function ($scope, $log, $location, $window, bookDataService, summaryDataService, booksConstants, menuService) {
 
+<<<<<<< HEAD
             var bookSlides = [], i, smallWidthDevice = false, booksToShow = 15;
+=======
+            var bookSlides = [], i, smallWidthDevice = false, booksToShow = booksConstants.env.homePageBookImageCount;
+>>>>>>> 12bf08457d3e6862d3e6b036531ebc085117d8a2
 
             menuService.setMenuItem(booksConstants.menuItems.LANDING);
 
-            smallWidthDevice = ($window.innerWidth < 500);
+            smallWidthDevice = ($window.innerWidth < booksConstants.env.homePageBookSmallDeviceWidthBreakPoint);
             if (smallWidthDevice) {
-                booksToShow = 5;
+                booksToShow = booksConstants.env.homePageBookImageCountSmallDevice;
             }
 
             $scope.getBooks = function () {
