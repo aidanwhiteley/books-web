@@ -17,19 +17,22 @@
                 currentSearchAuthor = '',
                 currentSearchReader = '',
                 currentSearchRating = '',
-                currentSearchTerms = '',
                 screenWidth = $window.innerWidth;
 
             $scope.dataRetrievalError = false;
             $scope.bookDeletedOk = false;
             $scope.deletedBook = '';
             $scope.currentPage = 0;
+            $scope.isBookSearch = false;
+            $scope.currentSearchTerms = '';
 
             menuService.setMenuItem(booksConstants.menuItems.SUMMARY);
 
             $scope.screenWidth = screenWidth;
 
             $scope.getBooks = function () {
+                $scope.isBookSearch = false;
+                
                 if (currentSearchType === 'byBooks') {
                     bookDataService.getBooks($scope.currentPage, booksConstants.env.defaultPageSize)
                         .then(
@@ -86,9 +89,10 @@
                             }
                         );
                 } else if (currentSearchType === 'bySearch') {
-                    bookDataService.searchBooks(currentSearchTerms, $scope.currentPage, booksConstants.env.defaultPageSize)
+                    bookDataService.searchBooks($scope.currentSearchTerms, $scope.currentPage, booksConstants.env.defaultPageSize)
                         .then(
                             function (data) {
+                                $scope.isBookSearch = true;
                                 $scope.data = data;
                             },
                             function () {
@@ -129,7 +133,7 @@
                 currentSearchRating = $routeParams.rating;
             } else if ($location.path().indexOf('bookssearch') >= 0) {
                 currentSearchType = 'bySearch';
-                currentSearchTerms = $routeParams.terms;
+                $scope.currentSearchTerms = $routeParams.terms;
             }
 
             // Iniitialise the page data

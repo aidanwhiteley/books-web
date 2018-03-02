@@ -16,17 +16,21 @@
         </div>
     </div>
 
-    <div ng-if="screenWidth >= 768" ng-include="'views/includes/stats.html'"></div>
+    
+    <div ng-if="screenWidth >= 768 && !isBookSearch" ng-include="'views/includes/stats.html'"></div>
     
     <div class="row">
 
         <div class="col-md-12">
             <div class="card">
-                <div id="recentlyAddedId" class="header">
+                <div ng-if="!isBookSearch" id="recentlyAddedId" class="header">
                     <h4 class="title">Recently added books</h4>
                 </div>
+                <div ng-if="isBookSearch" id="recentlyAddedId" class="header">
+                    <h4 class="title">Books matching your search for "{{currentSearchTerms}}"</h4>
+                </div>
+                
                 <div class="content">
-
 
                     <table class="table">
                         <thead>
@@ -83,6 +87,6 @@
         </div>
     </div>
 
-    <div ng-if="screenWidth < 768" ng-include="'views/includes/stats.html'"></div>
+    <div ng-if="screenWidth < 768 && !isBookSearch" ng-include="'views/includes/stats.html'"></div>
     
 </div>
