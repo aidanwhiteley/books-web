@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div id="mainContainer" class="container-fluid">
 
     <div ng-if="dataRetrievalError" class="row">
         <div class="col-lg-6 col-sm-12">
@@ -8,17 +8,17 @@
         </div>
     </div>
 
-    <div ng-if="bookDeletedOk" class="row">
+    <div ng-if="notificationMessage" class="row">
         <div class="col-lg-6 col-sm-12">
-            <div class="alert alert-danger">
-                <p>The '{{deletedBook}}' book was deleted OK.</p>
+            <div class="alert alert-success">
+                <p>{{notificationMessage}}</p>
             </div>
         </div>
     </div>
 
-    
     <div ng-if="screenWidth >= 768 && !isBookSearch" ng-include="'views/includes/stats.html'"></div>
-    
+
+
     <div class="row">
 
         <div class="col-md-12">
@@ -29,7 +29,7 @@
                 <div ng-if="isBookSearch" id="recentlyAddedId" class="header">
                     <h4 class="title">Books matching your search for "{{currentSearchTerms}}"</h4>
                 </div>
-                
+
                 <div class="content">
 
                     <table class="table">
@@ -72,10 +72,10 @@
                         <ul class="pager">
                             <li ng-class="{'disabled': data.first}"><a ng-click="previous()" href="">Previous</a></li>
                             <span class="bookspager">Page {{data.number + 1}} of {{data.totalPages}}</span>
-                            <li ng-class="{'disabled': data.last}" ><a ng-click="next()" href="">Next</a></li>
+                            <li ng-class="{'disabled': data.last}"><a ng-click="next()" href="">Next</a></li>
                         </ul>
                     </nav>
-                    
+
 
                     <div class="footer">
                         <hr>
@@ -88,5 +88,5 @@
     </div>
 
     <div ng-if="screenWidth < 768 && !isBookSearch" ng-include="'views/includes/stats.html'"></div>
-    
+
 </div>

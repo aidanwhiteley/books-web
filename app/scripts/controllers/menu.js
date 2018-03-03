@@ -27,12 +27,8 @@
                             $scope.user = data;
                             // Show help page on first logon
                             if ($scope.user.firstVisit) {
-                                if ($window.sessionStorage && $window.sessionStorage.helpSeen) {
-                                    // Do nothing 
-                                } else {
-                                    if ($window.sessionStorage) {
-                                        $window.sessionStorage.helpSeen = 'true';
-                                    }
+                                if ($window.sessionStorage && !$window.sessionStorage.helpSeen) {
+                                    $window.sessionStorage.helpSeen = 'true';
                                     $location.url('/help').replace();
                                 }
                             }
@@ -249,15 +245,15 @@
                     timer: 1000
                 });
             };
-        
+
             // ******************** Search functionality ***************************
-        
+
             $scope.searchForReviews = function () {
                 var searchTerms = $scope.searchText;
                 if (!searchTerms || searchTerms.trim().length === 0) {
                     return;
                 }
-                
+
                 $scope.searchText = '';
                 $location.url('/bookssearch/?terms=' + encodeURI(searchTerms)).replace();
             };

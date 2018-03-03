@@ -63,14 +63,13 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="rating">Your Rating Of The Book</label>
-                                    <select id="rating" ng-model="book.rating" class="form-control border-input" ng-init="book.rating = options[2].value" ng-options="option.value as option.name for option in options">
+                                    <select id="rating" ng-model="rating" class="form-control border-input" ng-options="o.name for o in options">
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-8">
                                 <div class="form-group">
                                     <label for="genre">Genre</label>
-                                    <!-- input type="text" id="genre" ng-model="book.genre" class="form-control border-input" placeholder="Enter the books main genre" required="" min="1" max="35" -->
                                     <input id="genre" class="form-control border-input" autocomplete="off" placeholder="Enter the books main genre" type="text" bs3-typeahead bs3-promise="listOfGenres" bs3-displayText="byGenreDisplayText" bs3-afterSelect="byGenreAfterSelect" ng-model="book.genre" required="" min="1" max="35">
                                 </div>
                             </div>

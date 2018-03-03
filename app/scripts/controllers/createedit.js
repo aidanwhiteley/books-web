@@ -10,7 +10,7 @@
      * Controller of the booksWebApp
      */
     angular.module('booksWebApp')
-        .controller('CreateEditCtrl', function ($scope, $log, $location, $anchorScroll, bookDataService, menuService, booksConstants) {
+        .controller('CreateEditCtrl', function ($scope, $log, $location, $anchorScroll, $rootScope, bookDataService, menuService, booksConstants, messagingService) {
 
             $scope.bookCreateOk = false;
             $scope.bookCreateError = false;
@@ -48,6 +48,7 @@
             $scope.save = function (book, bookForm) {
 
                 if (bookForm.$valid) {
+                    book.rating = $scope.rating.value;
                     if (!book.id) {
                         bookDataService.createBook(book)
                             .then(
@@ -60,7 +61,8 @@
                                     
                                     // Later decision to go to summary page after creating new book.
                                     // However, above code left in place in case the decision changes!
-                                    $location.url('/').replace();
+                                    messagingService.setLatestMessage('Created book review for ' + book.title);
+                                    $location.url('/summary').replace();
                                     //$scope.$apply();
                                 },
                                 function () {
@@ -74,6 +76,8 @@
                                 function () {
                                     $scope.resetMessaging();
                                     $scope.bookUpdateOK = true;
+                                    messagingService.setLatestMessage('Updated book review for ' + book.title);
+                                    $location.url('/summary').replace();
                                 },
                                 function () {
                                     $scope.resetMessaging();
@@ -86,13 +90,20 @@
 
             $scope.checkIfExistingBook = function () {
 
-                var idParam = $location.search().id;
+                var idParam = $location.search().id, i;
 
                 if (idParam && idParam !== '') {
                     bookDataService.getBook(idParam)
                         .then(
                             function (data) {
                                 $scope.book = data;
+                                for (i = 0; i < $scope.options.length; i = i + 1) {
+                                    if (data.rating.toUpperCase() === $scope.options[i].name.toUpperCase()) {
+                                        $scope.rating = $scope.options[i];
+                                        break;
+                                    }
+                                }
+                                
                                 $scope.bookForm.$setPristine();
                                 $scope.bookForm.$setUntouched();
 

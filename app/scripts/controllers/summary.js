@@ -1,4 +1,4 @@
-/*global angular: false */
+/*global angular: false, document: false */
 (function () {
     'use strict';
 
@@ -10,7 +10,7 @@
      * Controller of the booksWebApp
      */
     angular.module('booksWebApp')
-        .controller('SummaryCtrl', function ($scope, $log, $location, $routeParams, $window, $timeout, summaryDataService, bookDataService, booksConstants, menuService) {
+        .controller('SummaryCtrl', function ($scope, $log, $location, $routeParams, $window, $timeout, summaryDataService, bookDataService, booksConstants, menuService, messagingService) {
 
             var currentSearchType = 'byBooks',
                 currentSearchGenre = '',
@@ -25,6 +25,7 @@
             $scope.currentPage = 0;
             $scope.isBookSearch = false;
             $scope.currentSearchTerms = '';
+            $scope.notificationMessage = '';
 
             menuService.setMenuItem(booksConstants.menuItems.SUMMARY);
 
@@ -32,7 +33,7 @@
 
             $scope.getBooks = function () {
                 $scope.isBookSearch = false;
-                
+
                 if (currentSearchType === 'byBooks') {
                     bookDataService.getBooks($scope.currentPage, booksConstants.env.defaultPageSize)
                         .then(
@@ -172,8 +173,10 @@
                     .then(
                         function () {
                             $scope.getBooks();
-                            $scope.bookDeletedOk = true;
-                            $scope.deletedBook = book.title;
+                            $scope.notificationMessage = 'The ' + book.title + ' book review deleted as requested';
+                            $timeout(function () {
+                                $scope.notificationMessage = '';
+                            }, 5000);
 
                         },
                         function () {
@@ -228,9 +231,18 @@
             $scope.scrollTo = function () {
                 $timeout(function () {
                     $window.scrollTo(0, 0);
+                    document.getElementById('mainContainer').scrollIntoView();
                 });
 
             };
+
+            $scope.notificationMessage = messagingService.getAndClearLatestMessage();
+            if ($scope.notificationMessage) {
+                $scope.scrollTo();
+                $timeout(function () {
+                    $scope.notificationMessage = '';
+                }, 4000);
+            }
 
         });
 }());

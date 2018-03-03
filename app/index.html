@@ -71,7 +71,7 @@
                         <form ng-hide="currentMenuItem() !== 'genre'">
                             <fieldset>
                                 <div class="form-group">
-                                    <input autocomplete="off" class="findByGenreInput form-control searchByEntry menuCriteriaInput" placeholder="Start typing genre.." type="text" bs3-typeahead bs3-promise="listOfGenres" bs3-displayText="byGenreDisplayText" bs3-afterSelect="byGenreAfterSelect" ng-model="$parent.byGenreInput">
+                                    <input autocomplete="off" class="findByGenreInput form-control searchByEntry menuCriteriaInput" placeholder="Start typing genre.." type="text" bs3-typeahead bs3-promise="listOfGenres" bs3-displayText="byGenreDisplayText" bs3-afterSelect="byGenreAfterSelect" ng-model="byGenreInput">
                                 </div>
                             </fieldset>
                         </form>
@@ -84,7 +84,7 @@
                         <form ng-hide="currentMenuItem() !== 'author'">
                             <fieldset>
                                 <div class="form-group">
-                                    <input autocomplete="off" class="findByAuthorInput form-control searchByEntry menuCriteriaInput" placeholder="Start typing author name.." type="text" bs3-typeahead bs3-promise="listOfAuthors" bs3-displayText="byAuthorDisplayText" bs3-afterSelect="byAuthorAfterSelect" ng-model="$parent.byAuthorInput">
+                                    <input autocomplete="off" class="findByAuthorInput form-control searchByEntry menuCriteriaInput" placeholder="Start typing author name.." type="text" bs3-typeahead bs3-promise="listOfAuthors" bs3-displayText="byAuthorDisplayText" bs3-afterSelect="byAuthorAfterSelect" ng-model="byAuthorInput">
                                 </div>
                             </fieldset>
                         </form>
@@ -92,12 +92,12 @@
                     <li class="hidden-xs hidden-sm" ng-if="user.editor || user.admin" ng-class="{'active' : currentMenuItem() === 'reader'}">
                         <a ng-click="searchByReader()" href="">
                             <i class="ti-user"></i>
-                            <p>By Reader</p>
+                            <p>By Reviewer</p>
                         </a>
                         <form ng-hide="currentMenuItem() !== 'reader'">
                             <fieldset>
                                 <div class="form-group">
-                                    <input autocomplete="off" class="findByReaderInput form-control searchByEntry menuCriteriaInput" placeholder="Start typing readers name.." type="text" bs3-typeahead bs3-promise="listOfReaders" bs3-displayText="byReaderDisplayText" bs3-afterSelect="byReaderAfterSelect" ng-model="$parent.byReaderInput">
+                                    <input autocomplete="off" class="findByReaderInput form-control searchByEntry menuCriteriaInput" placeholder="Start typing reviewers name.." type="text" bs3-typeahead bs3-promise="listOfReaders" bs3-displayText="byReaderDisplayText" bs3-afterSelect="byReaderAfterSelect" ng-model="$parent.byReaderInput">
                                 </div>
                             </fieldset>
                         </form>
@@ -231,7 +231,7 @@
                         </ul>
                     </nav>
                     <div class="pull-right">
-                        UI Credit <a href="http://vuejs.creative-tim.com/vue-paper-dashboard/#/admin/overview" target="_blank">Creative Tim</a>
+                        UI Credit <a href="http://demos.creative-tim.com/paper-dashboard/dashboard.html" target="_blank">Creative Tim</a>
                     </div>
                 </div>
             </footer>
@@ -273,6 +273,7 @@
     <script src="scripts/services/bookdataservice.js"></script>
     <script src="scripts/services/userdataservice.js"></script>
     <script src="scripts/services/menuservice.js"></script>
+    <script src="scripts/services/messagingservice.js"></script>
     <script src="scripts/utils/bootstrap-checkbox-radio.js"></script>
     <script src="scripts/utils/bootstrap-notify.js"></script>
     <script src="scripts/utils/paper-dashboard.js"></script>
