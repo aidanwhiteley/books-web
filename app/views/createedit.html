@@ -93,7 +93,7 @@
                             <div class="col-md-8">
                                 <h5>{{googleBookData[googleMatchesIndex].volumeInfo.title}}</h5>
                                 <p>
-                                    <img class="rounded pull-left googleBookImageImport" ng-src="{{googleBookData[googleMatchesIndex].volumeInfo.imageLinks.thumbnail}}"> {{googleBookData[googleMatchesIndex].volumeInfo.description ? googleBookData[googleMatchesIndex].volumeInfo.description : 'No description available'}}
+                                    <img class="rounded pull-left googleBookImageImport" ng-src="{{googleBookData[googleMatchesIndex].volumeInfo.imageLinks.thumbnail.replace('http://', 'https://')}}"> {{googleBookData[googleMatchesIndex].volumeInfo.description ? googleBookData[googleMatchesIndex].volumeInfo.description : 'No description available'}}
                                 </p>
                                 <p>
                                     {{googleBookData[googleMatchesIndex].volumeInfo.authors ? 'By: ' + googleBookData[googleMatchesIndex].volumeInfo.authors.join() : ''}}
