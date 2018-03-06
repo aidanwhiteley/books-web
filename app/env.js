@@ -32,8 +32,8 @@
     window.__env.logoutEndPoint = "http://localhost:8080/secure/api/logout";
     
     // The URL for app metrics
-    // Can be relative path unless using CORS
-    window.__env.appMetrics = "http://localhost:8080/actuator";
+    // Can be relative path unless using CORS. Th etrailing slash is important
+    window.__env.appMetrics = "http://localhost:8080/actuator/";
     
     // Are we using CORS - normally development only. 
     // If you set this to true there is no XSRF enabled so beware!

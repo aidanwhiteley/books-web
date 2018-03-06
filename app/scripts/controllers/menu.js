@@ -150,6 +150,7 @@
             };
 
             $scope.byGenreAfterSelect = function (item) {
+                $scope.byGenreInput = '';
                 $location.url('/booksbygenre/?genre=' + encodeURI(item.genre)).replace();
                 $scope.$apply();
             };
@@ -180,6 +181,7 @@
             };
 
             $scope.byAuthorAfterSelect = function (item) {
+                $scope.byAuthorInput = '';
                 $location.url('/booksbyauthor/?author=' + encodeURI(item.author)).replace();
                 $scope.$apply();
             };
@@ -211,6 +213,7 @@
             };
 
             $scope.byReaderAfterSelect = function (item) {
+                $scope.byReaderInput = '';
                 $location.url('/booksbyreader/?reader=' + encodeURI(item.reader)).replace();
                 $scope.$apply();
             };

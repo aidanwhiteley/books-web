@@ -213,6 +213,17 @@ select.searchByEntry {
     opacity: 0.3;
 }
 
+.helpList {
+    font-size: 16px;
+}
+
+
+
+
+
+
+
+
 /** Search bar CSS */
 
 .sbx-medium {
