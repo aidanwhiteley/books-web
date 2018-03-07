@@ -75,7 +75,7 @@
                                             </div>
                                             <div ng-if="!comment.deleted" class="col-xs-8 col-sm-7 col-md-8">
                                                 <div class="commentMeta"><span ng-if="comment.owner.fullName">{{comment.owner.fullName}} - </span>{{comment.entered[2] + '/' + comment.entered[1] + '/' + comment.entered[0] + ' ' + comment.entered[3] + ':' + pad(comment.entered[4], 2)}}</div>
-                                                <span class="commentDetail">{{comment.comment}}</span>
+                                                <span class="commentDetail">{{comment.commentText}}</span>
                                             </div>
                                             <div ng-if="comment.deleted" class="col-xs-12 col-sm-12 col-md-12">
                                                 <div class="commentMeta">Comment deleted <span ng-if="comment.deletedBy">by {{comment.deletedBy}}</span></div>

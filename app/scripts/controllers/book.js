@@ -59,7 +59,7 @@
             $scope.saveComment = function (newComment, book, commentsForm) {
 
                 var commentToPost = {};
-                commentToPost.comment = newComment;
+                commentToPost.commentText = newComment;
 
                 if (commentsForm.$valid) {
 
