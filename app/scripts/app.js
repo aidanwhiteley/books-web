@@ -147,7 +147,7 @@
                 responseError: function (rejection) {
                     // Intercept HTTP 401/403 responses
                     if (/40(1|3)/.test(rejection.status)) {
-                        if (rejection.data.path === '/secure/api/user' || rejection.data.path === '/secure/api/books/readers') {
+                        if (rejection.data.path === '/secure/api/user' || rejection.data.path === '/secure/api/books/readers' || rejection.data.path === '/api/login') {
                             // Do nothing - expected when user not logged on
                         } else {
                             $log.warn('Got a 403', rejection);
