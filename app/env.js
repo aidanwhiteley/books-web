@@ -62,7 +62,7 @@
     
     // Home page book images to display
     window.__env.homePageBookImageCount = 15;
-    window.__env.homePageBookImageCountSmallDevice = 5;
+    window.__env.homePageBookImageCountSmallDevice = 7;
     window.__env.homePageBookSmallDeviceWidthBreakPoint = 500;
     
     

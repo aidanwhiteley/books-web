@@ -12,13 +12,48 @@
     angular.module('booksWebApp')
         .controller('LandingCtrl', function ($scope, $log, $location, $window, bookDataService, summaryDataService, booksConstants, menuService) {
 
-            var bookSlides = [], i, smallWidthDevice = false, booksToShow = booksConstants.env.homePageBookImageCount;
+            var bookSlides = [], i, smallWidthDevice = false, booksToShow = booksConstants.env.homePageBookImageCount,
+                largeDeviceImage, smallDeviceImage;
 
             menuService.setMenuItem(booksConstants.menuItems.LANDING);
 
             smallWidthDevice = ($window.innerWidth < booksConstants.env.homePageBookSmallDeviceWidthBreakPoint);
             if (smallWidthDevice) {
                 booksToShow = booksConstants.env.homePageBookImageCountSmallDevice;
+            }
+        
+            function findPreferredLargeDeviceImage(data) {
+                var preferredImage = '';
+                if (data.googleBookDetails.volumeInfo.imageLinks.small) {
+                    preferredImage = data.googleBookDetails.volumeInfo.imageLinks.small;
+                } else if (data.googleBookDetails.volumeInfo.imageLinks.thumbnail) {
+                    preferredImage = data.googleBookDetails.volumeInfo.imageLinks.thumbnail;
+                } else if (data.googleBookDetails.volumeInfo.imageLinks.medium) {
+                    preferredImage = data.googleBookDetails.volumeInfo.imageLinks.medium;
+                } else if (data.googleBookDetails.volumeInfo.imageLinks.large) {
+                    preferredImage = data.googleBookDetails.volumeInfo.imageLinks.large;
+                } else if (data.googleBookDetails.volumeInfo.imageLinks.smallThumbnail) {
+                    preferredImage = data.googleBookDetails.volumeInfo.imageLinks.smallThumbnail;
+                }
+                
+                return preferredImage.replace('http://', 'https://');
+            }
+        
+            function findPreferredSmallDeviceImage(data) {
+                var preferredImage = '';
+                if (data.googleBookDetails.volumeInfo.imageLinks.thumbnail) {
+                    preferredImage = data.googleBookDetails.volumeInfo.imageLinks.thumbnail;
+                } else if (data.googleBookDetails.volumeInfo.imageLinks.smallThumbnail) {
+                    preferredImage = data.googleBookDetails.volumeInfo.imageLinks.smallThumbnail;
+                } else if (data.googleBookDetails.volumeInfo.imageLinks.small) {
+                    preferredImage = data.googleBookDetails.volumeInfo.imageLinks.small;
+                } else if (data.googleBookDetails.volumeInfo.imageLinks.medium) {
+                    preferredImage = data.googleBookDetails.volumeInfo.imageLinks.medium;
+                } else if (data.googleBookDetails.volumeInfo.imageLinks.large) {
+                    preferredImage = data.googleBookDetails.volumeInfo.imageLinks.large;
+                }
+                
+                return preferredImage.replace('http://', 'https://');
             }
 
             $scope.getBooks = function () {
@@ -31,17 +66,21 @@
                                         data.content[i].googleBookDetails.volumeInfo.imageLinks) {
 
                                     if (smallWidthDevice) {
+                                        smallDeviceImage = findPreferredSmallDeviceImage(data.content[i]);
+                                        
                                         if (data.content[i].googleBookDetails.volumeInfo.imageLinks.thumbnail) {
                                             bookSlides.push({
-                                                'src': data.content[i].googleBookDetails.volumeInfo.imageLinks.thumbnail.replace('http://', 'https://'),
+                                                'src': smallDeviceImage,
                                                 'caption': data.content[i].title + ' by ' + data.content[i].author,
                                                 'id': data.content[i].id
                                             });
                                         }
                                     } else {
-                                        if (data.content[i].googleBookDetails.volumeInfo.imageLinks.small) {
+                                        largeDeviceImage = findPreferredLargeDeviceImage(data.content[i]);
+                                        
+                                        if (largeDeviceImage && largeDeviceImage.trim().length !== 0) {
                                             bookSlides.push({
-                                                'src': data.content[i].googleBookDetails.volumeInfo.imageLinks.small.replace('http://', 'https://'),
+                                                'src': largeDeviceImage,
                                                 'caption': data.content[i].title + ' by ' + data.content[i].author,
                                                 'id': data.content[i].id
                                             });

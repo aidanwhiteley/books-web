@@ -174,16 +174,16 @@
             $scope.googleMatchesPlus = function () {
                 if ($scope.googleMatchesIndex < ($scope.googleBookData.length - 1)) {
                     $scope.googleMatchesIndex = $scope.googleMatchesIndex + 1;
-                    delete $scope.book.googleBookId;
-                    $scope.book.foundOnGoogle = false;
+                    $scope.book.googleBookId = $scope.googleBookData[$scope.googleMatchesIndex].id;
+                    $scope.book.foundOnGoogle = true;
                 }
             };
 
             $scope.googleMatchesMinus = function () {
                 if ($scope.googleMatchesIndex > 0) {
                     $scope.googleMatchesIndex = $scope.googleMatchesIndex - 1;
-                    delete $scope.book.googleBookId;
-                    $scope.book.foundOnGoogle = false;
+                    $scope.book.googleBookId = $scope.googleBookData[$scope.googleMatchesIndex].id;
+                    $scope.book.foundOnGoogle = true;
                 }
             };
 
