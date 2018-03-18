@@ -10,7 +10,7 @@
      * Controller of the booksWebApp
      */
     angular.module('booksWebApp')
-        .controller('MenuCtrl', function ($scope, $log, $location, $window, userDataService, menuService, booksConstants, bookDataService) {
+        .controller('MenuCtrl', function ($scope, $log, $location, $window, $timeout, userDataService, menuService, booksConstants, bookDataService) {
 
             menuService.setMenuItem(booksConstants.menuItems.ADMINUSERS);
 
@@ -159,6 +159,10 @@
                 $scope.byGenreInput = '';
                 $('.findByGenreInput').removeClass('menuCriteriaInput');
                 menuService.setMenuItem(booksConstants.menuItems.GENRE);
+                $timeout(function () {
+                    angular.element('#findByGenre1').focus();
+                }, 100);
+                   
             };
 
             // ***** By Author ******
@@ -190,6 +194,9 @@
                 $scope.byAuthorInput = '';
                 $('.findByAuthorInput').removeClass('menuCriteriaInput');
                 menuService.setMenuItem(booksConstants.menuItems.AUTHOR);
+                $timeout(function () {
+                    angular.element('#findByAuthor1').focus();
+                }, 100);
             };
 
 
@@ -222,6 +229,9 @@
                 $scope.byReaderInput = '';
                 $('.findByReaderInput').removeClass('menuCriteriaInput');
                 menuService.setMenuItem(booksConstants.menuItems.READER);
+                $timeout(function () {
+                    angular.element('#findByReader1').focus();
+                }, 100);
             };
 
             // ****************** Select by rating *************
@@ -234,7 +244,6 @@
 
             $scope.ratingSelected = function (selected) {
                 $location.url('/booksbyrating/?rating=' + encodeURI(selected)).replace();
-                //$scope.$apply();
             };
 
             // Contact email display

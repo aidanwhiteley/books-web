@@ -71,7 +71,7 @@
                         <form ng-hide="currentMenuItem() !== 'genre'">
                             <fieldset>
                                 <div class="form-group">
-                                    <input autocomplete="off" class="findByGenreInput form-control searchByEntry menuCriteriaInput" placeholder="Start typing genre.." type="text" bs3-typeahead bs3-promise="listOfGenres" bs3-displayText="byGenreDisplayText" bs3-afterSelect="byGenreAfterSelect" ng-model="byGenreInput">
+                                <input autocomplete="off" id="findByGenre1" class="findByGenreInput form-control searchByEntry menuCriteriaInput" placeholder="Start typing genre.." type="text" bs3-typeahead bs3-promise="listOfGenres" bs3-displayText="byGenreDisplayText" bs3-afterSelect="byGenreAfterSelect" ng-model="byGenreInput">
                                 </div>
                             </fieldset>
                         </form>
@@ -84,7 +84,7 @@
                         <form ng-hide="currentMenuItem() !== 'author'">
                             <fieldset>
                                 <div class="form-group">
-                                    <input autocomplete="off" class="findByAuthorInput form-control searchByEntry menuCriteriaInput" placeholder="Start typing author name.." type="text" bs3-typeahead bs3-promise="listOfAuthors" bs3-displayText="byAuthorDisplayText" bs3-afterSelect="byAuthorAfterSelect" ng-model="byAuthorInput">
+                                    <input autocomplete="off" id="findByAuthor1" class="findByAuthorInput form-control searchByEntry menuCriteriaInput" placeholder="Start typing author name.." type="text" bs3-typeahead bs3-promise="listOfAuthors" bs3-displayText="byAuthorDisplayText" bs3-afterSelect="byAuthorAfterSelect" ng-model="byAuthorInput">
                                 </div>
                             </fieldset>
                         </form>
@@ -97,7 +97,7 @@
                         <form ng-hide="currentMenuItem() !== 'reader'">
                             <fieldset>
                                 <div class="form-group">
-                                    <input autocomplete="off" class="findByReaderInput form-control searchByEntry menuCriteriaInput" placeholder="Start typing reviewers name.." type="text" bs3-typeahead bs3-promise="listOfReaders" bs3-displayText="byReaderDisplayText" bs3-afterSelect="byReaderAfterSelect" ng-model="$parent.byReaderInput">
+                                    <input autocomplete="off" id="findByReader1" class="findByReaderInput form-control searchByEntry menuCriteriaInput" placeholder="Start typing reviewers name.." type="text" bs3-typeahead bs3-promise="listOfReaders" bs3-displayText="byReaderDisplayText" bs3-afterSelect="byReaderAfterSelect" ng-model="$parent.byReaderInput">
                                 </div>
                             </fieldset>
                         </form>
