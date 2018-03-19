@@ -22,8 +22,8 @@
                     <p>You can currently read basic book review information and comments entered by our members. However, you cannot post your own reviews or comment on the reviews of others. Additionally, you can't see details of who has posted a review or comment. <span ng-if="isAnonymous">Logging on via Google or Facebook is the first step in getting more access to the application and its content.</span></p>
 
                     <p ng-if="isUser && !user.email">If {{env.bookClubmembersScope}} and want to get full access to existing reviews and comments and maybe write your own reviews or comments, please drop an email to <a href="mailto:{{env.bookClubAdminEmail}}?Subject=Book%20Club%20Signup" target="_top">{{env.bookClubAdminEmail}}</a> and we'll get you added to the list of registered users asap.</p>
-                    <p ng-if="isUser && user.email">If {{env.bookClubmembersScope}}, please check (including the spam folder) your {{user.email}} email for an email confirming
-                    that access has been provided to {{env.applicationName}}. If you no longer use that email address (which was looked up from your Google / Facebook account), please drop an email to <a href="mailto:{{env.bookClubAdminEmail}}?Subject=Book%20Club%20Signup" target="_top">{{env.bookClubAdminEmail}}</a> and we'll get you added to the list of registered users asap.</p>
+                    <p ng-if="isUser && user.email">If {{env.bookClubmembersScope}}, please check your {{user.email}} email account (including the spam folder) for an email confirming
+                    that access has been provided to {{env.applicationName}}. If you no longer use that email address (which was looked up from your {{user.authProvider | lowercase}} account), please drop an email to <a href="mailto:{{env.bookClubAdminEmail}}?Subject=Book%20Club%20Signup" target="_top">{{env.bookClubAdminEmail}}</a> and we'll get you added to the list of registered users asap.</p>
                     
                 </div>
                 <div ng-if="isEditor && (!isAdmin)">
@@ -55,7 +55,7 @@
                         </ul>
                     </li>
                     <li>When entering a book review, the application will show a range of possible matches on Google Books (based on what you have typed in to the book's Title field). If you
-                    scroll through the suggestions and click the displayed checkbox when the best match is shown, this adds the Google Summary and Google Preview functionality to your book review.</li>
+                    scroll through the suggestions and select the best match, this adds the Google Summary and Google Preview functionality to your book review.</li>
                     <li>You can search for existing Book Reviews by a multitude of options - well you can if you are on a desktop or tablet as these options aren't available on phones yet</li>
                     <li>That's about it - that's all it does at the moment.</li>
                 </ul>
