@@ -25,8 +25,8 @@
     "grunt-postcss": "^0.5.5",
     "grunt-svgmin": "^2.0.0",
     "grunt-usemin": "^3.0.0",
-    "grunt-wiredep": "^2.0.0
-	"hoek": "^5.0.3",
+    "grunt-wiredep": "^2.0.0",
+    "hoek": "^5.0.3",
     "jasmine-core": "^2.8.0",
     "jit-grunt": "^0.9.1",
     "jshint-stylish": "^1.0.0",
