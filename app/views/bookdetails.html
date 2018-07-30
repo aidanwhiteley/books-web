@@ -46,7 +46,7 @@
                                 <p><b>Title: </b>{{book.title}}</p>
                                 <p><b>Author: </b>{{book.author}}</p>
                                 <p><b>Rating: </b>{{book.rating | capitalize}}</p>
-                                <p><b>Review Date: </b>{{book.entered[2] + '-' + book.entered[1] + '-' + book.entered[0]}}</p>
+                                <p><b>Review Date: </b>{{book.createdDateTime[2] + '-' + book.createdDateTime[1] + '-' + book.createdDateTime[0]}}</p>
                                 <p><b>Genre: </b>{{book.genre}}</p>
                                 <p class="reviewDetail"><b>Reviewer's Summary:</b> {{book.summary}}</p>
                                 <p ng-if="book.createdBy && book.createdBy.fullName"><b>Reviewer:</b>

@@ -18,7 +18,7 @@
 
                 var url = booksConstants.env.secureApiEndPoint + '/books';
 
-                book.entered = new Date();
+                book.createdDateTime = new Date();
 
                 return $http.post(url, book)
                     .then(function onSuccess(response) {

@@ -48,7 +48,7 @@
                                 <td><a ng-href="#/book/{{book.id}}">{{book.title}}</a></td>
                                 <td>{{book.author}}</td>
                                 <td>{{book.rating | capitalize}}</td>
-                                <td class="hidden-xs hidden-sm">{{book.entered[2] + '-' + book.entered[1] + '-' + book.entered[0]}}</td>
+                                <td class="hidden-xs hidden-sm">{{book.createdDateTime[2] + '-' + book.createdDateTime[1] + '-' + book.createdDateTime[0]}}</td>
                                 <td class="hidden-xs hidden-sm">{{book.genre}}</td>
                                 <td class="hidden-xs hidden-sm">
                                     <button type="button" class="btn btn-primary" ng-click="toggleSelected(book)"><i ng-class="book.expanded ? 'ti-angle-up' : 'ti-angle-down'"></i></button>
