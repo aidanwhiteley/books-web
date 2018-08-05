@@ -48,17 +48,18 @@
                                 <p><b>Rating: </b>{{book.rating | capitalize}}</p>
                                 <p><b>Review Date: </b>{{book.createdDateTime[2] + '-' + book.createdDateTime[1] + '-' + book.createdDateTime[0]}}</p>
                                 <p><b>Genre: </b>{{book.genre}}</p>
-                                <p class="reviewDetail"><b>Reviewer's Summary:</b> {{book.summary}}</p>
-                                <p ng-if="book.createdBy && book.createdBy.fullName"><b>Reviewer:</b>
-                                    {{book.createdBy.fullName}}
-                                    <span ng-if="book.createdBy && book.createdBy.picture && book.createdBy.link"><a href="{{book.createdBy.link}}" target="_blank"><img class="commentThumbnail" ng-src="{{book.createdBy.picture}}" height="75"></a></span>
-                                    <span ng-if="book.createdBy && book.createdBy.picture && !book.createdBy.link"><img class="commentThumbnail" ng-src="{{book.createdBy.picture}}" height="75"></span> 
-                                </p>
+                                <p class="reviewDetail"><b>Reviewer's Summary:</b><span class="reviewDetailSummary">{{book.summary}}</span></p>
+                                
                                 <p ng-if="book.displayGooglePreview">
                                     <b>Book Preview:</b>
                                     <a href="https://books.google.co.uk/books?id={{book.googleBookId}}&printsec=frontcover#v=onepage&q&f=true" target="_blank">
                                         <img class="" ng-src="./images/gbs_preview_button1.gif">
                                     </a>
+                                </p>
+                                <p ng-if="book.createdBy && book.createdBy.fullName"><b>Reviewer:</b>
+                                    {{book.createdBy.fullName}}
+                                    <!-- span ng-if="book.createdBy && book.createdBy.picture && book.createdBy.link"><a href="{{book.createdBy.link}}" target="_blank"><img class="commentThumbnail reviewerImage pull-right" ng-src="{{book.createdBy.picture}}" height="75"></a></span>
+                                    <span ng-if="book.createdBy && book.createdBy.picture && !book.createdBy.link"><img class="commentThumbnail reviewerImage pull-right" ng-src="{{book.createdBy.picture}}" height="75"></span --> 
                                 </p>
 
                                 <hr>
