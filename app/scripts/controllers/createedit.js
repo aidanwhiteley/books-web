@@ -19,6 +19,7 @@
             $scope.bookUpdateOK = false;
             $scope.googleMatchesIndex = 0;
             $scope.googleBookData = [];
+            $scope.htmlErrorField = '';
 
             menuService.setMenuItem(booksConstants.menuItems.ADDBOOK);
 
@@ -58,16 +59,25 @@
                                     $scope.book = {};
                                     $scope.bookForm.$setPristine();
                                     $scope.bookForm.$setUntouched();
-                                    
+
                                     // Later decision to go to summary page after creating new book.
                                     // However, above code left in place in case the decision changes!
                                     messagingService.setLatestMessage('Created book review for ' + book.title);
                                     $location.url('/summary').replace();
                                     //$scope.$apply();
                                 },
-                                function () {
+                                function (error) {
                                     $scope.resetMessaging();
-                                    $scope.bookCreateError = true;
+                                    if (error.status === 415) {
+                                        // While the server side application will try to stop HTML / JS being persistently stored in the 
+                                        // data for the application (the above 415 error), the primary defence against cross site scripting 
+                                        // remains with the front end application "output encoding" data based on the context into
+                                        // which that data is being inserted in the DOM.
+                                        // Angular helps by default here!
+                                        $scope.htmlErrorField = error.data.message;
+                                    } else {
+                                        $scope.bookCreateError = true;
+                                    }
                                 }
                             );
                     } else {
@@ -79,9 +89,13 @@
                                     messagingService.setLatestMessage('Updated book review for ' + book.title);
                                     $location.url('/summary').replace();
                                 },
-                                function () {
+                                function (error) {
                                     $scope.resetMessaging();
-                                    $scope.bookUpdateError = true;
+                                    if (error.status === 415) {
+                                        $scope.htmlErrorField = error.data.message;
+                                    } else {
+                                        $scope.bookUpdateError = true;
+                                    }
                                 }
                             );
                     }
@@ -90,7 +104,8 @@
 
             $scope.checkIfExistingBook = function () {
 
-                var idParam = $location.search().id, i;
+                var idParam = $location.search().id,
+                    i;
 
                 if (idParam && idParam !== '') {
                     bookDataService.getBook(idParam)
@@ -103,7 +118,7 @@
                                         break;
                                     }
                                 }
-                                
+
                                 $scope.bookForm.$setPristine();
                                 $scope.bookForm.$setUntouched();
 
@@ -119,7 +134,8 @@
 
             $scope.searchGoogle = function (book) {
 
-                var trimmedTitle, minumumValidInput = 2, i;
+                var trimmedTitle, minumumValidInput = 2,
+                    i;
 
                 // Check that we have some input
                 if (book && book.title) {
@@ -169,6 +185,7 @@
                 $scope.bookUpdateError = false;
                 $scope.bookUpdateOK = false;
                 $scope.bookRetrievalError = false;
+                $scope.htmlErrorField = '';
             };
 
             $scope.googleMatchesPlus = function () {

@@ -15,7 +15,7 @@
     </div>
     <div ng-if="bookRetrievalError" class="row">
         <div class="col-lg-6 col-sm-12">
-            <div class="alert alert-success">
+            <div class="alert alert-danger">
                 <p>Unable to get the details for the request book. Please try later.</p>
             </div>
         </div>
@@ -29,8 +29,15 @@
     </div>
     <div ng-if="bookUpdateError" class="row">
         <div class="col-lg-6 col-sm-12">
-            <div class="alert alert-success">
-                <p>Unable to get the details of the selected book. Please try later.</p>
+            <div class="alert alert-danger">
+                <p>Unable to update the book. Please try later.</p>
+            </div>
+        </div>
+    </div>
+    <div ng-if="htmlErrorField" class="row">
+        <div class="col-lg-6 col-sm-12">
+            <div class="alert alert-danger">
+                <p>It looks as though there was HTML entered into the {{htmlErrorField}} field - please remove it and try again.</p>
             </div>
         </div>
     </div>

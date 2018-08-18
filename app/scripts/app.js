@@ -150,7 +150,7 @@
                         if (rejection.data.path === '/secure/api/user' || rejection.data.path === '/secure/api/books/readers' || rejection.data.path === '/api/login') {
                             // Do nothing - expected when user not logged on
                         } else {
-                            $log.warn('Got a 403', rejection);
+                            $log.warn('API call returned ' + rejection.status, rejection);
                             $location.url('/helpLogon').replace();
                         }
                     }
