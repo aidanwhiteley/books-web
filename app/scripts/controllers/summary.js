@@ -10,7 +10,7 @@
      * Controller of the booksWebApp
      */
     angular.module('booksWebApp')
-        .controller('SummaryCtrl', function ($scope, $log, $location, $routeParams, $window, $timeout, summaryDataService, bookDataService, booksConstants, menuService, messagingService) {
+        .controller('SummaryCtrl', function ($scope, $log, $location, $routeParams, $window, $timeout, $ngConfirm, summaryDataService, bookDataService, booksConstants, menuService, messagingService) {
 
             var currentSearchType = 'byBooks',
                 currentSearchGenre = '',
@@ -166,6 +166,32 @@
 
                 $scope.bookDeletedOk = false;
                 $scope.deletedBook = '';
+            };
+
+
+            $scope.confirmDeleteSelected = function (book) {
+                $ngConfirm({ 
+                    title: 'Confirm delete!',
+                    closeIcon: true,
+                    content: 'Click <strong>Delete</strong> to confirm the book deletion or click <strong>Cancel</strong>.',
+                    scope: $scope,
+                    buttons: {
+                        delete: {
+                            text: 'Delete',
+                            btnClass: 'btn-red',
+                            action: function () {
+                                $scope.deleteSelected(book);
+                            }
+                        },
+                        somethingElse: {
+                            text: 'Cancel',
+                            btnClass: 'btn-green',
+                            action: function () {
+                                // Do nothing
+                            }
+                        }
+                    }
+                });
             };
 
             $scope.deleteSelected = function (book) {

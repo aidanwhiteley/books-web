@@ -17,7 +17,8 @@
             'ngSanitize',
             'ngTouch',
             'bootstrap3-typeahead',
-            'angular-carousel-3d'
+            'angular-carousel-3d',
+            'cp.ngConfirm'
         ])
         .constant('booksConstants', {
             // ************************************

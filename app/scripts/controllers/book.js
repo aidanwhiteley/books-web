@@ -10,7 +10,7 @@
      * Controller of the booksWebApp
      */
     angular.module('booksWebApp')
-        .controller('BookCtrl', function ($scope, $log, $routeParams, $location, $window, bookDataService, userDataService) {
+        .controller('BookCtrl', function ($scope, $log, $routeParams, $location, $window, $ngConfirm, bookDataService, userDataService) {
 
             $scope.id = $routeParams.id;
 
@@ -80,6 +80,31 @@
                 }
             };
 
+            $scope.confirmDeleteComment = function (bookId, commentId) {
+                $ngConfirm({
+                    title: 'Confirm delete!',
+                    closeIcon: true,
+                    content: 'Click <strong>Delete</strong> to confirm the deletion of the comment or click <strong>Cancel</strong> to prevent deletion.',
+                    scope: $scope,
+                    buttons: {
+                        delete: {
+                            text: 'Delete',
+                            btnClass: 'btn-red',
+                            action: function () {
+                                $scope.deleteComment(bookId, commentId);
+                            }
+                        },
+                        somethingElse: {
+                            text: 'Cancel',
+                            btnClass: 'btn-green',
+                            action: function () {
+                                // Do nothing
+                            }
+                        }
+                    }
+                });
+            };
+
             $scope.deleteComment = function (bookId, commentId) {
 
                 bookDataService.deleteComment(bookId, commentId)
@@ -96,13 +121,41 @@
                         }
                     );
             };
-        
+
             $scope.updateBook = function (book) {
                 $location.path('/edit/').search({
                     id: book.id
                 });
             };
-        
+
+
+
+            $scope.confirmDelete = function (book) {
+                $ngConfirm({
+                    title: 'Confirm delete!',
+                    closeIcon: true,
+                    content: 'Click <strong>Delete</strong> to confirm the deletion of the book review for "{{book.title}}" or click <strong>Cancel</strong> to prevent deletion.',
+                    scope: $scope,
+                    buttons: {
+                        delete: {
+                            text: 'Delete',
+                            btnClass: 'btn-red',
+                            action: function () {
+                                $scope.deleteBook(book);
+                            }
+                        },
+                        somethingElse: {
+                            text: 'Cancel',
+                            btnClass: 'btn-green',
+                            action: function () {
+                                // Do nothing
+                            }
+                        }
+                    }
+                });
+            };
+
+
             $scope.deleteBook = function (book) {
                 bookDataService.deleteBook(book)
                     .then(

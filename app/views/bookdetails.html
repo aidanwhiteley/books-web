@@ -82,7 +82,7 @@
                                                 <div class="commentMeta">Comment deleted <span ng-if="comment.deletedBy">by {{comment.deletedBy}}</span></div>
                                             </div>
                                             <div class="col-xs-3 col-sm-2 col-md-2">
-                                                <button ng-if="!comment.deleted && comment.allowDelete" type="button" class="btn btn-xs btn-danger btnList" ng-click="deleteComment(book.id, comment.id)"><i class="ti-close"> Delete</i></button>
+                                                <button ng-if="!comment.deleted && comment.allowDelete" type="button" class="btn btn-xs btn-danger btnList" ng-click="confirmDeleteComment(book.id, comment.id)"><i class="ti-close"> Delete</i></button>
                                             </div>
                                             <div ng-if="!book.allowComment" class="col-xs-1">
                                             </div>
@@ -110,7 +110,7 @@
                                     <h5>Update or delete book review</h5>
                                     <div class="text-center">
                                         <button type="submit" ng-click="updateBook(book)" class="btn btn-info btn-fill btn-wd maint-button">Update Book Review</button>
-                                        <button type="submit" ng-click="deleteBook(book)" class="btn btn-danger btn-fill btn-wd maint-button">Delete Book Review</button>
+                                        <button type="submit" ng-click="confirmDelete(book)" class="btn btn-danger btn-fill btn-wd maint-button">Delete Book Review</button>
                                     </div>
                                 </div>
 

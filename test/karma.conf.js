@@ -34,6 +34,7 @@ module.exports = function (config) {
       'bower_components/angular-mocks/angular-mocks.js',
       'bower_components/angular-swipe/dist/angular-swipe.js',
       'bower_components/angular-carousel-3d/dist/carousel-3d.js',
+      'bower_components/angular-confirm/js/angular-confirm.js',
       'bower_components/jasmine/lib/jasmine-core/jasmine.js',
       'bower_components/jasmine-jquery/lib/jasmine-jquery.js',
       // endbower

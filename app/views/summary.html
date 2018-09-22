@@ -63,7 +63,7 @@
                                 <td class="bookSummary bookSummaryButtons">
                                     <button type="button" class="btn btn-xs btn-info btnList" ng-click="bookDetails(book)"><i class="ti-new-window"> Full Details</i></button><br>
                                     <button ng-if="book.allowUpdate" type="button" class="btn btn-xs btn-info btnList" ng-click="editSelected(book)"><i class="ti-pencil-alt"> Edit</i></button><br>
-                                    <button ng-if="book.allowDelete" type="button" class="btn btn-xs btn-danger btnList" ng-click="deleteSelected(book)"><i class="ti-close"> Delete</i></button>
+                                    <button ng-if="book.allowDelete" type="button" class="btn btn-xs btn-danger btnList" ng-click="confirmDeleteSelected(book)"><i class="ti-close"> Delete</i></button>
                                 </td>
                             </tr>
                         </tbody>
