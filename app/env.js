@@ -15,6 +15,10 @@
     // Endpoint for secured API calls.
     // Can be relative path unless using CORS
     window.__env.secureApiEndPoint = 'http://localhost:8080/secure/api';
+    
+    // Endpoint for feeds for list of recent changes.
+    // Can be relative path unless using CORS
+    window.__env.feedsEndPoint = 'http://localhost:8080/feeds';
 
     // Default page size for results tables
     window.__env.defaultPageSize = 5;
