@@ -34,7 +34,7 @@
                             }
                         },
                         function (errors) {
-                            if (errors.status !== 403) {
+                            if (errors.status !== 401) {
                                 $log.error('Failed to get user data: ' + JSON.stringify(errors));
                             }
                             $scope.user = null;

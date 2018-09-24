@@ -42,7 +42,7 @@
                             $scope.user = user;
                         },
                         function (errors) {
-                            if (errors.status !== 403) {
+                            if (errors.status !== 401) {
                                 $log.error('Failed to get user data for help page: ' + JSON.stringify(errors));
                             }
                             $scope.isAnonymous = true;
