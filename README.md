@@ -65,7 +65,12 @@ The application should be running at https://cloudybookclub.com/
 
 If you haven't tried out the application yet, here's a screen grab for what is looked like (from a while back - while it was still actively being developed)
 ![Screen shot](https://github.com/aidanwhiteley/books-web/blob/master/app/images/cloudy-book-club-screen-grab.jpg "Book review")
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Faidanwhiteley%2Fbooks-web.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Faidanwhiteley%2Fbooks-web?ref=badge_shield)
 
 ## Acknowledgements
 The UI for this application is based on the free "Paper Dashboard" admin web site template from Creative Tim - available at https://www.creative-tim.com/product/paper-dashboard-angular
 and released under the MIT license.
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Faidanwhiteley%2Fbooks-web.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Faidanwhiteley%2Fbooks-web?ref=badge_large)
