@@ -1,7 +1,7 @@
 # books-web
 
 This is the companion project to https://github.com/aidanwhiteley/books which provides a REST based server side 
-implementation consumed by this Angular 1.x application.
+implementation consumed by this AngularJS 1.x application.
 
 The application is an online, local book club - so nothing too revolutionary here I'm afraid!
 
@@ -20,7 +20,7 @@ These assume you have recent versions of npm and bower installed. Google is your
 Run `grunt serve` to run in development / preview mode and get automatic (live) re-loading in the browser as
 you change code.
 
-This assumes you have the server side code running on the same machine and listening on port 8100 (which 
+This assumes you have the server side code running on the same machine and listening on port 8080 (which 
 will be the case if running the https://github.com/aidanwhiteley/books project on its default port).
 
 ## Configuring for other environments
@@ -63,7 +63,7 @@ And what does all this effort get you?
 
 The application should be running at https://cloudybookclub.com/
 
-If you haven't logged on to the application yet, here's a screen grab for what is looked like (from a while back - it is still actively being developed)
+If you haven't tried out the application yet, here's a screen grab for what is looked like (from a while back - while it was still actively being developed)
 ![Screen shot](https://github.com/aidanwhiteley/books-web/blob/master/app/images/cloudy-book-club-screen-grab.jpg "Book review")
 
 ## Acknowledgements

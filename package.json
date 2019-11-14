@@ -26,21 +26,24 @@
     "grunt-svgmin": "^2.0.0",
     "grunt-usemin": "^3.0.0",
     "grunt-wiredep": "^2.0.0",
-    "hoek": "^5.0.3",
-    "jasmine-core": "^2.8.0",
+    "hoek": "^5.0.4",
+    "https-proxy-agent": "^2.2.4",
+    "jasmine-core": "^2.99.1",
     "jit-grunt": "^0.9.1",
     "jshint-stylish": "^1.0.0",
-    "karma": "^2.0.0",
-    "karma-jasmine": "^1.1.1",
+    "karma": "^2.0.5",
+    "karma-jasmine": "^1.1.2",
     "karma-phantomjs-launcher": "^1.0.4",
     "phantomjs-prebuilt": "^2.1.16",
-    "time-grunt": "^1.0.0",
-    "https-proxy-agent": "^2.2.0"
+    "time-grunt": "^1.0.0"
   },
   "engines": {
     "node": ">=0.10.0"
   },
   "scripts": {
     "test": "karma start test\\karma.conf.js"
+  },
+  "dependencies": {
+    "natives": "^1.1.6"
   }
 }
