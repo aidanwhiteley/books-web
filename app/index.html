@@ -128,12 +128,6 @@
                             <p>Admin users</p>
                         </a>
                     </li>
-                    <li ng-if="user.admin" ng-class="{'active' : currentMenuItem() === 'metrics'}">
-                        <a href="{{env.appMetrics}}">
-                            <i class="ti-stats-up"></i>
-                            <p>App metrics</p>
-                        </a>
-                    </li>
                     <li ng-if="user">
                         <a href="#/logout">
                             <i class="ti-close"></i>
