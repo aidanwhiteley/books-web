@@ -8,6 +8,11 @@
         env = window.__env;
     }
 
+    // https://stackoverflow.com/questions/50448326/uncaught-typeerror-angular-lowercase-is-not-a-function
+    angular.lowercase = function(text) { 
+        return text.toLowerCase(); 
+    };
+
     angular
         .module('booksWebApp', [
             'ngAnimate',
