@@ -32,8 +32,8 @@
     }
   },
   "resolutions": {
-    "angular": "1.7.8",
-    "angular-mocks": "1.7.8x",
+    "angular": "1.6.10",
+    "angular-mocks": "1.6.x",
     "angular-sanitize": "~1.7.8"
   }
 }
