@@ -2,290 +2,311 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>Cloudy Book Club</title>
+  <title>Cloudy Book Club</title>
 
-    <meta content="width=device-width, initial-scale=1.0, user-scalable=1 name=viewport" />
-    <meta name="viewport" content="width=device-width" />
+  <meta content="width=device-width, initial-scale=1.0, user-scalable=1 name=viewport" />
+  <meta name="viewport" content="width=device-width" />
 
-    <!-- build:css(.) styles/vendor.css -->
-    <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="bower_components/animate.css/animate.css" />
-    <link rel="stylesheet" href="bower_components/angular-carousel-3d/dist/carousel-3d.css" />
-    <link rel="stylesheet" href="bower_components/angular-confirm/css/angular-confirm.css" />
-    <!-- endbower -->
-    <!-- endbuild -->
-    <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="styles/paper-dashboard.css">
-    <link rel="stylesheet" href="styles/themify-icons.css">
-    <link rel="stylesheet" href="styles/bookapp.css">
-    <!-- endbuild -->
+  <!-- build:css(.) styles/vendor.css -->
+  <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+  <link rel="stylesheet" href="bower_components/animate.css/animate.css" />
+  <link rel="stylesheet" href="bower_components/angular-carousel-3d/dist/carousel-3d.css" />
+  <link rel="stylesheet" href="bower_components/angular-confirm/css/angular-confirm.css" />
+  <!-- endbower -->
+  <!-- endbuild -->
+  <!-- build:css(.tmp) styles/main.css -->
+  <link rel="stylesheet" href="styles/paper-dashboard.css">
+  <link rel="stylesheet" href="styles/themify-icons.css">
+  <link rel="stylesheet" href="styles/bookapp.css">
+  <!-- endbuild -->
 
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Muli:400,300" rel="stylesheet" type="text/css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Muli:400,300" rel="stylesheet" type="text/css">
 
 </head>
 
 <body ng-app="booksWebApp">
 
-    <div class="wrapper" ng-controller="MenuCtrl">
-        <div class="sidebar" data-background-color="black" data-active-color="warning">
-            <div class="sidebar-wrapper">
-                <div class="logo">
-                    <a href="#" class="simple-text" ng-cloak>{{env.applicationName}}</a>
-                </div>
-
-                <ul class="nav">
-                    <li ng-class="{'active' : currentMenuItem() === 'landing'}">
-                        <a href="#/">
-                            <i class="ti-files"></i>
-                            <p>Home</p>
-                        </a>
-                    </li>
-                    <li ng-class="{'active' : currentMenuItem() === 'summary'}">
-                        <a href="#/summary">
-                            <i class="ti-files"></i>
-                            <p>Summary</p>
-                        </a>
-                    </li>
-                    <li class="hidden-xs hidden-sm" ng-class="{'active' : currentMenuItem() === 'rating'}">
-                        <a ng-click="searchByRating()" href="">
-                            <i class="ti-star"></i>
-                            <p>By Rating</p>
-                        </a>
-                        <form ng-hide="currentMenuItem() !== 'rating'">
-                            <fieldset>
-                                <div class="form-group">
-                                    <select class="form-control searchByEntry menuCriteriaInput findByRatingInput" ng-model="$parent.selectedName" ng-options="item for item in ratings" ng-change="ratingSelected(selectedName)"></select>
-                                </div>
-                            </fieldset>
-                        </form>
-                    </li>
-                    <li class="hidden-xs hidden-sm" ng-class="{'active' : currentMenuItem() === 'genre'}">
-                        <a ng-click="searchByGenre()" href="">
-                            <i class="ti-folder"></i>
-                            <p>By Genre</p>
-                        </a>
-                        <form ng-hide="currentMenuItem() !== 'genre'">
-                            <fieldset>
-                                <div class="form-group">
-                                <input autocomplete="off" id="findByGenre1" class="findByGenreInput form-control searchByEntry menuCriteriaInput" placeholder="Start typing genre.." type="text" bs3-typeahead bs3-promise="listOfGenres" bs3-displayText="byGenreDisplayText" bs3-afterSelect="byGenreAfterSelect" ng-model="byGenreInput">
-                                </div>
-                            </fieldset>
-                        </form>
-                    </li>
-                    <li class="hidden-xs hidden-sm" ng-class="{'active' : currentMenuItem() === 'author'}">
-                        <a ng-click="searchByAuthor()" href="">
-                            <i class="ti-id-badge"></i>
-                            <p>By Author</p>
-                        </a>
-                        <form ng-hide="currentMenuItem() !== 'author'">
-                            <fieldset>
-                                <div class="form-group">
-                                    <input autocomplete="off" id="findByAuthor1" class="findByAuthorInput form-control searchByEntry menuCriteriaInput" placeholder="Start typing author name.." type="text" bs3-typeahead bs3-promise="listOfAuthors" bs3-displayText="byAuthorDisplayText" bs3-afterSelect="byAuthorAfterSelect" ng-model="byAuthorInput">
-                                </div>
-                            </fieldset>
-                        </form>
-                    </li>
-                    <li class="hidden-xs hidden-sm" ng-if="user.editor || user.admin" ng-class="{'active' : currentMenuItem() === 'reader'}">
-                        <a ng-click="searchByReader()" href="">
-                            <i class="ti-user"></i>
-                            <p>By Reviewer</p>
-                        </a>
-                        <form ng-hide="currentMenuItem() !== 'reader'">
-                            <fieldset>
-                                <div class="form-group">
-                                    <input autocomplete="off" id="findByReader1" class="findByReaderInput form-control searchByEntry menuCriteriaInput" placeholder="Start typing reviewers name.." type="text" bs3-typeahead bs3-promise="listOfReaders" bs3-displayText="byReaderDisplayText" bs3-afterSelect="byReaderAfterSelect" ng-model="$parent.byReaderInput">
-                                </div>
-                            </fieldset>
-                        </form>
-                    </li>
-                    <li ng-if="user.editor || user.admin" ng-class="{'active' : currentMenuItem() === 'addbook'}">
-                        <a href="#/add">
-                            <i class="ti-pencil-alt"></i>
-                            <p>Add a book</p>
-                        </a>
-                    </li>
-                    <li ng-if="!user" class="notLoggedOn logonOptions">
-                        <br><br>
-                        <a href="{{env.logonFacebookEndPoint}}">
-                            <i class="ti-facebook"></i>
-                            <p>Login with Facebook</p>
-                        </a>
-                    </li>
-                    <li ng-if="!user" class="notLoggedOn logonOptions">
-                        <a class="logonOptions" href="{{env.logonGoogleEndPoint}}">
-                            <i class="ti-google"></i>
-                            <p>Login with Google</p>
-                        </a>
-                    </li>
-                    <li ng-if="user.admin" ng-class="{'active' : currentMenuItem() === 'adminusers'}">
-                        <a href="#/users">
-                            <i class="ti-view-list"></i>
-                            <p>Admin users</p>
-                        </a>
-                    </li>
-                    <li ng-if="user">
-                        <a href="#/logout">
-                            <i class="ti-close"></i>
-                            <p>Logout</p>
-                        </a>
-                    </li>
-                    <li ng-if="user" class="loggedOn">
-                        <p class="welcomeText" ng-if="user.firstVisit">Hi {{user.firstName}}. {{env.welcomeText}}</p>
-                        <p class="welcomeText" ng-if="!user.firstVisit">Hi {{user.firstName}}. {{env.welcomeBackText}} {{user.lastLogon[2]}}/{{user.lastLogon[1]}}/{{user.lastLogon[0]}}</p>
-                    </li>
-                </ul>
-            </div>
-
+  <div class="wrapper" ng-controller="MenuCtrl">
+    <div class="sidebar" data-background-color="black" data-active-color="warning">
+      <div class="sidebar-wrapper">
+        <div class="logo">
+          <a href="#" class="simple-text" ng-cloak>{{env.applicationName}}</a>
         </div>
 
-        <div class="main-panel">
-            <nav class="navbar navbar-default">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar bar1"></span>
-                            <span class="icon-bar bar2"></span>
-                            <span class="icon-bar bar3"></span>
-                        </button>
-                        <a id="navbar" class="navbar-brand" href="#" ng-cloak>{{env.tagLineText}}</a>
-                    </div>
-
-                    <div class="collapse navbar-collapse">
-
-                        <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
-                          <symbol xmlns="http://www.w3.org/2000/svg" id="sbx-icon-search-13" viewBox="0 0 40 40">
-                            <path d="M26.804 29.01c-2.832 2.34-6.465 3.746-10.426 3.746C7.333 32.756 0 25.424 0 16.378 0 7.333 7.333 0 16.378 0c9.046 0 16.378 7.333 16.378 16.378 0 3.96-1.406 7.594-3.746 10.426l10.534 10.534c.607.607.61 1.59-.004 2.202-.61.61-1.597.61-2.202.004L26.804 29.01zm-10.426.627c7.323 0 13.26-5.936 13.26-13.26 0-7.32-5.937-13.257-13.26-13.257C9.056 3.12 3.12 9.056 3.12 16.378c0 7.323 5.936 13.26 13.258 13.26z"
-                            fill-rule="evenodd" />
-                          </symbol>
-                          <symbol xmlns="http://www.w3.org/2000/svg" id="sbx-icon-clear-2" viewBox="0 0 20 20">
-                            <path d="M8.96 10L.52 1.562 0 1.042 1.04 0l.522.52L10 8.96 18.438.52l.52-.52L20 1.04l-.52.522L11.04 10l8.44 8.438.52.52L18.96 20l-.522-.52L10 11.04l-8.438 8.44-.52.52L0 18.96l.52-.522L8.96 10z" fill-rule="evenodd" />
-                          </symbol>
-                        </svg>
-                        <form novalidate="novalidate" ng-submit="searchForReviews()" class="searchbox sbx-medium">
-                          <div role="search" class="sbx-medium__wrapper">
-                            <input type="search" name="search" ng-model="searchText" placeholder="Search for book reviews" autocomplete="off" required="required" class="sbx-medium__input">
-                            <button type="submit"  title="Submit your search query." class="sbx-medium__submit">
-                              <svg role="img" aria-label="Search">
-                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#sbx-icon-search-13"></use>
-                              </svg>
-                            </button>
-                            <button type="reset" title="Clear the search query." class="sbx-medium__reset">
-                              <svg role="img" aria-label="Reset">
-                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#sbx-icon-clear-2"></use>
-                              </svg>
-                            </button>
-                          </div>
-                        </form>
-
-
-                        <ul class="nav navbar-nav navbar-right">
-
-                            <li>
-                                <a href="#help">
-                                    <i class="ti-help-alt"></i>
-                                    <p>Help / info</p>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{env.feedsEndPoint}}/rss">
-                                    <i class="ti-rss-alt"></i>
-                                    <p>RSS</p>
-                                </a>
-                            </li>
-                            <li class="hidden-xs hidden-sm">
-                                <a ng-click="displayContactDetails()" href="">
-                                    <i class="ti-email"></i>
-                                    <p>Contact</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+        <ul class="nav">
+          <li ng-class="{'active' : currentMenuItem() === 'landing'}">
+            <a href="#/">
+              <i class="ti-files"></i>
+              <p>Home</p>
+            </a>
+          </li>
+          <li ng-class="{'active' : currentMenuItem() === 'summary'}">
+            <a href="#/summary">
+              <i class="ti-files"></i>
+              <p>Summary</p>
+            </a>
+          </li>
+          <li class="hidden-xs hidden-sm" ng-class="{'active' : currentMenuItem() === 'rating'}">
+            <a ng-click="searchByRating()" href="">
+              <i class="ti-star"></i>
+              <p>By Rating</p>
+            </a>
+            <form ng-hide="currentMenuItem() !== 'rating'">
+              <fieldset>
+                <div class="form-group">
+                  <select class="form-control searchByEntry menuCriteriaInput findByRatingInput"
+                    ng-model="$parent.selectedName" ng-options="item for item in ratings"
+                    ng-change="ratingSelected(selectedName)"></select>
                 </div>
-            </nav>
-
-
-            <div class="content">
-                <div ng-view=""></div>
-            </div>
-
-
-            <footer class="footer">
-                <div class="container-fluid">
-                    <nav class="pull-left">
-                        <ul>
-
-                            <li>
-                                <a href="#privacy">
-                                    Privacy Policy
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#help">
-                                   Help
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://github.com/aidanwhiteley" target="_blank">
-                                    GitHub
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                    <div class="pull-right">
-                        UI Credit <a href="http://demos.creative-tim.com/paper-dashboard/dashboard.html" target="_blank">Creative Tim</a>
-                    </div>
+              </fieldset>
+            </form>
+          </li>
+          <li class="hidden-xs hidden-sm" ng-class="{'active' : currentMenuItem() === 'genre'}">
+            <a ng-click="searchByGenre()" href="">
+              <i class="ti-folder"></i>
+              <p>By Genre</p>
+            </a>
+            <form ng-hide="currentMenuItem() !== 'genre'">
+              <fieldset>
+                <div class="form-group">
+                  <input autocomplete="off" id="findByGenre1"
+                    class="findByGenreInput form-control searchByEntry menuCriteriaInput"
+                    placeholder="Start typing genre.." type="text" bs3-typeahead bs3-promise="listOfGenres"
+                    bs3-displayText="byGenreDisplayText" bs3-afterSelect="byGenreAfterSelect" ng-model="byGenreInput">
                 </div>
-            </footer>
+              </fieldset>
+            </form>
+          </li>
+          <li class="hidden-xs hidden-sm" ng-class="{'active' : currentMenuItem() === 'author'}">
+            <a ng-click="searchByAuthor()" href="">
+              <i class="ti-id-badge"></i>
+              <p>By Author</p>
+            </a>
+            <form ng-hide="currentMenuItem() !== 'author'">
+              <fieldset>
+                <div class="form-group">
+                  <input autocomplete="off" id="findByAuthor1"
+                    class="findByAuthorInput form-control searchByEntry menuCriteriaInput"
+                    placeholder="Start typing author name.." type="text" bs3-typeahead bs3-promise="listOfAuthors"
+                    bs3-displayText="byAuthorDisplayText" bs3-afterSelect="byAuthorAfterSelect"
+                    ng-model="byAuthorInput">
+                </div>
+              </fieldset>
+            </form>
+          </li>
+          <li class="hidden-xs hidden-sm" ng-if="user.editor || user.admin"
+            ng-class="{'active' : currentMenuItem() === 'reader'}">
+            <a ng-click="searchByReader()" href="">
+              <i class="ti-user"></i>
+              <p>By Reviewer</p>
+            </a>
+            <form ng-hide="currentMenuItem() !== 'reader'">
+              <fieldset>
+                <div class="form-group">
+                  <input autocomplete="off" id="findByReader1"
+                    class="findByReaderInput form-control searchByEntry menuCriteriaInput"
+                    placeholder="Start typing reviewers name.." type="text" bs3-typeahead bs3-promise="listOfReaders"
+                    bs3-displayText="byReaderDisplayText" bs3-afterSelect="byReaderAfterSelect"
+                    ng-model="$parent.byReaderInput">
+                </div>
+              </fieldset>
+            </form>
+          </li>
+          <li ng-if="user.editor || user.admin" ng-class="{'active' : currentMenuItem() === 'addbook'}">
+            <a href="#/add">
+              <i class="ti-pencil-alt"></i>
+              <p>Add a book</p>
+            </a>
+          </li>
+          <li ng-if="!user" class="notLoggedOn logonOptions">
+            <br><br>
+            <a href="{{env.logonFacebookEndPoint}}">
+              <i class="ti-facebook"></i>
+              <p>Login with Facebook</p>
+            </a>
+          </li>
+          <li ng-if="!user" class="notLoggedOn logonOptions">
+            <a class="logonOptions" href="{{env.logonGoogleEndPoint}}">
+              <i class="ti-google"></i>
+              <p>Login with Google</p>
+            </a>
+          </li>
+          <li ng-if="user.admin" ng-class="{'active' : currentMenuItem() === 'adminusers'}">
+            <a href="#/users">
+              <i class="ti-view-list"></i>
+              <p>Admin users</p>
+            </a>
+          </li>
+          <li ng-if="user">
+            <a href="#/logout">
+              <i class="ti-close"></i>
+              <p>Logout</p>
+            </a>
+          </li>
+          <li ng-if="user" class="loggedOn">
+            <p class="welcomeText" ng-if="user.firstVisit">Hi {{user.firstName}}. {{env.welcomeText}}</p>
+            <p class="welcomeText" ng-if="!user.firstVisit">Hi {{user.firstName}}. {{env.welcomeBackText}}
+              {{user.lastLogon[2]}}/{{user.lastLogon[1]}}/{{user.lastLogon[0]}}</p>
+          </li>
+        </ul>
+      </div>
 
-        </div>
     </div>
 
-    <script src="env.js"></script>
+    <div class="main-panel">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar bar1"></span>
+              <span class="icon-bar bar2"></span>
+              <span class="icon-bar bar3"></span>
+            </button>
+            <a id="navbar" class="navbar-brand" href="#" ng-cloak>{{env.tagLineText}}</a>
+          </div>
 
-    <!-- build:js(.) scripts/vendor.js -->
-    <!-- bower:js -->
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <script src="bower_components/angular-animate/angular-animate.js"></script>
-    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-    <script src="bower_components/angular-resource/angular-resource.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="bower_components/angular-touch/angular-touch.js"></script>
-    <script src="bower_components/bootstrap3-typeahead/bootstrap3-typeahead.js"></script>
-    <script src="bower_components/angular-bootstrap3-typeahead/angular-bootstrap3-typeahead.js"></script>
-    <script src="bower_components/angular-mocks/angular-mocks.js"></script>
-    <script src="bower_components/angular-swipe/dist/angular-swipe.js"></script>
-    <script src="bower_components/angular-carousel-3d/dist/carousel-3d.js"></script>
-    <script src="bower_components/angular-confirm/js/angular-confirm.js"></script>
-    <!-- endbower -->
-    <!-- endbuild -->
+          <div class="collapse navbar-collapse">
 
-    <!-- build:js({.tmp,app}) scripts/scripts.js -->
-    <script src="scripts/app.js"></script>
-    <script src="scripts/controllers/summary.js"></script>
-    <script src="scripts/controllers/createedit.js"></script>
-    <script src="scripts/controllers/menu.js"></script>
-    <script src="scripts/controllers/book.js"></script>
-    <script src="scripts/controllers/help.js"></script>
-    <script src="scripts/controllers/logout.js"></script>
-    <script src="scripts/controllers/landing.js"></script>
-    <script src="scripts/services/summarydataservice.js"></script>
-    <script src="scripts/services/bookdataservice.js"></script>
-    <script src="scripts/services/userdataservice.js"></script>
-    <script src="scripts/services/menuservice.js"></script>
-    <script src="scripts/services/messagingservice.js"></script>
-    <script src="scripts/utils/bootstrap-checkbox-radio.js"></script>
-    <script src="scripts/utils/bootstrap-notify.js"></script>
-    <script src="scripts/utils/paper-dashboard.js"></script>
-    <!-- endbuild -->
+            <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+              <symbol xmlns="http://www.w3.org/2000/svg" id="sbx-icon-search-13" viewBox="0 0 40 40">
+                <path
+                  d="M26.804 29.01c-2.832 2.34-6.465 3.746-10.426 3.746C7.333 32.756 0 25.424 0 16.378 0 7.333 7.333 0 16.378 0c9.046 0 16.378 7.333 16.378 16.378 0 3.96-1.406 7.594-3.746 10.426l10.534 10.534c.607.607.61 1.59-.004 2.202-.61.61-1.597.61-2.202.004L26.804 29.01zm-10.426.627c7.323 0 13.26-5.936 13.26-13.26 0-7.32-5.937-13.257-13.26-13.257C9.056 3.12 3.12 9.056 3.12 16.378c0 7.323 5.936 13.26 13.258 13.26z"
+                  fill-rule="evenodd" />
+              </symbol>
+              <symbol xmlns="http://www.w3.org/2000/svg" id="sbx-icon-clear-2" viewBox="0 0 20 20">
+                <path
+                  d="M8.96 10L.52 1.562 0 1.042 1.04 0l.522.52L10 8.96 18.438.52l.52-.52L20 1.04l-.52.522L11.04 10l8.44 8.438.52.52L18.96 20l-.522-.52L10 11.04l-8.438 8.44-.52.52L0 18.96l.52-.522L8.96 10z"
+                  fill-rule="evenodd" />
+              </symbol>
+            </svg>
+            <form novalidate="novalidate" ng-submit="searchForReviews()" class="searchbox sbx-medium">
+              <div role="search" class="sbx-medium__wrapper">
+                <input type="search" name="search" ng-model="searchText" placeholder="Search for book reviews"
+                  autocomplete="off" required="required" class="sbx-medium__input">
+                <button type="submit" title="Submit your search query." class="sbx-medium__submit">
+                  <svg role="img" aria-label="Search">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#sbx-icon-search-13"></use>
+                  </svg>
+                </button>
+                <button type="reset" title="Clear the search query." class="sbx-medium__reset">
+                  <svg role="img" aria-label="Reset">
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#sbx-icon-clear-2"></use>
+                  </svg>
+                </button>
+              </div>
+            </form>
+
+
+            <ul class="nav navbar-nav navbar-right">
+
+              <li>
+                <a href="#help">
+                  <i class="ti-help-alt"></i>
+                  <p>Help / info</p>
+                </a>
+              </li>
+              <li>
+                <a href="{{env.feedsEndPoint}}/rss">
+                  <i class="ti-rss-alt"></i>
+                  <p>RSS</p>
+                </a>
+              </li>
+              <li class="hidden-xs hidden-sm">
+                <a ng-click="displayContactDetails()" href="">
+                  <i class="ti-email"></i>
+                  <p>Contact</p>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+
+      <div class="content">
+        <div ng-view=""></div>
+      </div>
+
+
+      <footer class="footer">
+        <div class="container-fluid">
+          <nav class="pull-left">
+            <ul>
+
+              <li>
+                <a href="#privacy">
+                  Privacy Policy
+                </a>
+              </li>
+              <li>
+                <a href="#help">
+                  Help
+                </a>
+              </li>
+              <li>
+                <a href="http://demos.creative-tim.com/paper-dashboard/dashboard.html">
+                  UI Credit - Creative Time
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <div class="pull-right github-stars">
+            <iframe
+              src="https://ghbtns.com/github-btn.html?user=aidanwhiteley&repo=books&type=star&count=true&size=large"
+              frameborder="0" scrolling="0" width="170" height="30" title="GitHub"></iframe>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+
+  <script src="env.js"></script>
+
+  <!-- build:js(.) scripts/vendor.js -->
+  <!-- bower:js -->
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.js"></script>
+  <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+  <script src="bower_components/angular-resource/angular-resource.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+  <script src="bower_components/angular-touch/angular-touch.js"></script>
+  <script src="bower_components/bootstrap3-typeahead/bootstrap3-typeahead.js"></script>
+  <script src="bower_components/angular-bootstrap3-typeahead/angular-bootstrap3-typeahead.js"></script>
+  <script src="bower_components/angular-mocks/angular-mocks.js"></script>
+  <script src="bower_components/angular-swipe/dist/angular-swipe.js"></script>
+  <script src="bower_components/angular-carousel-3d/dist/carousel-3d.js"></script>
+  <script src="bower_components/angular-confirm/js/angular-confirm.js"></script>
+  <!-- endbower -->
+  <!-- endbuild -->
+
+  <!-- build:js({.tmp,app}) scripts/scripts.js -->
+  <script src="scripts/app.js"></script>
+  <script src="scripts/controllers/summary.js"></script>
+  <script src="scripts/controllers/createedit.js"></script>
+  <script src="scripts/controllers/menu.js"></script>
+  <script src="scripts/controllers/book.js"></script>
+  <script src="scripts/controllers/help.js"></script>
+  <script src="scripts/controllers/logout.js"></script>
+  <script src="scripts/controllers/landing.js"></script>
+  <script src="scripts/services/summarydataservice.js"></script>
+  <script src="scripts/services/bookdataservice.js"></script>
+  <script src="scripts/services/userdataservice.js"></script>
+  <script src="scripts/services/menuservice.js"></script>
+  <script src="scripts/services/messagingservice.js"></script>
+  <script src="scripts/utils/bootstrap-checkbox-radio.js"></script>
+  <script src="scripts/utils/bootstrap-notify.js"></script>
+  <script src="scripts/utils/paper-dashboard.js"></script>
+  <!-- endbuild -->
 
 
 </body>

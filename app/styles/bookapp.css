@@ -35,7 +35,7 @@
 
 .welcomeText {
     text-transform: none !important;
-    font-size: 14px !important; 
+    font-size: 14px !important;
     font-weight: 100 !important;
     color: white;
 }
@@ -159,7 +159,7 @@ select.searchByEntry {
 .form-control:-ms-input-placeholder {
   color: #000000;
   opacity: 0.5;
-  filter: alpha(opacity=50); 
+  filter: alpha(opacity=50);
 }
 
 .menuCriteriaInput {
@@ -195,12 +195,12 @@ select.searchByEntry {
     padding-top: 20px;
 }
 
-.commentThumbnail {    
+.commentThumbnail {
     border-radius: 62.5rem;
 }
 
 .reviewerImage {
-    
+
 }
 
 .adminControls {
@@ -408,4 +408,9 @@ select.searchByEntry {
             transform: none;
     opacity: 1;
   }
+}
+
+
+.github-stars {
+  margin-top: 20px;
 }
