@@ -7,7 +7,7 @@
 # If you want to use an API gateway above the Java microservices edit the commented lines below
 # and build an alternative Docker image with the command
 # "docker build --rm -t aidanwhiteley/books-web-angular-gateway ."
-FROM nginx:1.19.6-alpine
+FROM nginx:1.20.0-alpine
 #COPY nginx-DOCKER.conf /etc/nginx/nginx.conf
 COPY nginx-apigateway-DOCKER.conf /etc/nginx/nginx.conf
 ADD dist /var/www/localhost/books/
