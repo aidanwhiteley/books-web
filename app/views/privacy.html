@@ -1,42 +1,267 @@
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card privacy">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card privacy">
 
-                <h1>Website Privacy Policy</h1>
-                <p><strong>The policy:</strong> This privacy policy is for this website; [<a href="http://cloudybookclub.com" target="_blank">cloudybookclub.com</a>] and served by Aidan Whiteley and governs the privacy of its users who choose to use it. It explains how we comply with the GDPR (General Data Protection Regulation), the DPA (Data Protection Act) [pre GDPR enforcement] and the PECR (Privacy and Electronic Communications Regulations).</p>
-                <p>This policy will explain areas of this website that may affect your privacy and personal details, how we process, collect, manage and store those details and how your rights under the GDPR, DPA &amp; PECR are adhere to. Additionally it will explain the use of cookies or software, advertising or commercial sponsorship from third parties and the download of any documents, files or software made available to you (if any) on this website. Further explanations may be provided for specific pages or features of this website in order to help you understand how we, this website and its third parties (if any) interact with you and your computer / device in order to serve it to you. Our contact information is provided if you have any questions.</p>
-                <h3>The DPA &amp; GDPR May 2018</h2>
-                <p>We and this website complies to the DPA (Data Protection Act 1998) and already complies to the GDPR (General Data Protection Regulation) which comes into affect from May 2018. We will update this policy accordingly after the completion of the UK's exit from the European Union.</p>
-                <h3>Use of Cookies</h2>
-                <p>This website uses cookies to better the users experience while visiting the website. </p>
-                <p><strong>What are cookies?</strong> Cookies are small files saved to the user's computers hard drive that track, save and store information about the user's interactions and usage of the website. This allows the website, through its server to provide the users with a tailored experience within this website.<br /> Users are advised that if they wish to deny the use and saving of cookies from this website on to their computers hard drive they should take necessary steps within their web browsers security settings to block all cookies from this website and its external serving vendors or use the cookie control system if available upon their first visit. However, cookies <b>must</b> be enabled to log on to the site successfully.</p>
-                <p>The website also uses "LocalStorage". This is similar in concept to Cookies in that it supports storing limited amounts of data on your computer.</p>
-                <h3>Website Visitor Tracking</h2>
-                <p>This website uses tracking software to monitor its visitors to better understand how they use it. The software will save a cookie to your computers hard drive in order to track and monitor your engagement and usage of the website, but will not store, save or collect personal information.<br />
-                </p>
-                <h3>Adverts and Sponsored Links</h2>
-                <p>This website does not currently contain sponsored links and adverts. </p>
-                <p>It does link through to Google's Books web site that contains adverts and sales links but this link isn't sponsored.</p>
-                <h3>Contact &amp; Communication With us</h2>
-                <p>Users contacting this us through this website do so at their own discretion and provide any such personal details requested at their own risk. Your personal information is kept private and stored securely until a time it is no longer required or has no use.</p>
-                <h3>Email Mailing List </h2>
-                <p>We do not operate an email mailing list program <b>yet</b> .</p>
-                <h3>External Website Links &amp; Third Parties</h2>
-                <p>Although we only look to include quality, safe and relevant external links, users are advised to adopt a policy of caution before clicking any external web links mentioned throughout this website.</p>
-                <p>We cannot guarantee or verify the contents of any externally linked website despite our best efforts. Users should therefore note they click on external links at their own risk and we cannot be held liable for any damages or implications caused by visiting any external links mentioned.</p>
-                <h3>Social Media Policy &amp; Usage</h2>
-                <p>We will never ask for user passwords or personal details on social media platforms.  </p>
-                <h3>Resources &amp; Further Information</h2>
-                <ul>
-                    <li><a href="https://ico.org.uk/for-organisations/data-protection-reform/overview-of-the-gdpr/" title="Overview of the GDPR" target="_blank">Overview of the GDPR - General Data Protection Regulation</a></li>
-                    <li><a href="http://www.legislation.gov.uk/ukpga/1998/29/contents" title="Data Protection Act 1998" target="_blank">Data Protection Act 1998</a></li>
-                    <li><a href="http://www.facebook.com/about/privacy/" title="Facebook Privacy Policy" target="_blank">Facebook Privacy Policy</a></li>
-                    <li><a href="http://www.google.com/privacy.html" title="Google Privacy Policy" target="_blank">Google Privacy Policy</a></li>
-                    <li><a href="http://www.jamieking.co.uk/resources/free_sample_privacy_policy.html" title="Website Privacy Policy UK Template" target="_blank">Website Privacy Policy Template</a></li>
-                </ul>
-                <p>v.3.0 November 2017 Edited &amp; customised by: Aidan Whiteley</p>
-            </div>
-        </div>
+        <p class="lead">
+          Here's the Privacy Policy for {{env.applicationName}}.
+        </p>
+
+        <h2>Data and {{env.applicationName}}</h2>
+
+        <p>
+          {{env.applicationName}} maintains and uses the following data
+        </p>
+        <ul>
+          <li>
+            <p>
+              <b>Book review data</b> entered by users of the application (including book title, genre, rating and
+              summary review).
+            </p>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Data item</th>
+                  <th>Processing</th>
+                  <th>Processing purpose</th>
+              </thead>
+              </tr>
+              <tbody>
+                <tr>
+                  <td>Book title</td>
+                  <td>Stored</td>
+                  <td>To be able to display the title (or name) of the book</td>
+                </tr>
+                <tr>
+                  <td>Genre</td>
+                  <td>Stored</td>
+                  <td>To be able to display the genre of the book (e.g. novel, autobiography etc)</td>
+                </tr>
+                <tr>
+                  <td>Rating</td>
+                  <td>Stored</td>
+                  <td>To be able rate the book as either great, good, ok, poor or terrible</td>
+                </tr>
+                <tr>
+                  <td>Summary review</td>
+                  <td>Stored</td>
+                  <td>To be able see what the reviewer thought of the book. User's are asked to avoid "spoilers" (i.e.
+                    giving away key details of a novel's plot)</td>
+                </tr>
+                <tr>
+                  <td>Google Books Data</td>
+                  <td>Stored</td>
+                  <td>To be able &quot;point&quot; to a selected Google Books entry enabling the display of an
+                    appropriate book cover
+                    image, Google Books book review and
+                    (sometimes) a preview of the book on Google Books.</td>
+                </tr>
+              </tbody>
+            </table>
+            <p><b>Requesting data deletion</b> The application developer is (in GDPR terms) both the "data controller"
+              and "dataprocessor".
+            </p>
+            <p>
+              If a user has created a book review then they have the ability to delete that book review at any time.
+            </p>
+            <p>
+              If a user wants to request the amendment or deletion of any other book data in {{env.applicationName}},
+              please
+              <a href="mailto:{{env.bookClubContactEmail}}?subject=Book review data deletion Request">contact</a>
+              the data controller and
+              we'll agree what needs to be edited or entirely deleted.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              <b>Comments data</b> on book reviews on {{env.applicationName}} - logged on users with the necessary
+              permissions can comment on any other users book reviews.
+            </p>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Data item</th>
+                  <th>Processing</th>
+                  <th>Processing purpose</th>
+              </thead>
+              </tr>
+              <tbody>
+                <tr>
+                  <td>Comment</td>
+                  <td>Stored</td>
+                  <td>To be able see a user's comments on a boook review</td>
+                </tr>
+              </tbody>
+            </table>
+            <p>
+              <b>Requesting data deletion</b> A user can always delete any comment that they have made on any book
+              review.
+              However, the comment will be replaced by <small>&quot;Comment deleted by __name__&quot;</small>
+              >&quot;</small>
+            </p>
+            <p>
+              If a user wants to request the amendment or completion deletion of any comment data in
+              {{env.applicationName}},
+              please
+              <a href="mailto:{{env.bookClubContactEmail}}?subject=Book comment data deletion Request">contact</a>
+              the data controller and
+              we'll agree what needs to be edited or entirely deleted.
+            </p>
+          </li>
+
+          <li>
+            <p>
+              Logon details when logging on to {{env.applicationName}} via Google, Facebook or Twitter.
+            </p>
+            <p>
+              Friends of the application developer, the application developer's wife or the application developer's dog
+              are
+              invited to log on to {{env.applicationName}} -
+              after which the "data processor" may add permissions to their account such that activities and photos
+              marked with
+              privacy levels might be viewed.
+              There is nothing to stop anyone else logging on to the application but unless and until the "data
+              processor" adds
+              permissions to that logon's account, then
+              logging on gets a user no additional access.
+            </p>
+            <p>
+              When you log on to {{env.applicationName}}, the application stores the following information (mostly
+              provided by
+              the
+              Authorisation Server i.e. Google, Facebook or Twitter):
+            </p>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Data item</th>
+                  <th>Processing</th>
+                  <th>Processing purpose</th>
+              </thead>
+              </tr>
+              <tbody>
+                <tr>
+                  <td>First name</td>
+                  <td>Stored</td>
+                  <td>To be able display a friendly greeting when logging on (and to confirm your identity)</td>
+                </tr>
+                <tr>
+                  <td>Last name</td>
+                  <td>Stored</td>
+                  <td>To be able display a friendly greeting when logging on (and to confirm your identity)</td>
+                </tr>
+                <tr>
+                  <td>Email address</td>
+                  <td>Stored</td>
+                  <td>To support communication to users if any change to {{env.applicationName}} will affect their usage
+                    of it
+                  </td>
+                </tr>
+                <tr>
+                  <td>The "provider key" on the authorisation server</td>
+                  <td>Stored</td>
+                  <td>To enable successful completion of logon processing</td>
+                </tr>
+                <tr>
+                  <td>Authorisation server used</td>
+                  <td>Stored</td>
+                  <td>To show the user whether they have logged on via Google, Facebook or Twitter</td>
+                </tr>
+                <tr>
+                  <td>URL to user's avatar (if any)</td>
+                  <td>Stored</td>
+                  <td>To be able display an avatar when logging on (and to confirm your identity)</td>
+                </tr>
+                <tr>
+                  <td>Previous and last logon dates</td>
+                  <td>Stored</td>
+                  <td>So the user can see the last logon date/time from their account (to have confidence no-one else
+                    has used
+                    their account)</td>
+                </tr>
+                <tr>
+                  <td>User's access level</td>
+                  <td>Set by the administrator and stored</td>
+                  <td>So that a user who has been given elevated access rights can do more on {{env.applicationName}}
+                  </td>
+                </tr>
+                <tr>
+                  <td>Logon count</td>
+                  <td>Calculated and stored</td>
+                  <td>So that an adminstrator can see how many active users there are</td>
+                </tr>
+              </tbody>
+            </table>
+            <p>
+              <b>Requesting data deletion</b> If you no longer want {{env.applicationName}} to store the above data for
+              you,
+              please <a href="/contact">contact the data controller</a> and we'll delete your data.
+            </p>
+            <p>
+              If you want a copy of the above data that {{env.applicationName}} holds for you, please send a
+              <a
+                href="https://ico.org.uk/your-data-matters/your-right-to-get-copies-of-your-data/preparing-and-submitting-your-subject-access-request" />subject
+              access request</a>
+              to <a href="/contact">the data controller</a>.
+            </p>
+          </li>
+        </ul>
+        <h2>Cookies and {{env.applicationName}}</h2>
+        <p>{{env.applicationName}} makes minimal use of cookies (and no use of local or session storage).</p>
+        <ul>
+          <li>A cookie named "authenticator" maintains a logon token for the user during their current logon session.
+            This is a
+            functional cookie - logged in access to the application won't work without it</li>
+          <li>A cookie named "gpsblog_sel_activity" maintains any choice the user has made in terms of which type of
+            activities
+            to view on the home page. This lasts for one day. This is a
+            functional cookie - application won't work as expected without it
+          </li>
+          <li>
+            When displaying navionics based marine charts, multiple cookies are "dropped" by .navionics.com. The user is
+            referred to <a href="https://www.navionics.com/gbr/legal/privacy-policy">Navionics Privacy Policy</a> for
+            more
+            details.
+          </li>
+          <li>
+            The current version of {{env.applicationName}} makes no use of any user tracking / tracking cookies - if you
+            find
+            any, please
+            let me know!
+          </li>
+        </ul>
+        <h2>APIs and {{env.applicationName}}</h2>
+        <p>{{env.applicationName}} makes use of several publicly available APIs. These include:</p>
+        <ul>
+          <li>The <a href="https://developers.google.com/maps/documentation/javascript/overview">Google Maps API</a> -
+            please
+            see the <a href="https://policies.google.com/privacy">Google Privacy Policy</a></li>
+          <li>The <a href="https://developers.google.com/maps/documentation/geocoding/overview">Google GeoCoding API</a>
+            -
+            please see the <a href="https://policies.google.com/privacy">Google Privacy Policy</a></li>
+          <li>The <a href="https://developers.google.com/maps/documentation/javascript/elevation">Google Elevation
+              API</a> -
+            please see the <a href="https://policies.google.com/privacy">Google Privacy Policy</a></li>
+          <li>The <a href="https://webapiv2.navionics.com/">Navionics Web API</a> - please see the <a
+              href="https://www.navionics.com/gbr/legal/privacy-policy">Navionics Privacy Policy</a></li>
+        </ul>
+
+        <hr />
+
+
+        <h2>Contacting us</h2>
+        <p>If you have any questions, concerns, or complaints regarding this Agreement, we encourage you to contact us
+          using the
+          details below:</p>
+
+        <p><a target="_blank" rel="nofollow"
+            href="mailto:{{env.bookClubContactEmail}}?subject={{env.applicationName}} Enquiry">{{env.bookClubContactEmail}}</a>
+        </p>
+
+        <p>This document was last updated on October 2nd, 2021</p>
+
+      </div>
     </div>
+  </div>
 </div>
