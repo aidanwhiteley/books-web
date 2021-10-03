@@ -101,7 +101,7 @@
               >&quot;</small>
             </p>
             <p>
-              If a user wants to request the amendment or completion deletion of any comment data in
+              If a user wants to request the amendment or complete deletion of any comment data in
               {{env.applicationName}},
               please
               <a href="mailto:{{env.bookClubContactEmail}}?subject=Book comment data deletion Request">contact</a>
@@ -112,15 +112,13 @@
 
           <li>
             <p>
-              Logon details when logging on to {{env.applicationName}} via Google, Facebook or Twitter.
+              <b>Logon details</b> when logging on to {{env.applicationName}} via Google or Facebook.
             </p>
             <p>
-              Friends of the application developer, the application developer's wife or the application developer's dog
+              Friends of the application developer
               are
               invited to log on to {{env.applicationName}} -
-              after which the "data processor" may add permissions to their account such that activities and photos
-              marked with
-              privacy levels might be viewed.
+              after which the "data processor" may add permissions to their account such that book reviews can be added or comments made on existing book reviews.
               There is nothing to stop anyone else logging on to the application but unless and until the "data
               processor" adds
               permissions to that logon's account, then
@@ -130,7 +128,7 @@
               When you log on to {{env.applicationName}}, the application stores the following information (mostly
               provided by
               the
-              Authorisation Server i.e. Google, Facebook or Twitter):
+              Authorisation Server i.e. Google or Facebook):
             </p>
             <table class="table">
               <thead>
@@ -166,15 +164,15 @@
                 <tr>
                   <td>Authorisation server used</td>
                   <td>Stored</td>
-                  <td>To show the user whether they have logged on via Google, Facebook or Twitter</td>
+                  <td>To show the user whether they have logged on via Google or Facebook</td>
                 </tr>
                 <tr>
                   <td>URL to user's avatar (if any)</td>
                   <td>Stored</td>
-                  <td>To be able display an avatar when logging on (and to confirm your identity)</td>
+                  <td>To be able display an avatar when logging on (and to confirm your identity) and to display along side book reviews and comments</td>
                 </tr>
                 <tr>
-                  <td>Previous and last logon dates</td>
+                  <td>Last logon dates</td>
                   <td>Stored</td>
                   <td>So the user can see the last logon date/time from their account (to have confidence no-one else
                     has used
@@ -186,43 +184,33 @@
                   <td>So that a user who has been given elevated access rights can do more on {{env.applicationName}}
                   </td>
                 </tr>
-                <tr>
-                  <td>Logon count</td>
-                  <td>Calculated and stored</td>
-                  <td>So that an adminstrator can see how many active users there are</td>
-                </tr>
               </tbody>
             </table>
             <p>
               <b>Requesting data deletion</b> If you no longer want {{env.applicationName}} to store the above data for
               you,
-              please <a href="/contact">contact the data controller</a> and we'll delete your data.
+              please <a href="mailto:{{env.bookClubContactEmail}}?subject={{env.applicationName}} Data deletion request">contact the data controller</a> and we'll delete your data.
             </p>
             <p>
               If you want a copy of the above data that {{env.applicationName}} holds for you, please send a
               <a
                 href="https://ico.org.uk/your-data-matters/your-right-to-get-copies-of-your-data/preparing-and-submitting-your-subject-access-request" />subject
               access request</a>
-              to <a href="/contact">the data controller</a>.
+              to <a href="mailto:{{env.bookClubContactEmail}}?subject={{env.applicationName}} Copy of my data">the data controller</a>.
             </p>
           </li>
         </ul>
         <h2>Cookies and {{env.applicationName}}</h2>
-        <p>{{env.applicationName}} makes minimal use of cookies (and no use of local or session storage).</p>
+        <p>{{env.applicationName}} makes minimal use of cookies (and no use of local or session storage).
+          If you choose to logon to to the application a couple of cookies will be dropped by the application
+        </p>
         <ul>
-          <li>A cookie named "authenticator" maintains a logon token for the user during their current logon session.
+          <li>A cookie named "CLOUDY-JWT" maintains a logon token for the user during their current logon session.
             This is a
             functional cookie - logged in access to the application won't work without it</li>
-          <li>A cookie named "gpsblog_sel_activity" maintains any choice the user has made in terms of which type of
-            activities
-            to view on the home page. This lasts for one day. This is a
-            functional cookie - application won't work as expected without it
-          </li>
-          <li>
-            When displaying navionics based marine charts, multiple cookies are "dropped" by .navionics.com. The user is
-            referred to <a href="https://www.navionics.com/gbr/legal/privacy-policy">Navionics Privacy Policy</a> for
-            more
-            details.
+          <li>A cookie named "XSRF-TOKEN" is used to protect the user against a type of hacking
+            called cross site request forgery. This is a
+            functional cookie - updates to the application data won't workwithout it
           </li>
           <li>
             The current version of {{env.applicationName}} makes no use of any user tracking / tracking cookies - if you
@@ -232,26 +220,17 @@
           </li>
         </ul>
         <h2>APIs and {{env.applicationName}}</h2>
-        <p>{{env.applicationName}} makes use of several publicly available APIs. These include:</p>
+        <p>{{env.applicationName}} makes use of publicly available APIs. These include:</p>
         <ul>
-          <li>The <a href="https://developers.google.com/maps/documentation/javascript/overview">Google Maps API</a> -
+          <li>The <a href="https://developers.google.com/books/docs/overview">Google Books API</a> -
             please
             see the <a href="https://policies.google.com/privacy">Google Privacy Policy</a></li>
-          <li>The <a href="https://developers.google.com/maps/documentation/geocoding/overview">Google GeoCoding API</a>
-            -
-            please see the <a href="https://policies.google.com/privacy">Google Privacy Policy</a></li>
-          <li>The <a href="https://developers.google.com/maps/documentation/javascript/elevation">Google Elevation
-              API</a> -
-            please see the <a href="https://policies.google.com/privacy">Google Privacy Policy</a></li>
-          <li>The <a href="https://webapiv2.navionics.com/">Navionics Web API</a> - please see the <a
-              href="https://www.navionics.com/gbr/legal/privacy-policy">Navionics Privacy Policy</a></li>
         </ul>
 
         <hr />
 
-
         <h2>Contacting us</h2>
-        <p>If you have any questions, concerns, or complaints regarding this Agreement, we encourage you to contact us
+        <p>If you have any questions, concerns, or complaints regarding this privacy policy, we encourage you to contact us
           using the
           details below:</p>
 
@@ -259,7 +238,7 @@
             href="mailto:{{env.bookClubContactEmail}}?subject={{env.applicationName}} Enquiry">{{env.bookClubContactEmail}}</a>
         </p>
 
-        <p>This document was last updated on October 2nd, 2021</p>
+        <p>This document was last updated on October 3rd, 2021</p>
 
       </div>
     </div>
